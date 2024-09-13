@@ -1,5 +1,8 @@
 <?php 
 
+//DEFINIÇÃO DE FUSO HORÁRIO
+date_default_timezone_set('America/Sao_Paulo');
+
 //CONEXÃO LOCAL COM O BANCO DE DADOS
 $servidor = 'localhost';
 $banco = 'health';
