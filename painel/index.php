@@ -1,7 +1,5 @@
 <?php 
-@session_start();
-echo $_SESSION['nome'];
-
+require_once("verificar.php");
 ?>
 
 <a href="logout.php">sair</a>
