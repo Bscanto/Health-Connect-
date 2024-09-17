@@ -19,7 +19,7 @@ try {
 //VARIAB=VEIS GLOBAIS
 $nome_sistema = 'Health Connect';
 $nome = "Bruno";
-$email = "bsccanto@gmail.com";
-$telefone = "5599999999";
+$email_sistema = "bsccanto@gmail.com";
+$telefone_sistema = "5599999999";
 
 ?>
