@@ -15,10 +15,10 @@ if(@$_GET['pagina'] != ""){
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Nome Sistema</title>
+	<title> <?php echo $nome_sistema ?> </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="shortcut icon" href="" type="image/x-icon">
+	<link rel="shortcut icon" href="../img/logo azul.png" type="image/x-icon">
 
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
@@ -115,7 +115,8 @@ if(@$_GET['pagina'] != ""){
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<h1><a class="navbar-brand" href="index.php"><span class="fa fa-cutlery"></span> Sistema<span class="dashboard_text">Nome do Sistema</span></a></h1>
+						<img src="../img/logo branco.png" alt="" width="200px">
+						
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="sidebar-menu">
