@@ -1,5 +1,8 @@
 <?php 
+@session_start();
+require_once("../conexao.php");
 require_once("verificar.php");
-?>
 
-<a href="logout.php">sair</a>
+?>
+<a href="../">Sair</a>
+
