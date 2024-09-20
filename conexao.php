@@ -1,5 +1,4 @@
 <?php 
-
 //DEFINIÇÃO DE FUSO HORÁRIO
 date_default_timezone_set('America/Sao_Paulo');
 
@@ -14,7 +13,6 @@ try {
 } catch (Exception $e) {
 	echo 'Erro ao conectar ao banco de dados!<br>';
 }
-
 
 //VARIAVEIS GLOBAIS
 $nome_sistema = 'Health Connect';

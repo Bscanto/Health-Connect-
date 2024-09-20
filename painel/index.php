@@ -115,7 +115,7 @@ if(@$_GET['pagina'] != ""){
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<img src="../img/logo branco.png" alt="" width="200px">
+						<a href="	index.php"> <img class="mt-4 mb-4" src="../img/logo branco.png" alt="" width="200px"> </a>
 						
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
