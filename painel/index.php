@@ -229,7 +229,7 @@ if(@$_GET['pagina'] != ""){
 							<ul class="dropdown-menu drp-mnu">
 								<li> <a href="" data-toggle="modal" data-target="#modalConfig"><i class="fa fa-cog"></i> Configurações</a> </li> 
 								<li> <a href="" data-toggle="modal" data-target="#modalPerfil"><i class="fa fa-user"></i> Perfil</a> </li> 								
-								<li> <a href="../logout.php"><i class="fa fa-sign-out"></i> Sair</a> </li>
+								<li> <a href="logout.php"><i class="fa fa-sign-out"></i> Sair</a> </li>
 							</ul>
 						</li>
 					</ul>
