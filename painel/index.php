@@ -128,7 +128,9 @@ if($linhas > 0){
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a href="	index.php"> <img class="mt-4 mb-4" src="../img/logo branco.png" alt="" width="200px"> </a>
+						<a href="	index.php" > 
+							<img class="m-3" src="../img/logo branco.png" alt="logo health connect" width="200px" height="50px"> 
+						</a>
 						
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -362,15 +364,9 @@ if($linhas > 0){
 
 
 					<div class="row">
-						<div class="col-md-12">							
-								<label>Endereço</label>
-								<input type="text" class="form-control" id="endereco_perfil" name="endereco" placeholder="Seu Endereço" value="<?php echo $endereco_usuario ?>">							
-						</div>
-						</div>
-
 						<div class="col-md-4">							
 								<label>Telefone</label>
-								<input type="telefone" class="form-control" id="senha_perfil" name="senha" placeholder="Senha" value="<?php echo $senha_usuario ?>" required>							
+								<input type="text" class="form-control" id="telefone_perfil" name="telefone" placeholder="Seu Telefone" value="<?php echo $telefone_usuario ?>" required>							
 						</div>
 
 						<div class="col-md-4">							
@@ -382,20 +378,27 @@ if($linhas > 0){
 								<label>Confirmar Senha</label>
 								<input type="password" class="form-control" id="conf_senha_perfil" name="conf_senha" placeholder="Confirmar Senha" value="" required>							
 						</div>
+
+						
 					</div>
 
-					<div class="row">
-					<div class="col-md-12">	
-					
-					
 
 					<div class="row">
-						<div class="col-md-6">							
+						<div class="col-md-12">	
+							<label>Endereço</label>
+							<input type="text" class="form-control" id="endereco_perfil" name="endereco" placeholder="Seu Endereço" value="<?php echo $endereco_usuario ?>" >	
+						</div>
+					</div>
+					
+
+
+					<div class="row">
+						<div class="col-md-8">							
 								<label>Foto</label>
 								<input type="file" class="form-control" id="foto_perfil" name="foto" value="<?php echo $foto_usuario ?>" onchange="carregarImgPerfil()">							
 						</div>
 
-						<div class="col-md-6">								
+						<div class="col-md-4">								
 							<img src="images/perfil/<?php echo $foto_usuario ?>"  width="80px" id="target-usu">								
 							
 						</div>
@@ -560,7 +563,7 @@ if($linhas > 0){
 
 
 
-
+// SCRIPT PARA CARREGAR IMAGEM
 <script type="text/javascript">
 	function carregarImgPerfil() {
     var target = document.getElementById('target-usu');
