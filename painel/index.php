@@ -15,7 +15,13 @@ $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $linhas = @count($res);
 if($linhas > 0){
 	$nome_usuario = $res[0]['nome'];
-	
+	$email_usuario = $res[0]['email'];
+	$senha_usuario = $res[0]['senha'];
+	$telefone_usuario = $res[0]['telefone'];
+	$nivel_usuario = $res[0]['nivel'];
+	$foto_usuario = $res[0]['foto'];
+	$endereco_usuario = $res[0]['endereco'];
+
 }
 
 ?>
@@ -223,10 +229,10 @@ if($linhas > 0){
 						<li class="dropdown profile_details_drop">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">	
-									<span class="prfil-img"><img src="images/perfil/sem-foto.jpg" alt="" width="50px" height="50px"> </span> 
+								<span class="prfil-img"><img src="images/perfil/<?php echo $foto_usuario ?>" alt="" width="50px" height="50px"> </span> 
 									<div class="user-name esc">
-										<p>Nome Usuário</p>
-										<span>Nível Usuário</span>
+										<p><?php echo $nome_usuario?></p>
+										<span><?php echo $nivel_usuario?></span>
 									</div>
 									<i class="fa fa-angle-down lnr"></i>
 									<i class="fa fa-angle-up lnr"></i>
@@ -356,31 +362,32 @@ if($linhas > 0){
 
 
 					<div class="row">
-						<div class="col-md-6">							
+						<div class="col-md-12">							
+								<label>Endereço</label>
+								<input type="text" class="form-control" id="endereco_perfil" name="endereco" placeholder="Seu Endereço" value="<?php echo $endereco_usuario ?>">							
+						</div>
+						</div>
+
+						<div class="col-md-4">							
 								<label>Telefone</label>
-								<input type="text" class="form-control" id="telefone_perfil" name="telefone" placeholder="Seu Telefone" value="<?php echo $telefone_usuario ?>" required>							
+								<input type="telefone" class="form-control" id="senha_perfil" name="senha" placeholder="Senha" value="<?php echo $senha_usuario ?>" required>							
 						</div>
 
-						<div class="col-md-6">							
-								<label>CPF</label>
-								<input type="text" class="form-control" id="cpf_perfil" name="cpf" placeholder="Seu CPF" value="<?php echo $cpf_usuario ?>">							
-						</div>
-					</div>
-
-
-
-					<div class="row">
-						<div class="col-md-6">							
+						<div class="col-md-4">							
 								<label>Senha</label>
 								<input type="password" class="form-control" id="senha_perfil" name="senha" placeholder="Senha" value="<?php echo $senha_usuario ?>" required>							
 						</div>
 
-						<div class="col-md-6">							
+						<div class="col-md-4">							
 								<label>Confirmar Senha</label>
 								<input type="password" class="form-control" id="conf_senha_perfil" name="conf_senha" placeholder="Confirmar Senha" value="" required>							
 						</div>
 					</div>
 
+					<div class="row">
+					<div class="col-md-12">	
+					
+					
 
 					<div class="row">
 						<div class="col-md-6">							

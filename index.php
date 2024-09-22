@@ -9,7 +9,7 @@ $senha = '123';
 $senha_crip = sha1($senha);
 
 if($linhas == 0){
-	$pdo->query("INSERT INTO usuarios SET nome = '$nome_sistema', email = '$email_sistema', senha = '', senha_crip = '$senha_crip', nivel = 'Administrador', ativo = 'Sim', foto = 'sem-foto.png' ");
+	$pdo->query("INSERT INTO usuarios SET nome = '$nome_sistema', email = '$email_sistema', senha = '', senha_crip = '$senha_crip', nivel = 'Administrador', ativo = 'Sim', foto = 'sem-foto.jpg', telefone = '$telefone_sistema' ");
 }
 
 
@@ -43,6 +43,7 @@ if($linhas == 0){
 				<input type="email" name="usuario" placeholder="Seu Email" required>
 				<input type="password" name="senha" placeholder="Senha" required>
 				<button class="btn-logar">Login</button>
+				
 			</form>	
 			<br>
 			<p class="recuperar"><a title="Clique para recupearar a senha" href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Recuperar Senha</a></p>
