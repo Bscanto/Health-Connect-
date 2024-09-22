@@ -1,4 +1,5 @@
 <?php 
+@session_start();
 require_once("../conexao.php");
 require_once("verificar.php");
 
@@ -8,8 +9,14 @@ if(@$_GET['pagina'] != ""){
 }else{
 	$pagina = 'home';
 }
-
-
+$id_usuario = @$_SESSION['id'];
+$query = $pdo->query("SELECT * from usuarios  WHERE id = '$id_usuario'");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$linhas = @count($res);
+if($linhas > 0){
+	$nome_usuario = $res[0]['nome'];
+	
+}
 
 ?>
 <!DOCTYPE HTML>
