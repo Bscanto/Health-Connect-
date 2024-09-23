@@ -37,9 +37,24 @@ for ($i = 0; $i < $linhas; $i++) {
 
   $dataF = implode('/', array_reverse(explode('-', $data)));
 
+  if($ativo == 'Sim'){
+    $icone = 'fa-check-square';
+    $titulo_link = 'Desativar Usuário';
+    $acao = 'Não';
+    $classe_ativo = '';
+  }else{
+    $icone = 'fa-square-o';
+    $titulo_link = 'Ativar Item';
+    $acao = 'Sim';
+    $classe_ativo = '#c4c4c4';
+  }
+
+  if($nivel == 'Administrador'){
+    $senha = '*******';
+  }
 
   echo <<<HTML
-<tr>
+<tr style="color:{$classe_ativo}">
   <td>{$nome}</td>
   <td class="esc">{$telefone}</td>
   <td class="esc">{$email}</td>
@@ -63,6 +78,12 @@ for ($i = 0; $i < $linhas; $i++) {
 		</ul>
 </li>
 
+<!-- ICONE MOSTRAR -->
+<big><a href="#" onclick="mostrar('{$nome}','{$email}','{$telefone}','{$endereco}','{$ativo}','{$dataF}', '{$senha}', '{$nivel}')" title="Mostrar Dados"><i class="fa fa-info-circle text-primary"></i></a></big>
+
+<!-- ICONE ATIVAR -->
+<big><a href="#" onclick="ativar('{$id}', '{$acao}')" title="{$titulo_link}"><i class="fa {$icone} text-success"></i></a></big>
+
 
   </td>
 </tr>
@@ -71,5 +92,9 @@ HTML;
 
 echo <<<HTML
 </tbody>
+<small><div align="center" id="mensagem-excluir"></div></small>
 </table>
+</small>
 HTML;
+
+ ?>
