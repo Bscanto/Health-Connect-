@@ -59,7 +59,9 @@ if($linhas > 0){
 
 	<!-- chart -->
 	<script src="js/Chart.js"></script>
-	<!-- //chart -->
+
+	<!-- MASCARAS -->
+	<script src="js/mascaras.js"></script>
 
 	<!-- Metis Menu -->
 	<script src="js/metisMenu.min.js"></script>
@@ -113,10 +115,10 @@ if($linhas > 0){
 	</script>
 	<!-- //pie-chart --><!-- index page sales reviews visitors pie chart -->
 
-	<link href="https://cdn.datatables.net/v/dt/dt-2.1.7/datatables.min.css" type="text/css" rel="stylesheet">
+	
+	<link href="https://cdn.datatables.net/v/dt/dt-2.1.7/datatables.min.css" rel="stylesheet">
  
 <script src="https://cdn.datatables.net/v/dt/dt-2.1.7/datatables.min.js"></script>
-
 	
 </head> 
 <body class="cbp-spmenu-push">
