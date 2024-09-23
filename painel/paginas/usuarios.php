@@ -10,13 +10,6 @@ $pag = 'usuarios';
 
 </div>
 
-<script type="text/javascript">
-  var pag = "<?= $pag ?>"
-</script>
-<script src="js/ajax.js"></script>
-
-
-
 
 <!-- Modal Perfil -->
 <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -83,7 +76,7 @@ $pag = 'usuarios';
 
           </div>
 
-
+          <input type="text" class="form-control" id="id" name="id">
           <br>
           <small>
             <div id="mensagem" align="center"></div>
@@ -96,6 +89,12 @@ $pag = 'usuarios';
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  var pag = "<?= $pag ?>"
+</script>
+<script src="js/ajax.js"></script>
 
 
 <!-- SCRIPT PARA CARREGAR IMAGEM -->

@@ -2,7 +2,7 @@
 $tabela = 'usuarios';
 require_once("../../../conexao.php");
 
-$query = $pdo->query("SELECT * from usuarios order by id desc");
+$query = $pdo->query("SELECT * from $tabela  order by id desc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $linhas = @count($res);
 if ($linhas > 0) {
@@ -104,7 +104,6 @@ HTML;
   $('#tabela').DataTable({
     "language": {
         //"url" : '//cdn.datatables.net/plug-ins/1.13.2/i18n/pt-BR.json'
-        
     },
     "ordering":false,
     "stateSave":true
