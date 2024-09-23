@@ -113,6 +113,10 @@ if($linhas > 0){
 	</script>
 	<!-- //pie-chart --><!-- index page sales reviews visitors pie chart -->
 
+	<link href="https://cdn.datatables.net/v/dt/dt-2.1.7/datatables.min.css" type="text/css" rel="stylesheet">
+ 
+<script src="https://cdn.datatables.net/v/dt/dt-2.1.7/datatables.min.js"></script>
+
 	
 </head> 
 <body class="cbp-spmenu-push">
@@ -563,7 +567,7 @@ if($linhas > 0){
 
 
 
-// SCRIPT PARA CARREGAR IMAGEM
+<!-- SCRIPT PARA CARREGAR IMAGEM -->
 <script type="text/javascript">
 	function carregarImgPerfil() {
     var target = document.getElementById('target-usu');
