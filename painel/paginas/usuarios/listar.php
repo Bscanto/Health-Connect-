@@ -103,7 +103,7 @@ HTML;
   $(document).ready(function(){
   $('#tabela').DataTable({
     "language": {
-        //"url" : '//cdn.datatables.net/plug-ins/1.13.2/i18n/pt-BR.json'
+        "url" : '//cdn.datatables.net/plug-ins/1.13.2/i18n/pt-BR.json'
     },
     "ordering":false,
     "stateSave":true
@@ -111,3 +111,19 @@ HTML;
 });
 </script>
 
+
+<script type="text/javascript">
+  function editar(id, nome, email, telefone, endereco, nivel){
+    $('#mensagem').text('');
+    $('#titulo_inserir').text('Editar Registro');
+
+    $('#id').val(id);
+    $('#nome').val(nome);
+    $('#email').val(email);
+    $('#telefone').val(telefone);
+    $('#endereco').val(endereco);
+    $('#nivel').val(nivel).change();
+
+    $('#modalForm').modal('show');
+  }
+</script>

@@ -121,6 +121,7 @@ if($linhas > 0){
 <script src="https://cdn.datatables.net/v/dt/dt-2.1.7/datatables.min.js"></script>
 	
 </head> 
+
 <body class="cbp-spmenu-push">
 	<div class="main-content">
 		<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
@@ -155,6 +156,8 @@ if($linhas > 0){
 								</a>
 								<ul class="treeview-menu">
 									<li><a href="index.php?pagina=usuarios"><i class="fa fa-angle-right"></i> Usuários</a></li>
+
+									<li><a href="index.php?pagina=profissionais"><i class="fa fa-angle-right"></i> Profissionais</a></li>
 									
 								</ul>
 							</li>

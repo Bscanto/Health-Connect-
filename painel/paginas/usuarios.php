@@ -62,21 +62,8 @@ $pag = 'usuarios';
 
           </div>
 
-          <div class="row">
-            <div class="col-md-8">
-              <label>Foto</label>
-              <input type="file" class="form-control" id="foto" name="foto" onchange="carregarImg()">
-            </div>
 
-            <div class="col-md-4">
-              <img src="../images/sem-foto.jpg" width=" 50px" id="target">
-
-            </div>
-
-
-          </div>
-
-          <input type="text" class="form-control" id="id" name="id">
+          <input type="hidden" class="form-control" id="id" name="id">
           <br>
           <small>
             <div id="mensagem" align="center"></div>
@@ -91,29 +78,9 @@ $pag = 'usuarios';
 </div>
 
 
-<script type="text/javascript">
-  var pag = "<?= $pag ?>"
+<script type="text/javascript">var pag = "<?= $pag ?>"
 </script>
 <script src="js/ajax.js"></script>
 
 
-<!-- SCRIPT PARA CARREGAR IMAGEM -->
-<script type="text/javascript">
-  function carregarImg() {
-    var target = document.getElementById('target');
-    var file = document.querySelector("#foto").files[0];
 
-    var reader = new FileReader();
-
-    reader.onloadend = function() {
-      target.src = reader.result;
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-
-    } else {
-      target.src = "";
-    }
-  }
-</script>
