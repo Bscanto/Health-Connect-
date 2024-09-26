@@ -140,7 +140,7 @@ HTML;
     $('#data_dados').text(data);
     $('#senha_dados').text(senha);
     $('#nivel_dados').text(nivel);
-    $('#foto_dados').text(foto);
+    $('#foto_dados').attr("src","images/perfil/" + foto);
 
     $('#modalDados').modal('show');
   }

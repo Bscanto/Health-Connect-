@@ -86,12 +86,11 @@ function excluir(id){
 
 
 function ativar(id, acao){
-var id_usuario = localStorage.id_usu;
-  var id_empresa = localStorage.id_empresa;
+
   $.ajax({
       url: 'paginas/' + pag + "/mudar-status.php",
       method: 'POST',
-      data: {id, id_usuario, acao, id_empresa},
+      data: {id,  acao},
       dataType: "html",
 
       success:function(mensagem){

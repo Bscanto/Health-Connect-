@@ -4,7 +4,7 @@ $pag = 'usuarios';
 ?>
 
 
-<a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Usuário</a>
+<a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span>  Administradores</a>
 
 <div class="bs-example widget-shadow" style="padding: 15px;" id="listar">
 
@@ -115,11 +115,15 @@ $pag = 'usuarios';
           </div>
 
           <div class="col-md-6" style="margin-bottom: 5px">
-            <span><b>Data Cadastro: </b></span><span id="data_cad_dados"></span>
+            <span><b>Data Cadastro: </b></span><span id="data_dados"></span>
           </div>
 
           <div class="col-md-12" style="margin-bottom: 5px">
             <span><b>Endereço: </b></span><span id="endereco_dados"></span>
+          </div>
+
+          <div class="col-md-12" style="margin-bottom: 5px">
+            <div align="center"><img src="" id="foto_dados" width="200px"></div>
           </div>
         </div>
       </div>
