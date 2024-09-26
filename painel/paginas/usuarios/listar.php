@@ -63,7 +63,7 @@ for ($i = 0; $i < $linhas; $i++) {
   <td>
 
     <!-- ICONE EDITAR -->
-      <big><a href="#" onclick="editar('{$id}','{$nome}','{$email}','{$telefone}','{$endereco}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
+      <big><a href="#" onclick="editar('{$id}','{$nome}','{$email}','{$telefone}','{$endereco}','{$nivel}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
 
     <!-- ICONE EXCLUIR -->
       <li class="dropdown head-dpdn2" style="display: inline-block;">
@@ -103,7 +103,7 @@ HTML;
   $(document).ready(function(){
   $('#tabela').DataTable({
     "language": {
-        "url" : '//cdn.datatables.net/plug-ins/1.13.2/i18n/pt-BR.json'
+        //"url" : '//cdn.datatables.net/plug-ins/1.13.2/i18n/pt-BR.json'
     },
     "ordering":false,
     "stateSave":true
@@ -111,7 +111,7 @@ HTML;
 });
 </script>
 
-
+<!-- editar -->
 <script type="text/javascript">
   function editar(id, nome, email, telefone, endereco, nivel){
     $('#mensagem').text('');
@@ -125,5 +125,13 @@ HTML;
     $('#nivel').val(nivel).change();
 
     $('#modalForm').modal('show');
+  }
+
+  function limparCampos(){
+    $('#id').val('');
+    $('#nome').val('');
+    $('#email').val('');
+    $('#telefone').val('');
+    $('#endereco').val('');
   }
 </script>

@@ -569,9 +569,6 @@ if($linhas > 0){
 </div>
 
 
-
-
-
 <!-- SCRIPT PARA CARREGAR IMAGEM -->
 <script type="text/javascript">
 	function carregarImgPerfil() {
@@ -592,10 +589,6 @@ if($linhas > 0){
         }
     }
 </script>
-
-
-
-
 
 
  <script type="text/javascript">
@@ -637,10 +630,6 @@ if($linhas > 0){
 </script>
 
 
-
-
-
-
  <script type="text/javascript">
 	$("#form-config").submit(function () {
 
@@ -680,8 +669,6 @@ if($linhas > 0){
 </script>
 
 
-
-
 <script type="text/javascript">
 	function carregarImgLogo() {
     var target = document.getElementById('target-logo');
@@ -703,9 +690,6 @@ if($linhas > 0){
 </script>
 
 
-
-
-
 <script type="text/javascript">
 	function carregarImgLogoRel() {
     var target = document.getElementById('target-logo-rel');
@@ -725,9 +709,6 @@ if($linhas > 0){
         }
     }
 </script>
-
-
-
 
 
 <script type="text/javascript">

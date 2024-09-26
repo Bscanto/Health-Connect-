@@ -66,12 +66,10 @@ $("#form").submit(function () {
 
 function excluir(id){
   $('#mensagem-excluir').text('Excluindo...')
-  var id_empresa = localStorage.id_empresa;
-var id_usuario = localStorage.id_usu;
   $.ajax({
       url: 'paginas/' + pag + "/excluir.php",
       method: 'POST',
-      data: {id, id_usuario, id_empresa},
+      data: {id},
       dataType: "html",
 
       success:function(mensagem){

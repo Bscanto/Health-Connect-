@@ -11,7 +11,7 @@ $pag = 'usuarios';
 </div>
 
 
-<!-- Modal Perfil -->
+<!-- Modal Editar -->
 <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -46,7 +46,7 @@ $pag = 'usuarios';
 
             <div class="col-md-6">
               <label>Nível</label>
-              <select class="form-control" name="nivel" id="nivel">
+              <select class="form-control" name="nivel" id="nivel" required>
                 <option>Administrador</option>
                 <option>Diretor</option>
               </select>
