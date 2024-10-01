@@ -8477,9 +8477,18 @@ h4.asd label {
        left:-70%;
   }
 
+  .margin-mobile{
+    margin-top: -70px;
+  }
+
+  .altura_grafico{
+    height:500px;
+  }
+
   
 }
 
+
 .ocultar{
-  display: none;
+  display:none;
 }

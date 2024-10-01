@@ -1,9 +1,72 @@
-<div class="main-page">
-	
+<?php 
+if(@$home == 'ocultar'){
+	echo "<script>window.location='../index.php'</script>";
+    exit();
+}
+ ?>
+
+
+
+<div class="main-page margin-mobile">
+
+	<?php if($ativo_sistema == ''){ ?>
+<div style="background: #ffc341; color:#3e3e3e; padding:10px; font-size:14px; margin-bottom:10px">
+<div><i class="fa fa-info-circle"></i> <b>Aviso: </b> Prezado Cliente, não identificamos o pagamento de sua última mensalidade, entre em contato conosco o mais rápido possivel para regularizar o pagamento, caso contário seu acesso ao sistema será desativado.</div>
+</div>
+<?php } ?>
+
+	<div class="col_3">
+		<div class="col-md-3 widget widget1">
+			<div class="r3_counter_box">
+				<i class="pull-left fa fa-dollar icon-rounded"></i>
+				<div class="stats">
+					<h5><strong>1452</strong></h5>
+					<span>Total Pacientes</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 widget widget1">
+			<div class="r3_counter_box">
+				<i class="pull-left fa fa-laptop user1 icon-rounded"></i>
+				<div class="stats">
+					<h5><strong>319</strong></h5>
+					<span>Total de Froficionais</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 widget widget1">
+			<div class="r3_counter_box">
+				<i class="pull-left fa fa-money user2 icon-rounded"></i>
+				<div class="stats">
+					<h5><strong>1012</strong></h5>
+					<span>Total de Atendimentos</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 widget widget1">
+			<div class="r3_counter_box">
+				<i class="pull-left fa fa-pie-chart dollar1 icon-rounded"></i>
+				<div class="stats">
+					<h5><strong>450</strong></h5>
+					<span>Total de Procedimentos</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 widget">
+			<div class="r3_counter_box">
+				<i class="pull-left fa fa-users dollar2 icon-rounded"></i>
+				<div class="stats">
+					<h5><strong>1450</strong></h5>
+					<span>Total </span>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
 	
 	<div class="row-one widgettable">
 		<div class="col-md-8 content-top-2 card">
-			<div class="agileinfo-cdr">
+			<div class="agileinfo-cdr altura_grafico">
 				<div class="card-header">
 					<h3>Weekly Sales</h3>
 				</div>

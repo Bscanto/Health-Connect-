@@ -1,12 +1,12 @@
-<?php
+<?php 
 $tabela = 'usuarios';
 require_once("../../../conexao.php");
 
 $query = $pdo->query("SELECT * from $tabela order by id desc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $linhas = @count($res);
-if ($linhas > 0) {
-  echo <<<HTML
+if($linhas > 0){
+echo <<<HTML
 <small>
 	<table class="table table-hover" id="tabela">
 	<thead> 
@@ -23,40 +23,40 @@ if ($linhas > 0) {
 HTML;
 
 
-  for ($i = 0; $i < $linhas; $i++) {
-    $id = $res[$i]['id'];
-    $nome = $res[$i]['nome'];
-    $telefone = $res[$i]['telefone'];
-    $email = $res[$i]['email'];
-    $senha = $res[$i]['senha'];
-    $foto = $res[$i]['foto'];
-    $nivel = $res[$i]['nivel'];
-    $endereco = $res[$i]['endereco'];
-    $ativo = $res[$i]['ativo'];
-    $data = $res[$i]['data'];
+for($i=0; $i<$linhas; $i++){
+	$id = $res[$i]['id'];
+	$nome = $res[$i]['nome'];
+	$telefone = $res[$i]['telefone'];
+	$email = $res[$i]['email'];
+	$senha = $res[$i]['senha'];
+	$foto = $res[$i]['foto'];
+	$nivel = $res[$i]['nivel'];
+	$endereco = $res[$i]['endereco'];
+	$ativo = $res[$i]['ativo'];
+	$data = $res[$i]['data'];
 
-    $dataF = implode('/', array_reverse(@explode('-', $data)));
+	$dataF = implode('/', array_reverse(@explode('-', $data)));
 
-    if ($ativo == 'Sim') {
-      $icone = 'fa-check-square';
-      $titulo_link = 'Desativar Usuário';
-      $acao = 'Não';
-      $classe_ativo = '';
-    } else {
-      $icone = 'fa-square-o';
-      $titulo_link = 'Ativar Usuário';
-      $acao = 'Sim';
-      $classe_ativo = '#c4c4c4';
-    }
+	if($ativo == 'Sim'){
+	$icone = 'fa-check-square';
+	$titulo_link = 'Desativar Usuário';
+	$acao = 'Não';
+	$classe_ativo = '';
+	}else{
+		$icone = 'fa-square-o';
+		$titulo_link = 'Ativar Usuário';
+		$acao = 'Sim';
+		$classe_ativo = '#c4c4c4';
+	}
 
-    $mostrar_adm = '';
-    if ($nivel == 'Administrador') {
-      $senha = '******';
-      $mostrar_adm = 'hidden';
-    }
+	$mostrar_adm = '';
+	if($nivel == 'Administrador'){
+		$senha = '******';
+		$mostrar_adm = 'ocultar';
+	}
 
 
-    echo <<<HTML
+echo <<<HTML
 <tr style="color:{$classe_ativo}">
 <td>
 <input type="checkbox" id="seletor-{$id}" class="form-check-input" onchange="selecionar('{$id}')">
@@ -92,130 +92,121 @@ HTML;
 </td>
 </tr>
 HTML;
-  }
+
+}
 
 
-  echo <<<HTML
+echo <<<HTML
 </tbody>
 <small><div align="center" id="mensagem-excluir"></div></small>
 </table>
 HTML;
-} else {
-  echo '<small>Nenhum Registro Encontrado!</small>';
+
+}else{
+	echo '<small>Nenhum Registro Encontrado!</small>';
 }
 ?>
 
 
 
 <script type="text/javascript">
-  $(document).ready(function() {
+	$(document).ready( function () {		
     $('#tabela').DataTable({
-      "language": {
-        //"url" : '//cdn.datatables.net/plug-ins/1.13.2/i18n/pt-BR.json'
-      },
-      "ordering": false,
-      "stateSave": true
+    	"language" : {
+            //"url" : '//cdn.datatables.net/plug-ins/1.13.2/i18n/pt-BR.json'
+        },
+        "ordering": false,
+		"stateSave": true
     });
-  });
+} );
 </script>
 
 <script type="text/javascript">
-  function editar(id, nome, email, telefone, endereco, nivel) {
-    $('#mensagem').text('');
-    $('#titulo_inserir').text('Editar Registro');
+	function editar(id, nome, email, telefone, endereco, nivel){
+		$('#mensagem').text('');
+    	$('#titulo_inserir').text('Editar Registro');
 
-    $('#id').val(id);
-    $('#nome').val(nome);
-    $('#email').val(email);
-    $('#telefone').val(telefone);
-    $('#endereco').val(endereco);
-    $('#nivel').val(nivel).change();
+    	$('#id').val(id);
+    	$('#nome').val(nome);
+    	$('#email').val(email);
+    	$('#telefone').val(telefone);
+    	$('#endereco').val(endereco);
+    	$('#nivel').val(nivel).change();
 
-    $('#modalForm').modal('show');
-  }
-
-
-  function mostrar(nome, email, telefone, endereco, ativo, data, senha, nivel, foto) {
-
-    $('#titulo_dados').text(nome);
-    $('#email_dados').text(email);
-    $('#telefone_dados').text(telefone);
-    $('#endereco_dados').text(endereco);
-    $('#ativo_dados').text(ativo);
-    $('#data_dados').text(data);
-
-    $('#nivel_dados').text(nivel);
-    $('#foto_dados').attr("src", "images/perfil/" + foto);
+    	$('#modalForm').modal('show');
+	}
 
 
-    $('#modalDados').modal('show');
-  }
+	function mostrar(nome, email, telefone, endereco, ativo, data, senha, nivel, foto){
+		    	
+    	$('#titulo_dados').text(nome);
+    	$('#email_dados').text(email);
+    	$('#telefone_dados').text(telefone);
+    	$('#endereco_dados').text(endereco);
+    	$('#ativo_dados').text(ativo);
+    	$('#data_dados').text(data);
+    	
+    	$('#nivel_dados').text(nivel);
+    	$('#foto_dados').attr("src", "images/perfil/" + foto);
+    	
 
-  function limparCampos() {
-    $('#id').val('');
-    $('#nome').val('');
-    $('#email').val('');
-    $('#telefone').val('');
-    $('#endereco').val('');
+    	$('#modalDados').modal('show');
+	}
 
-    $('#ids').val('');
-    $('#btn-deletar').hide();
-  }
+	function limparCampos(){
+		$('#id').val('');
+    	$('#nome').val('');
+    	$('#email').val('');
+    	$('#telefone').val('');
+    	$('#endereco').val('');
 
-  function selecionar(id) {
+    	$('#ids').val('');
+    	$('#btn-deletar').hide();	
+	}
 
-    var ids = $('#ids').val();
+	function selecionar(id){
 
-    if ($('#seletor-' + id).is(":checked") == true) {
-      var novo_id = ids + id + '-';
-      $('#ids').val(novo_id);
-    } else {
-      var retirar = ids.replace(id + '-', '');
-      $('#ids').val(retirar);
-    }
+		var ids = $('#ids').val();
 
-    var ids_final = $('#ids').val();
-    if (ids_final == "") {
-      $('#btn-deletar').hide();
-    } else {
-      $('#btn-deletar').show();
-    }
-  }
+		if($('#seletor-'+id).is(":checked") == true){
+			var novo_id = ids + id + '-';
+			$('#ids').val(novo_id);
+		}else{
+			var retirar = ids.replace(id + '-', '');
+			$('#ids').val(retirar);
+		}
 
-  function deletarSel() {
-    var ids = $('#ids').val();
-    var id = ids.split("-");
+		var ids_final = $('#ids').val();
+		if(ids_final == ""){
+			$('#btn-deletar').hide();
+		}else{
+			$('#btn-deletar').show();
+		}
+	}
 
-    for (i = 0; i < id.length - 1; i++) {
-      excluir(id[i]);
-    }
+	function deletarSel(){
+		var ids = $('#ids').val();
+		var id = ids.split("-");
+		
+		for(i=0; i<id.length-1; i++){
+			excluir(id[i]);			
+		}
 
-    limparCampos();
-  }
+		limparCampos();
+	}
 
 
-  function permissoes(id, nome) {
+	function permissoes(id, nome){
+		    	
+    	$('#id_permissoes').val(id);
+    	$('#nome_permissoes').text(nome);    	
 
-    $('#id_permissoes').val(id);
-    $('#nome_permissoes').text(nome);
+    	$('#modalPermissoes').modal('show');
+    	listarPermissoes(id);
+	}
 
-    $('#modalPermissoes').modal('show');
-    listarPermissoes(id);
-  }
+	
 
-  function listarPermissoes(id) {
-    $.ajax({
-      url: 'paginas/' + pag + "/listar_permissoes.php",
-      method: 'POST',
-      data: {id},
-      dataType: "html",
 
-      success: function(result) {
-        $('#listar_permissoes').html(result);
-        $('#mensagem_permissao').text('');
-      }
-    });
-  }
-
-  
+	
 </script>

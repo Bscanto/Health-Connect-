@@ -12,7 +12,6 @@ if($foto != "sem-foto.jpg"){
 	@unlink('../../images/perfil/'.$foto);
 }
 
-$pdo->query("DELETE FROM $tabela  WHERE id = '$id' ");
+$pdo->query("DELETE FROM $tabela WHERE id = '$id' ");
 echo 'Excluído com Sucesso';
-
 ?>
