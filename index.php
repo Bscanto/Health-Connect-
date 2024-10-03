@@ -16,21 +16,21 @@ if($linhas == 0){
 <head>
 	<title><?php echo $nome_sistema ?></title>
 
-	<link rel="stylesheet" href="css/login.css">
 
-	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+ 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
  	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="img/logo azul.png" type="image/x-icon">
 
+	<link rel="stylesheet" href="css/login.css">
 </head>
 <body>
 
 <div class="login">		
 		<div class="form">
-			<img src="img/logo-login.png">
+			<img src="img/logo-login.png" >
       <br>
 			<h3>Bem Vindo a Health Connect</h3>
 
@@ -48,7 +48,6 @@ if($linhas == 0){
 
 </body>
 </html>
-
 
 
 

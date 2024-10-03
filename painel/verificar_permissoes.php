@@ -8,6 +8,7 @@ $configuracoes = 'ocultar';
 
 //grupo pessoas
 $usuarios = 'ocultar';
+$paciente = 'ocultar';
 
 //grupo cadastros
 $grupo_acessos = 'ocultar';
@@ -40,6 +41,10 @@ if($total_reg > 0){
 
 		if($chave == 'usuarios'){
 			$usuarios = '';
+		}
+
+		if($chave == 'pacientes'){
+			$pacientes = '';
 		}
 
 
@@ -92,6 +97,12 @@ if($home != 'ocultar'){
 
 
 if($usuarios == 'ocultar'){
+	$menu_pessoas = 'ocultar';
+}else{
+	$menu_pessoas = '';
+}
+
+if($pacientes == 'ocultar'){
 	$menu_pessoas = 'ocultar';
 }else{
 	$menu_pessoas = '';

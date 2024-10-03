@@ -27,6 +27,7 @@ try {
 $nome_sistema = 'Health Connect';
 $email_sistema = 'bsccanto@gmail.com';
 $telefone_sistema = '(55)99621-4645';
+$url_sistema = 'http://localhost/Health-Connect-/';
 
 $query = $pdo->query("SELECT * from config");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);

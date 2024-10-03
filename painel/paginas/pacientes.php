@@ -43,16 +43,16 @@ if (@$pacientes == 'ocultar') {
 					<div class="row">
 						<div class="col-md-4">
 							<label>Nome</label>
-							<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do Paciente" required>
+							<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do Paciente" >
 						</div>
 						<div class="col-md-4">
 							<label>Cartão Nacional de Saúde (CNS)</label>
-							<input type="text" class="form-control" id="cns" name="cns" placeholder="CNS" minlength="18" maxlength="18" required>
+							<input type="text" class="form-control" id="cns" name="cns" placeholder="CNS" >
 						</div>
 
 						<div class="col-md-4">
 							<label>cpf</label>
-							<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF" required>
+							<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF" >
 						</div>
 
 					</div>
@@ -62,12 +62,12 @@ if (@$pacientes == 'ocultar') {
 
 						<div class="col-md-6">
 							<label>Email</label>
-							<input type="email" class="form-control" id="email" name="email" placeholder="Email do Paciente" required>
+							<input type="email" class="form-control" id="email" name="email" placeholder="Email do Paciente" >
 						</div>
 
 						<div class="col-md-3">
 							<label>Data de Nascimento</label>
-							<input type="date" class="form-control" id="data_nasc" name="data_nasc" required>
+							<input type="date" class="form-control" id="data_nasc" name="data_nasc" >
 						</div>
 
 						<div class="col-md-3">
@@ -75,7 +75,7 @@ if (@$pacientes == 'ocultar') {
 							<select class="form-control" name="sexo" id="sexo">
 								<option value="M">Masculino</option>
 								<option value="F">Feminino</option>
-								<option value="o">Outro</option>
+								<option value="O">Outro</option>
 							</select>
 						</div>
 					</div>
@@ -83,17 +83,17 @@ if (@$pacientes == 'ocultar') {
 					<div class="row">
 						<div class="col-md-4">
 							<label>Endereço</label>
-							<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço" required>
+							<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço" >
 						</div>
 
 						<div class="col-md-4">
 							<label>Número</label>
-							<input type="number" class="form-control" id="numero" name="numero" placeholder="Número" required>
+							<input type="number" class="form-control" id="numero" name="numero" placeholder="Número" >
 						</div>
 
 						<div class="col-md-4">
 							<label>CEP</label>
-							<input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required>
+							<input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" >
 						</div>
 
 					</div>
@@ -102,17 +102,17 @@ if (@$pacientes == 'ocultar') {
 
 						<div class="col-md-4">
 							<label>Bairro</label>
-							<input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" required>
+							<input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" >
 						</div>
 
 						<div class="col-md-4">
 							<label>Cidade</label>
-							<input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" required>
+							<input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" >
 						</div>
 
 						<div class="col-md-4">
 							<label>Estado</label>
-							<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" required>
+							<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" >
 						</div>
 					</div>
 

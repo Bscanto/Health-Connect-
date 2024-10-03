@@ -29,7 +29,7 @@ $queixa = $_POST['queixa'];
 $id = $_POST['id'];
 
 // Validação email
-$query = $pdo->query("SELECT * from $tabela where email = '$email'");
+$query = $pdo->query("SELECT * from paciente where email = '$email'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $id_reg = @$res[0]['id'];
 if(@count($res) > 0 and $id != $id_reg){
@@ -50,7 +50,7 @@ if(@count($res) > 0 and $id != $id_reg){
 
 if ($id == "") {  
 	// Inserir novo registro
-	$query = $pdo->prepare("INSERT INTO $tabela SET
+	$query = $pdo->prepare("INSERT INTO paciente SET
 			nome = :nome, 
 			cpf = :cpf,
 			telefone = :telefone,
@@ -75,9 +75,10 @@ if ($id == "") {
 			nacionalidade = :nacionalidade,
 			queixa = :queixa,
 			data_cad = :data_cad ");
+
 } else {
 	// Atualizar registro existente
-	$query = $pdo->prepare("UPDATE $tabela SET
+	$query = $pdo->prepare("UPDATE paciente SET
 			nome = :nome, 
 			cpf = :cpf,
 			telefone = :telefone,
@@ -103,6 +104,7 @@ if ($id == "") {
 			data_cad = :data_cad 
 			WHERE id = :id");
 	$query->bindValue(':id', $id);
+
 }
 
 
@@ -132,6 +134,7 @@ $query->bindValue(':raca', $raca);
 $query->bindValue(':nacionalidade', $nacionalidade);
 $query->bindValue(':queixa', $queixa);
 $query->bindValue(':data_cad', $data_cad);
+$query->execute();
 
 echo 'Salvo com Sucesso';
 ?>

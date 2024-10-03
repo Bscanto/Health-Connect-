@@ -29,7 +29,6 @@ function inserir(){
 
 
 
-
 $("#form").submit(function () {
 
     event.preventDefault();

@@ -43,7 +43,7 @@ if (@$usuarios == 'ocultar') {
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form id="form">
+			<form id="form" >
 				<div class="modal-body">
 
 
