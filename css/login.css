@@ -3,7 +3,7 @@ body{
 }
 
 .login{
-  width: 360px;
+  width: 400px;
   margin: auto;
   padding: 8% 0 0;
 }
@@ -19,7 +19,11 @@ body{
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-
+.form img{
+  margin: 0 auto;
+  width: 100px;
+  margin-bottom: 25px;
+}
 .form input {
   font-family: "Verdana", sans-serif;
   outline: 0;
@@ -30,6 +34,7 @@ body{
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+  border-radius: 5px;
 }
 
 
@@ -52,12 +57,6 @@ body{
 .form button:hover,.form button:active,.form button:focus {
   background: #347cc9;
 }
-
-.imagem{
-	margin-bottom:15px;
-	width:150px;
-}
-
 
 .recuperar a{
   margin-top:25px;

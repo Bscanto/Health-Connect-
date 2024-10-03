@@ -90,8 +90,6 @@ function excluir(id){
 
 
 
-
-
 function ativar(id, acao){	
     $.ajax({
         url: 'paginas/' + pag + "/mudar-status.php",

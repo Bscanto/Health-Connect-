@@ -61,4 +61,7 @@ exit();
 } 
 
 }	
+
+$total_profissional = $pdo->query("SELECT COUNT(*) FROM usuarios")->fetchColumn();
+$total_paciente = $pdo->query("SELECT COUNT(*) FROM paciente")->fetchColumn();
  ?>

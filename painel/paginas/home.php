@@ -9,58 +9,58 @@ if(@$home == 'ocultar'){
 
 <div class="main-page margin-mobile">
 
-	<?php if($ativo_sistema == ''){ ?>
-<div style="background: #ffc341; color:#3e3e3e; padding:10px; font-size:14px; margin-bottom:10px">
-<div><i class="fa fa-info-circle"></i> <b>Aviso: </b> Prezado Cliente, não identificamos o pagamento de sua última mensalidade, entre em contato conosco o mais rápido possivel para regularizar o pagamento, caso contário seu acesso ao sistema será desativado.</div>
-</div>
-<?php } ?>
+
 
 	<div class="col_3">
 		<div class="col-md-3 widget widget1">
 			<div class="r3_counter_box">
-				<i class="pull-left fa fa-dollar icon-rounded"></i>
+				<i class="pull-left fa fa-user icon-rounded"></i>
 				<div class="stats">
-					<h5><strong>1452</strong></h5>
-					<span>Total Pacientes</span>
+				<span>Total de Pacientes</span>
+					<h5><strong><?php echo $total_paciente; ?></strong></h5>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-3 widget widget1">
 			<div class="r3_counter_box">
-				<i class="pull-left fa fa-laptop user1 icon-rounded"></i>
+				<i class="pull-left fa fa-user-md user1 icon-rounded"></i>
 				<div class="stats">
-					<h5><strong>319</strong></h5>
-					<span>Total de Froficionais</span>
+				<span>Total de Profissionais</span>
+					<h5><strong> <?php echo $total_profissional; ?> </strong></h5>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-3 widget widget1">
 			<div class="r3_counter_box">
-				<i class="pull-left fa fa-money user2 icon-rounded"></i>
+				<i class="pull-left fa fa-stethoscope   user2 icon-rounded"></i>
 				<div class="stats">
+				<span>Total de Atendimentos</span>
 					<h5><strong>1012</strong></h5>
-					<span>Total de Atendimentos</span>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-3 widget widget1">
 			<div class="r3_counter_box">
-				<i class="pull-left fa fa-pie-chart dollar1 icon-rounded"></i>
+				<i class="pull-left fa fa-heartbeat dollar1 icon-rounded"></i>
 				<div class="stats">
+				<span>Total de Procedimentos</span>
 					<h5><strong>450</strong></h5>
-					<span>Total de Procedimentos</span>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3 widget">
-			<div class="r3_counter_box">
-				<i class="pull-left fa fa-users dollar2 icon-rounded"></i>
-				<div class="stats">
-					<h5><strong>1450</strong></h5>
-					<span>Total </span>
-				</div>
-			</div>
-		</div>
+
+		<div class=" mt-5">
+        <div class="card text-center">
+            <div class="card-header">
+                Data e Hora Atual
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" id="currentDateTime"></h5>
+            </div>
+        </div>
+    </div>
+	
+		
 		<div class="clearfix"> </div>
 	</div>
 	
@@ -379,3 +379,25 @@ if(@$home == 'ocultar'){
 
 </script>
 <!-- //for index page weekly sales java script -->
+
+
+<script>
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                hour12: true 
+            };
+            document.getElementById('currentDateTime').innerText = now.toLocaleString('pt-BR', options);
+        }
+
+        // Atualiza a data e hora a cada segundo
+        setInterval(updateDateTime, 1000);
+        // Chama a função imediatamente para mostrar a hora inicial
+        updateDateTime();
+    </script>

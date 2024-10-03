@@ -154,15 +154,22 @@ if ($linhas > 0) {
 								</a>
 							</li>
 							<li class="treeview <?php echo $menu_pessoas ?>">
+
 								<a href="#">
 									<i class="fa fa-users"></i>
 									<span>Pessoas</span>
 									<i class="fa fa-angle-left pull-right"></i>
 								</a>
+
+
 								<ul class="treeview-menu">
 									<li class="<?php echo $usuarios ?>"><a href="usuarios"><i class="fa fa-angle-right"></i> Admin/Fprofissional</a></li>
-
 								</ul>
+
+								<ul class="treeview-menu">
+									<li class="<?php echo $pacientes ?>"><a href="pacientes"><i class="fa fa-angle-right"></i> Pacientes</a></li>
+								</ul>
+
 							</li>
 
 							<li class="treeview <?php echo $menu_cadastros ?>">
@@ -699,6 +706,7 @@ if ($linhas > 0) {
 	}
 </script>
 
+<script src="js/mascaras.js"></script>
 
 <script type="text/javascript">
 	function fecharNav() {
