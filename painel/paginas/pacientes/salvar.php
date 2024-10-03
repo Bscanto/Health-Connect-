@@ -47,7 +47,8 @@ if(@count($res) > 0 and $id != $id_reg){
     exit();
 }
 
-if ($id == "") {
+
+if ($id == "") {  
 	// Inserir novo registro
 	$query = $pdo->prepare("INSERT INTO $tabela SET
 			nome = :nome, 
