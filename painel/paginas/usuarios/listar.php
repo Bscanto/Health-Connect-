@@ -180,14 +180,14 @@ HTML;
 		$('#email').val('');
 		$('#telefone').val('');
 		$('#endereco').val('');
-		$('#estado').val(''); // Novo campo
-		$('#cidade').val(''); // Novo campo
-		$('#bairro').val(''); // Novo campo
-		$('#cep').val(''); // Novo campo
-		$('#data_nasc').val(''); // Novo campo
-		$('#sexo').val(''); // Novo campo
-		$('#cpf').val(''); // Novo campo
-		$('#cbo').val(''); // Novo campo
+		$('#estado').val(''); 
+		$('#cidade').val(''); 
+		$('#bairro').val(''); 
+		$('#cep').val(''); 
+		$('#data_nasc').val(''); 
+		$('#sexo').val(''); 
+		$('#cpf').val(''); 
+		$('#cbo').val(''); 
 		$('#cnsp').val('');
 
 		$('#ids').val('');

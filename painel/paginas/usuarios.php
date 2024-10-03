@@ -35,8 +35,8 @@ if (@$usuarios == 'ocultar') {
 
 <!-- Modal Perfil -->
 <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content modal-lg">
+<div class="modal-dialog modal-lg">
+		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="exampleModalLabel"><span id="titulo_inserir"></span></h4>
 				<button id="btn-fechar" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -25px">
@@ -93,7 +93,7 @@ if (@$usuarios == 'ocultar') {
 
 						<div class="col-md-3">
 							<label>CEP</label>
-							<input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required>
+							<input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" >
 						</div>
 
 
@@ -107,36 +107,36 @@ if (@$usuarios == 'ocultar') {
 
 						<div class="col-md-3">
 							<label>Número</label>
-							<input type="text" class="form-control" id="numero" name="numero" placeholder="Número" required>
+							<input type="text" class="form-control" id="numero" name="numero" placeholder="Número" >
 						</div>
 
 						<div class="col-md-3">
 							<label>Bairro</label>
-							<input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" required>
+							<input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" >
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-4">
 							<label>Cidade</label>
-							<input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" required>
+							<input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" >
 						</div>
 
 						<div class="col-md-4">
 							<label>Estado</label>
-							<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" required>
+							<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" >
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-4">
 							<label>Data de Nascimento</label>
-							<input type="date" class="form-control" id="data_nasc" name="data_nasc" required>
+							<input type="date" class="form-control" id="data_nasc" name="data_nasc" >
 						</div>
 
 						<div class="col-md-4">
 							<label>Sexo</label>
-							<select class="form-control" name="sexo" id="sexo" required>
+							<select class="form-control" name="sexo" id="sexo">
 								<option value="masculino">Masculino</option>
 								<option value="feminino">Feminino</option>
 								<option value="outro">Outro</option>
@@ -148,12 +148,12 @@ if (@$usuarios == 'ocultar') {
 					<div class="row">
 						<div class="col-md-4">
 							<label>CBO</label>
-							<input type="text" class="form-control" id="cbo" name="cbo" placeholder="CBO" required>
+							<input type="text" class="form-control" id="cbo" name="cbo" placeholder="CBO" >
 						</div>
 
 						<div class="col-md-4">
 							<label>CNSP</label>
-							<input type="text" class="form-control" id="cnsp" name="cnsp" placeholder="CNSP" required>
+							<input type="text" class="form-control" id="cnsp" name="cnsp" placeholder="CNSP" >
 						</div>
 					</div>
 
@@ -188,93 +188,97 @@ if (@$usuarios == 'ocultar') {
 
 <!-- Modal Dados -->
 <div class="modal fade" id="modalDados" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="exampleModalLabel"><span id="titulo_dados"></span></h4>
-				<button id="btn-fechar-dados" type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel"><span id="titulo_dados"></span></h4>
+                <button id="btn-fechar-dados" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-			<div class="modal-body">
-				<div class="row" style="margin-top: 0px">
+            <div class="modal-body">
+                <div class="row" style="margin-top: 0px">
 
-					<div class="col-md-6" style="margin-bottom: 5px">
-						<span><b>Nome: </b></span><span id="nome_dados"></span>
-					</div>
+                    <!-- Informações Pessoais -->
+                    <div class="col-md-12 mb-3">
+                        <h5><b>Informações Pessoais</b></h5>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span><b>Nome: </b></span><span id="nome_dados"></span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span><b>CPF: </b></span><span id="cpf_dados"></span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span><b>Telefone: </b></span><span id="telefone_dados"></span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span><b>Sexo: </b></span><span id="sexo_dados"></span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span><b>Data Nascimento: </b></span><span id="data_nasc_dados"></span>
+                    </div>
 
-					<div class="col-md-6" style="margin-bottom: 5px">
-						<span><b>Cpf: </b></span><span id="cpf_dados"></span>
-					</div>
+                    <!-- Endereço -->
+                    <div class="col-md-12 mb-3">
+                        <h5><b>Endereço</b></h5>
+                    </div>
+                    <div class="col-md-8 mb-2">
+                        <span><b>Endereço: </b></span><span id="endereco_dados"></span>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <span><b>Número: </b></span><span id="numero_dados"></span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span><b>Cidade: </b></span><span id="cidade_dados"></span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span><b>Estado: </b></span><span id="estado_dados"></span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span><b>Bairro: </b></span><span id="bairro_dados"></span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span><b>CEP: </b></span><span id="cep_dados"></span>
+                    </div>
 
-					<div class="col-md-12" style="margin-bottom: 5px">
-						<span><b>Email: </b></span><span id="email_dados"></span>
-					</div>
+                    <!-- Informações Profissionais -->
+                    <div class="col-md-12 mb-3">
+                        <h5><b>Informações Profissionais</b></h5>
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <span><b>CBO: </b></span><span id="cbo_dados"></span>
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <span><b>Cadastro Nacional de Saúde do Profissional: </b></span><span id="cnsp_dados"></span>
+                    </div>
 
-					<div class="col-md-6" style="margin-bottom: 5px">
-						<span><b>Telefone: </b></span><span id="telefone_dados"></span>
-					</div>
+                    <!-- Informações Adicionais -->
+                    <div class="col-md-12 mb-3">
+                        <h5><b>Informações Adicionais</b></h5>
+                    </div>
+                    <div class="col-md-12 mb-2">
+                        <span><b>Email: </b></span><span id="email_dados"></span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span><b>Data Cadastro: </b></span><span id="data_dados"></span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span><b>Nível: </b></span><span id="nivel_dados"></span>
+                    </div>
 
-					<div class="col-md-6" style="margin-bottom: 5px">
-						<span><b>Nível: </b></span><span id="nivel_dados"></span>
-					</div>
+                    <!-- Foto -->
+                    <div class="col-md-12 mb-2 text-center">
+                        <img src="" id="foto_dados" width="200px" class="img-fluid">
+                    </div>
 
-					<div class="col-md-8" style="margin-bottom: 5px">
-						<span><b>Endereço: </b></span><span id="endereco_dados"></span>
-					</div>
-
-					<div class="col-md-4" style="margin-bottom: 5px">
-						<span><b>Número: </b></span><span id="numero_dados"></span>
-					</div>
-
-					<div class="col-md-6" style="margin-bottom: 5px">
-						<span><b>Cidade: </b></span><span id="cidade_dados"></span>
-					</div>
-
-					<div class="col-md-6" style="margin-bottom: 5px">
-						<span><b>Estado: </b></span><span id="estado_dados"></span>
-					</div>
-
-					<div class="col-md-6" style="margin-bottom: 5px">
-						<span><b>Bairro: </b></span><span id="bairro_dados"></span>
-					</div>
-
-					<div class="col-md-6" style="margin-bottom: 5px">
-						<span><b>Cep: </b></span><span id="cep_dados"></span>
-					</div>
-
-					<div class="col-md-6" style="margin-bottom: 5px">
-						<span><b>Data Nascimento: </b></span><span id="data_nasc_dados"></span>
-					</div>
-
-					<div class="col-md-6" style="margin-bottom: 5px">
-						<span><b>Sexo: </b></span><span id="sexo_dados"></span>
-					</div>
-
-					<div class="col-md-12" style="margin-bottom: 5px">
-						<span><b>CBO: </b></span><span id="cbo_dados"></span>
-					</div>
-
-					<div class="col-md-12" style="margin-bottom: 5px">
-						<span><b>Cadastro Nacional de Saúde do Profissional: </b></span><span id="cnsp_dados"></span>
-					</div>
-
-					<div class="col-md-6" style="margin-bottom: 5px">
-						<span><b>Data Cadastro: </b></span><span id="data_dados"></span>
-					</div>
-
-
-
-					<div class="col-md-12" style="margin-bottom: 5px">
-						<div align="center"><img src="" id="foto_dados" width="200px"></div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 
 

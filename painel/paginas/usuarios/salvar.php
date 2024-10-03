@@ -96,5 +96,7 @@ $query->bindValue(":cbo", "$cbo");
 $query->bindValue(":cnsp", "$cnsp");     
 $query->execute();
 
+  // Recupera o ID do último prontuário inserido
+$prontuario_id = $pdo->lastInsertId();
 echo 'Salvo com Sucesso';
 ?>

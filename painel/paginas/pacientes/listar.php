@@ -84,6 +84,8 @@ echo <<<HTML
 
 <big><a href="#" onclick="mostrar('{$id}','{$nome}','{$cpf}','{$telefone}', '{$email}', '{$ativo}', '{$estado}', '{$cidade}', '{$bairro}', '{$endereco}', '{$cep}', '{$numero}', '{$data_nasc}', '{$sexo}', '{$cns}', '{$nome_responsavel}', '{$nome_pai}', '{$ocupacao_pai}', '{$nome_mae}', '{$ocupacao_mae}', '{$celular}', '{$raca}', '{$nacionalidade}', '{$queixa}', '{$data_cad}')" title="Mostrar Dados"><i class="fa fa-info-circle text-primary"></i></a></big>
 
+<big><a href="" title="Atendimento"><i class="fa fa-stethoscope icon-success"></i></a></big>
+
 </td>
 </tr>
 HTML;
@@ -185,11 +187,33 @@ $('#data_cad').val(data_cad);
 
 	function limparCampos(){
 		$('#id').val('');
-    	$('#nome').val('');
+    $('#nome').val('');
+    $('#cpf').val('');
+    $('#telefone').val('');
+    $('#email').val('');
+    $('#estado').val('');
+    $('#cidade').val('');
+    $('#bairro').val('');
+    $('#endereco').val('');
+    $('#cep').val('');
+    $('#numero').val('');
+    $('#data_nasc').val('');
+    $('#sexo').val('');
+    $('#cns').val('');
+    $('#nome_responsavel').val('');
+    $('#nome_pai').val('');
+    $('#ocupacao_pai').val('');
+    $('#nome_mae').val('');
+    $('#ocupacao_mae').val('');
+    $('#celular').val('');
+    $('#raca').val('');
+    $('#nacionalidade').val('');
+    $('#queixa').val('');
+    $('#data_cad').val('');
 
     	$('#ids').val('');
     	$('#btn-deletar').hide();	
-	}
+	}		
 
 	function selecionar(id){
 
