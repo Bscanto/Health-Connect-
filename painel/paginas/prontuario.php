@@ -1,290 +1,135 @@
 <?php
-$pag = 'pacientes';
 
-if (@$pacientes == 'ocultar') {
+
+require_once("../conexao.php");
+include 'prontuario/carregar_paciente.php';
+
+
+if (@$prontuarios == 'ocultar') {
 	echo "<script>window.location='../index.php'</script>";
 	exit();
 }
-
 ?>
-<a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Paciente</a>
 
-<li class="dropdown head-dpdn2" style="display: inline-block;">
-	<a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle" id="btn-deletar" style="display:none"><span class="fa fa-trash-o"></span> Deletar</a>
+<a href="pacientes" type="button" class="btn btn-primary"><span class="fa fa-circle-chevron-left"></span> Voltar</a>
 
-	<ul class="dropdown-menu">
-		<li>
-			<div class="notification_desc2">
-				<p>Exclulir selecionados? <a href="#" onclick="deletarSel()"><span class="text-danger">Sim</span></a></p>
-			</div>
+<br>
+<br>
+
+<!-- Traz campo dados paciente -->
+<div class="container mt-5 bg-dark text-white">
+	<h2>Prontuário do Paciente</h2>
+	<br>
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<li class="nav-item">
+			<a class="nav-link active" id="aba1-tab" data-toggle="tab" href="#aba1" role="tab" aria-controls="aba1" aria-selected="true">Identificação Paciente</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="aba2-tab" data-toggle="tab" href="#aba2" role="tab" aria-controls="aba2" aria-selected="false">Escolaridade</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="aba3-tab" data-toggle="tab" href="#aba3" role="tab" aria-controls="aba3" aria-selected="false">Anamnese</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="aba4-tab" data-toggle="tab" href="#aba4" role="tab" aria-controls="aba4" aria-selected="false">Dados Atendimento</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="aba5-tab" data-toggle="tab" href="#aba5" role="tab" aria-controls="aba5" aria-selected="false">Ações realizadas</a>
 		</li>
 	</ul>
-</li>
+	<div class="tab-content" id="myTabContent">
+		<div class="tab-pane fade show active" id="aba1" role="tabpanel" aria-labelledby="aba1-tab">
+			<div class="conteudo-aba1">
+				<div class="modal-body">
+					<div class="row mt-3">
+						<p><b>Prontuário Número:</b> <span id="prontuario_numero"><?php echo $id; ?></span></p>
+					</div>
 
-<div class="bs-example widget-shadow" style="padding:15px" id="listar">
+					<div class="row">
+						<div class="col-md-6">
+							<h4><b>Informações Pessoais</b></h4>
+							<p><b>Nome:</b> <span id="nome_dados"><?php echo $nome; ?></span></p>
+							<p><b>CPF:</b> <span id="cpf_dados"><?php echo $cpf; ?></span></p>
+							<p><b>Telefone:</b> <span id="telefone_dados"><?php echo $telefone; ?></span></p>
+							<p><b>Email:</b> <span id="email_dados"><?php echo $email; ?></span></p>
+							<p><b>Data de Nascimento:</b> <span id="data_nasc_dados"><?php echo $data_nasc; ?></span></p>
+							<p><b>Sexo:</b> <span id="sexo_dados"><?php echo $sexo; ?></span></p>
+							<p><b>Raça/Cor:</b> <span id="raca_dados"><?php echo $raca; ?></span></p>
+							<p><b>Nacionalidade:</b> <span id="nacionalidade_dados"><?php echo $nacionalidade; ?></span></p>
+						</div>
 
+						<div class="col-md-6">
+							<h4><b>Endereço</b></h4>
+							<p><b>Estado:</b> <span id="estado_dados"><?php echo $estado; ?></span></p>
+							<p><b>Cidade:</b> <span id="cidade_dados"><?php echo $cidade; ?></span></p>
+							<p><b>Bairro:</b> <span id="bairro_dados"><?php echo $bairro; ?></span></p>
+							<p><b>Endereço:</b> <span id="endereco_dados"><?php echo $endereco; ?></span></p>
+							<p><b>Cep:</b> <span id="cep_dados"><?php echo $cep; ?></span></p>
+							<p><b>Número:</b> <span id="numero_dados"><?php echo $numero; ?></span></p>
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="col-md-6">
+							<h4><b>Informações do Responsável</b></h4>
+							<p><b>Nome do Responsável:</b> <span id="nome_responsavel_dados"><?php echo $nome_responsavel; ?></span></p>
+							<p><b>Nome do Pai:</b> <span id="nome_pai_dados"><?php echo $nome_pai; ?></span></p>
+							<p><b>Ocupação do Pai:</b> <span id="ocupacao_pai_dados"><?php echo $ocupacao_pai; ?></span></p>
+							<p><b>Nome da Mãe:</b> <span id="nome_mae_dados"><?php echo $nome_mae; ?></span></p>
+							<p><b>Ocupação da Mãe:</b> <span id="ocupacao_mae_dados"><?php echo $ocupacao_mae; ?></span></p>
+						</div>
+
+						<div class="col-md-6">
+							<h4><b>Informações Adicionais</b></h4>
+							<p><b>Celular:</b> <span id="celular_dados"><?php echo $celular; ?></span></p>
+							<p><b>Ativo:</b> <span id="ativo_dados"><?php echo $ativo ? 'Sim' : 'Não'; ?></span></p>
+							<p><b>Queixa Principal:</b> <span id="queixa_dados"><?php echo $queixa; ?></span></p>
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<p><b>Data de Cadastro:</b> <span id="data_cad_dados"><?php echo $data_cad; ?></span></p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="tab-pane fade" id="aba2" role="tabpanel" aria-labelledby="aba2-tab">
+			<h3>Conteúdo da Aba 2</h3>
+			<p>Este é o conteúdo da aba 2.</p>
+		</div>
+		<div class="tab-pane fade" id="aba3" role="tabpanel" aria-labelledby="aba3-tab">
+			<h3>Conteúdo da Aba 3</h3>
+			<p>Este é o conteúdo da aba 3.</p>
+		</div>
+		<div class="tab-pane fade" id="aba4" role="tabpanel" aria-labelledby="aba4-tab">
+			<h3>Conteúdo da Aba 4</h3>
+			<p>Este é o conteúdo da aba 4.</p>
+		</div>
+		<div class="tab-pane fade" id="aba5" role="tabpanel" aria-labelledby="aba5-tab">
+			<h3>Conteúdo da Aba 5</h3>
+			<p>Este é o conteúdo da aba 5.</p>
+		</div>
+	</div>
 </div>
-
-<input type="hidden" id="ids">
 
 <!-- MODAL PACIENTES -->
 <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="exampleModalLabel"><span id="titulo_inserir"></span></h4>
-				<button id="btn-fechar" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -25px">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<h4 class="modal-title" id="exampleModalLabel">Modal title</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<form id="form">
-				<div class="modal-body">
-
-					<div class="row mt-3">
-						<p><b>Prontuário Número:</b> <span id="prontuario_numero"></span></p>
-					</div>
-
-					<div class="row">
-						<div class="col-md-4">
-							<label>Nome</label>
-							<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do Paciente">
-						</div>
-
-						<div class="col-md-4">
-							<label>Cartão Nacional de Saúde (CNS)</label>
-							<input type="text" class="form-control" id="cartaosus" name="cns" placeholder="Cartão Nacional de Saúde">
-						</div>
-
-						<div class="col-md-4">
-							<label>cpf</label>
-							<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF">
-						</div>
-
-					</div>
-
-
-					<div class="row">
-
-						<div class="col-md-6">
-							<label>Email</label>
-							<input type="email" class="form-control" id="email" name="email" placeholder="Email do Paciente">
-						</div>
-
-						<div class="col-md-3">
-							<label>Data de Nascimento</label>
-							<input type="date" class="form-control" id="data_nasc" name="data_nasc">
-						</div>
-
-						<div class="col-md-3">
-							<label>Sexo</label>
-							<select class="form-control" name="sexo" id="sexo">
-								<option value="M">Masculino</option>
-								<option value="F">Feminino</option>
-								<option value="O">Outro</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-4">
-							<label>Endereço</label>
-							<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço">
-						</div>
-
-						<div class="col-md-4">
-							<label>Número</label>
-							<input type="number" class="form-control" id="numero" name="numero" placeholder="Número">
-						</div>
-
-						<div class="col-md-4">
-							<label>CEP</label>
-							<input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
-						</div>
-
-					</div>
-
-					<div class="row">
-
-						<div class="col-md-4">
-							<label>Bairro</label>
-							<input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro">
-						</div>
-
-						<div class="col-md-4">
-							<label>Cidade</label>
-							<input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade">
-						</div>
-
-						<div class="col-md-4">
-							<label>Estado</label>
-							<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado">
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-6">
-							<label>Nome do Responsável</label>
-							<input type="text" class="form-control" id="nome_responsavel" name="nome_responsavel" placeholder="Nome do Responsável">
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-6">
-							<label>Nome da Mãe</label>
-							<input type="text" class="form-control" id="nome_mae" name="nome_mae" placeholder="Nome da Mãe">
-						</div>
-
-						<div class="col-md-6">
-							<label>Ocupação da Mãe</label>
-							<input type="text" class="form-control" id="ocupacao_mae" name="ocupacao_mae" placeholder="Ocupação da Mãe">
-						</div>
-
-
-
-						<div class="col-md-6">
-							<label>Nome do Pai</label>
-							<input type="text" class="form-control" id="nome_pai" name="nome_pai" placeholder="Nome do Pai">
-						</div>
-
-						<div class="row">
-							<div class="col-md-6">
-								<label>Ocupação do Pai</label>
-								<input type="text" class="form-control" id="ocupacao_pai" name="ocupacao_pai" placeholder="Ocupação do Pai">
-							</div>
-						</div>
-
-
-
-
-					</div>
-
-					<div class="row">
-						<div class="col-md-4">
-							<label>Telefone</label>
-							<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone Principal">
-						</div>
-
-						<div class="col-md-4">
-							<label>Celular</label>
-							<input type="text" class="form-control" id="celular" name="celular" placeholder="Celular">
-						</div>
-
-						<div class="col-md-4">
-							<label>Raça</label>
-							<input type="text" class="form-control" id="raca" name="raca" placeholder="Raça">
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-6">
-							<label>Nacionalidade</label>
-							<input type="text" class="form-control" id="nacionalidade" name="nacionalidade" placeholder="Nacionalidade">
-						</div>
-						<div class="col-md-6">
-							<label>Data de Cadastro</label>
-							<input type="date" class="form-control" id="data_cad" name="data_cad">
-						</div>
-
-					</div>
-
-
-					<div class="row">
-						<div class="col-md-12">
-							<label>Queixa</label>
-							<textarea class="form-control" name="queixa" id="queixa"></textarea>
-						</div>
-					</div>
-
-					<input type="hidden" class="form-control" id="id" name="id">
-					<br>
-					<small>
-						<div id="mensagem" align="center"></div>
-					</small>
-				</div>
-
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary">Salvar</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-
-
-<!-- Modal Dados -->
-<div class="modal fade" id="modalDados" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="exampleModalLabel">
-					<span id="titulo_dados"></span>
-				</h4>
-				<button id="btn-fechar-dados" type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-
 			<div class="modal-body">
-
-			
-			<div class="row mt-3">
-						<p><b>Prontuário Número:</b> <span id="prontuario_numero"></span></p>
-					</div>
-		
-				<div class="row">
-					<div class="col-md-6">
-						<h4><b>Informações Pessoais</b></h4>
-						<p><b>Nome:</b> <span id="nome_dados"></span></p>
-						<p><b>CPF:</b> <span id="cpf_dados"></span></p>
-						<p><b>Telefone:</b> <span id="telefone_dados"></span></p>
-						<p><b>Email:</b> <span id="email_dados"></span></p>
-						<p><b>Data de Nascimento:</b> <span id="data_nasc_dados"></span></p>
-						<p><b>Sexo:</b> <span id="sexo_dados"></span></p>
-						<p><b>Raça/Cor:</b> <span id="raca_dados"></span></p>
-						<p><b>Nacionalidade:</b> <span id="nacionalidade_dados"></span></p>
-					</div>
-
-					<div class="col-md-6">
-						<h4><b>Endereço</b></h4>
-						<p><b>Estado:</b> <span id="estado_dados"></span></p>
-						<p><b>Cidade:</b> <span id="cidade_dados"></span></p>
-						<p><b>Bairro:</b> <span id="bairro_dados"></span></p>
-						<p><b>Endereço:</b> <span id="endereco_dados"></span></p>
-						<p><b>Cep:</b> <span id="cep_dados"></span></p>
-						<p><b>Número:</b> <span id="numero_dados"></span></p>
-					</div>
-				</div>
-
-				<div class="row mt-3">
-					<div class="col-md-6">
-						<h4><b>Informações do Responsável</b></h4>
-						<p><b>Nome do Responsável:</b> <span id="nome_responsavel_dados"></span></p>
-						<p><b>Nome do Pai:</b> <span id="nome_pai_dados"></span></p>
-						<p><b>Ocupação do Pai:</b> <span id="ocupacao_pai_dados"></span></p>
-						<p><b>Nome da Mãe:</b> <span id="nome_mae_dados"></span></p>
-						<p><b>Ocupação da Mãe:</b> <span id="ocupacao_mae_dados"></span></p>
-					</div>
-
-					<div class="col-md-6">
-						<h4><b>Informações Adicionais</b></h4>
-						<p><b>Celular:</b> <span id="celular_dados"></span></p>
-						<p><b>Ativo:</b> <span id="ativo_dados"></span></p>
-						<p><b>Queixa Principal:</b> <span id="queixa_dados"></span></p>
-					</div>
-				</div>
-
-				<div class="row mt-3">
-					<p><b>Data de Cadastro:</b> <span id="data_cad_dados"></span></p>
-				</div>
+				<form id="formPaciente">
+					<!-- Campos do formulário -->
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+				<button type="submit" class="btn btn-primary">Salvar</button>
 			</div>
 		</div>
 	</div>
 </div>
-</div>
-
-
-<script type="text/javascript">
-	var pag = "<?= $pag ?>"
-</script>
-<script src="js/ajax.js"></script>

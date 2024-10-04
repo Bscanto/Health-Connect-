@@ -3,8 +3,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^usuarios(.*)$ index.php?pagina=usuarios [L]
-RewriteRule ^paciente(.*)$ index.php?pagina=pacientes [L]
-RewriteRule ^atendimento(.*)$ index.php?pagina=atendimento [L]
+RewriteRule ^pacientes(.*)$ index.php?pagina=pacientes [L]
+RewriteRule ^prontuario(.*)$ index.php?pagina=prontuario [L]
 RewriteRule ^grupo_acessos(.*)$ index.php?pagina=grupo_acessos [L]
 RewriteRule ^acessos(.*)$ index.php?pagina=acessos [L]
 
