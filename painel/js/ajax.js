@@ -26,9 +26,7 @@ function inserir(){
 }
 
 
-
-
-
+//FORMULARIO EDICAO
 $("#form").submit(function () {
 
     event.preventDefault();
@@ -63,9 +61,6 @@ $("#form").submit(function () {
     });
 
 });
-
-
-
 
 function excluir(id){	
     $('#mensagem-excluir').text('Excluindo...')
@@ -106,4 +101,5 @@ function ativar(id, acao){
         }
     });
 }
+
 

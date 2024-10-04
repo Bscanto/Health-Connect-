@@ -1389,7 +1389,7 @@ a.bg-success:hover {
   background-color: #c1e2b3;
 }
 .bg-info {
-  background-color: #d9edf7;
+  background-color: #05a5f5;
 }
 a.bg-info:hover {
   background-color: #afd9ee;
@@ -1404,7 +1404,7 @@ a.bg-warning:hover {
   background-color: #f2dede;
 }
 a.bg-danger:hover {
-  background-color: #e4b9b9;
+  background-color: #e72121;
 }
 .page-header {
   padding-bottom: 9px;

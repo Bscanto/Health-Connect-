@@ -84,7 +84,8 @@ echo <<<HTML
 
 <big><a href="#" onclick="mostrar('{$id}','{$nome}','{$cpf}','{$telefone}', '{$email}', '{$ativo}', '{$estado}', '{$cidade}', '{$bairro}', '{$endereco}', '{$cep}', '{$numero}', '{$data_nasc}', '{$sexo}', '{$cns}', '{$nome_responsavel}', '{$nome_pai}', '{$ocupacao_pai}', '{$nome_mae}', '{$ocupacao_mae}', '{$celular}', '{$raca}', '{$nacionalidade}', '{$queixa}', '{$data_cad}')" title="Mostrar Dados"><i class="fa fa-info-circle text-primary"></i></a></big>
 
-<big><a href="prontuario" title="prontuario"><i class="fa fa-stethoscope icon-success"></i></a></big>
+<big><a href="index.php?pagina=prontuario&id={$id}" title="Atendimento"><i class="fa fa-stethoscope text-primary"></i></a></big>
+
 
 </td>
 </tr>
