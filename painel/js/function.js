@@ -71,7 +71,6 @@ $(document).ready(function () {
             // Aqui você pode lidar com a resposta do servidor
             alert('Dados salvos com sucesso!');
             $('#editModal').modal('hide'); // Fechar a modal
-            // Você pode atualizar a página ou a tabela com os novos dados aqui
         },
         error: function() {
             alert('Erro ao salvar dados.');

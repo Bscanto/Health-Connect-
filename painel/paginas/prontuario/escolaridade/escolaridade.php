@@ -51,7 +51,11 @@ if (isset($_GET['id'])) {
 		$nome_escola = $dados['nome_escola'];
 
 	} else {
-		echo "Paciente não encontrado.";
+		echo "Paciente sem Escolaridade Cadastrada!";
+		// Adicionando o botão para cadastrar escolaridade
+	echo '<br><a href="#" data-toggle="modal" data-target="#editModal" title="Adicionar Escolaridade">';
+	echo '<i class="btn btn-primary">Adicionar Escolaridade</i></a>';
+
 		exit; 
 	}
 } else {
@@ -60,8 +64,9 @@ if (isset($_GET['id'])) {
 }
 ?>
 
+<!-- EXIBE OS DAOS NA TELA -->
 <div class="container">
-	<h1>Escolaridade</h1>
+	<h3>Escolaridade</h3>
 
 	<div class="modal-body">
 		<div class="row mt-3">
@@ -77,18 +82,82 @@ if (isset($_GET['id'])) {
 				<p><b>Tipo Escola:</b> <span><?php echo htmlspecialchars($tipo_escola); ?></span></p>
 				<p><b>Escolaridade da Mãe:</b> <span><?php echo htmlspecialchars($escolaridade_mae); ?></span></p>
 				<p><b>Escolaridade do Pai:</b> <span><?php echo htmlspecialchars($escolaridade_pai); ?></span></p>
+				<br>
+				<p><b>Data último cadastro:</b> <span><?php echo htmlspecialchars($data_escol); ?></span></p>
 			</div>
 
-			<div class="row mt-3">
-				<p><b>Data da escolaridade:</b> <span><?php echo htmlspecialchars($data_escol); ?></span></p>
+			<div class="row">
+				
 			</div>
 
 			<a href="#" data-toggle="modal" data-target="#editModal" title="Editar Dados" onclick="editar()">
-				<i class="btn btn-primary">Editar</i>
-			</a>
+				<i class="btn btn-primary">Editar escolaridade</i></a>
 		</div>
 	</div>
 </div>
+
+
+
+
+
+<!-- Modal para Editar/Adicionar Escolaridade -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="editModalLabel">Editar Escolaridade</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="formEscolaridade" method="POST" action="salvar_escolaridade.php">
+					<input type="hidden" name="paciente_id" value="<?php echo $id_paciente; ?>">
+
+					<div class="form-group">
+						<label for="nome_escola">Nome da Escola</label>
+						<input type="text" class="form-control" id="nome_escola" name="nome_escola" value="<?php echo htmlspecialchars($nome_escola); ?>">
+					</div>
+
+					<div class="form-group">
+						<label for="serie">Série</label>
+						<input type="text" class="form-control" id="serie" name="serie" value="<?php echo htmlspecialchars($serie); ?>">
+					</div>
+
+					<div class="form-group">
+						<label for="turno">Turno</label>
+						<input type="text" class="form-control" id="turno" name="turno" value="<?php echo htmlspecialchars($turno); ?>">
+					</div>
+
+					<div class="form-group">
+						<label for="tipo_escola">Tipo de Escola</label>
+						<input type="text" class="form-control" id="tipo_escola" name="tipo_escola" value="<?php echo htmlspecialchars($tipo_escola); ?>">
+					</div>
+
+					<div class="form-group">
+						<label for="escolaridade_pai">Escolaridade do Pai</label>
+						<input type="text" class="form-control" id="escolaridade_pai" name="escolaridade_pai" value="<?php echo htmlspecialchars($escolaridade_pai); ?>">
+					</div>
+
+					<div class="form-group">
+						<label for="escolaridade_mae">Escolaridade da Mãe</label>
+						<input type="text" class="form-control" id="escolaridade_mae" name="escolaridade_mae" value="<?php echo htmlspecialchars($escolaridade_mae); ?>">
+					</div>
+
+					<div class="form-group">
+						<label for="data_escol">Data do Cadastro</label>
+						<input type="date" class="form-control" id="data_escol" name="data_escol" value="<?php echo htmlspecialchars($data_escol); ?>">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				<button type="submit" form="formEscolaridade" class="btn btn-primary">Salvar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 <script type="text/javascript">
 	var pag = "<?= $pag ?>"
