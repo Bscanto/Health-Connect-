@@ -27,7 +27,6 @@ $nacionalidade = $_POST['nacionalidade'];
 $data_cad = $_POST['data_cad'];  
 $queixa = $_POST['queixa'];
 
-
 // Atualizar registro existente
 $query = $pdo->prepare("UPDATE paciente SET
     nome = :nome, 
@@ -55,7 +54,6 @@ $query = $pdo->prepare("UPDATE paciente SET
     data_cad = :data_cad 
     WHERE id = :id");
 
-    
 $query->bindValue(':id', $id);
 $query->bindValue(':nome', $nome);
 $query->bindValue(':cpf', $cpf);
@@ -80,8 +78,13 @@ $query->bindValue(':raca', $raca);
 $query->bindValue(':nacionalidade', $nacionalidade);
 $query->bindValue(':queixa', $queixa);
 $query->bindValue(':data_cad', $data_cad);
-$query->execute();
 
- 
-
+try {
+    // Executar a consulta
+    $query->execute();
     echo 'Salvo com sucesso!';
+} catch (PDOException $e) {
+    // Captura o erro e exibe uma mensagem
+    echo 'Erro ao atualizar os dados: ' . $e->getMessage();
+}
+?>

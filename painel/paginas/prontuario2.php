@@ -68,3 +68,9 @@ if (isset($_GET['id'])) {
 <script type="text/javascript">
     var pag = "<?= $pag ?>"; // A variável pag é definida para uso
 </script>
+
+
+
+
+
+</script>

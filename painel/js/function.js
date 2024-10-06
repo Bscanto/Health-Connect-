@@ -58,7 +58,28 @@ $(document).ready(function () {
   });
 
 
-  
+
+// FUNCAO PARA EDITAR DADOS DO PRONTUARIO
+  function salvarDados() {
+    var formData = $('#editForm').serialize(); // Obtém os dados do formulário
+
+    $.ajax({
+        type: 'POST',
+        url: "paginas/" + pag + "/identificacao/salvar_paciente",
+        data: formData,
+        success: function(response) {
+            // Aqui você pode lidar com a resposta do servidor
+            alert('Dados salvos com sucesso!');
+            $('#editModal').modal('hide'); // Fechar a modal
+            // Você pode atualizar a página ou a tabela com os novos dados aqui
+        },
+        error: function() {
+            alert('Erro ao salvar dados.');
+        }
+    });
+}
+
+
   // Função para excluir um registro
   function excluir(id) {
     $("#mensagem-excluir").text("Excluindo...");
