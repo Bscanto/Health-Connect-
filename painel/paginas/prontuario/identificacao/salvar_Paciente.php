@@ -2,7 +2,7 @@
 $tabela = 'paciente';
 require_once("../../../conexao.php");
 
-
+$id = $_POST['id'];
 $nome = $_POST['nome'];
 $cns = $_POST['cns'];  
 $cpf = $_POST['cpf'];
@@ -26,63 +26,37 @@ $raca = $_POST['raca'];
 $nacionalidade = $_POST['nacionalidade'];  
 $data_cad = $_POST['data_cad'];  
 $queixa = $_POST['queixa'];
-$id = $_POST['id'];
-
-// Validação email
-if($email != $email){
-$query = $pdo->query("SELECT * from paciente where email = '$email'");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-$id_reg = @$res[0]['id'];
-if(@count($res) > 0 and $id != $id_reg){
-    echo 'Email já Cadastrado!';
-    exit();
-}
-}
-
-/*
-// Validação cns
-$query = $pdo->query("SELECT * from $tabela where cns = '$cns'");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-$id_reg = @$res[0]['id'];
-if(@count($res) > 0 and $id != $id_reg){
-	echo $id;
-    echo 'Cartão Nacional de saúde já Cadastrado!';
-    exit();
-}
-*/
 
 
-	// Atualizar registro existente
-	$query = $pdo->prepare("UPDATE paciente SET
-			nome = :nome, 
-			cpf = :cpf,
-			telefone = :telefone,
-			email = :email,
-			estado = :estado,
-			cidade = :cidade,
-			bairro = :bairro,
-			endereco = :endereco,
-			cep = :cep,
-			numero = :numero,
-			data_nasc = :data_nasc,
-			sexo =:sexo,
-			cns = :cns,
-			nome_responsavel = :nome_responsavel,
-			nome_pai = :nome_pai,
-			ocupacao_pai = :ocupacao_pai,
-			nome_mae = :nome_mae,
-			ocupacao_mae = :ocupacao_mae,
-			celular = :celular,
-			raca = :raca,
-			nacionalidade = :nacionalidade,
-			queixa = :queixa,
-			data_cad = :data_cad 
-			WHERE id = :id");
-	$query->bindValue(':id', $id);
+// Atualizar registro existente
+$query = $pdo->prepare("UPDATE paciente SET
+    nome = :nome, 
+    cpf = :cpf,
+    telefone = :telefone,
+    email = :email,
+    estado = :estado,
+    cidade = :cidade,
+    bairro = :bairro,
+    endereco = :endereco,
+    cep = :cep,
+    numero = :numero,
+    data_nasc = :data_nasc,
+    sexo = :sexo,
+    cns = :cns,
+    nome_responsavel = :nome_responsavel,
+    nome_pai = :nome_pai,
+    ocupacao_pai = :ocupacao_pai,
+    nome_mae = :nome_mae,
+    ocupacao_mae = :ocupacao_mae,
+    celular = :celular,
+    raca = :raca,
+    nacionalidade = :nacionalidade,
+    queixa = :queixa,
+    data_cad = :data_cad 
+    WHERE id = :id");
 
-		
-
-// Atribuindo valores aos parâmetros
+    
+$query->bindValue(':id', $id);
 $query->bindValue(':nome', $nome);
 $query->bindValue(':cpf', $cpf);
 $query->bindValue(':telefone', $telefone);
@@ -108,5 +82,6 @@ $query->bindValue(':queixa', $queixa);
 $query->bindValue(':data_cad', $data_cad);
 $query->execute();
 
-echo 'Salvo com Sucesso';
+ 
 
+    echo 'Salvo com sucesso!';

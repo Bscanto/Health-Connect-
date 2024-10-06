@@ -287,4 +287,3 @@ if (@$pacientes == 'ocultar') {
 <script type="text/javascript">
 	var pag = "<?= $pag ?>"
 </script>
-<script src="js/ajax.js"></script>

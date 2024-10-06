@@ -1403,6 +1403,10 @@ a.bg-warning:hover {
 .bg-danger {
   background-color: #f2dede;
 }
+
+.bg-silver {
+  background-color: #c4c2c2;
+}
 a.bg-danger:hover {
   background-color: #e72121;
 }

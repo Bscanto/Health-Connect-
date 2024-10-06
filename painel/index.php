@@ -49,6 +49,7 @@ if ($linhas > 0) {
 		}
 	</script>
 
+
 	<!-- Bootstrap Core CSS -->
 	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -79,6 +80,8 @@ if ($linhas > 0) {
 	<script src="js/metisMenu.min.js"></script>
 	<script src="js/custom.js"></script>
 	<link href="css/custom.css" rel="stylesheet">
+		<!-- Ajax para funcionar Mascaras JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 	<!--//Metis Menu -->
 	<style>
 		#chartdiv {
@@ -326,8 +329,7 @@ if ($linhas > 0) {
 	<!-- Mascaras JS -->
 	<script type="text/javascript" src="js/mascaras.js"></script>
 
-	<!-- Ajax para funcionar Mascaras JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
 
 
 </body>
@@ -549,7 +551,8 @@ if ($linhas > 0) {
 </div>
 
 
-<script src="./js/ajax.js"></script>
+<script src="./js/function.js"></script>
+
 <script type="text/javascript">
 	function carregarImgPerfil() {
 		var target = document.getElementById('target-usu');
