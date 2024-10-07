@@ -1,13 +1,19 @@
 <?php 
-
 $pag = 'anamnese';
+$tabela = 'paciente';
 
+require_once("../../../../conexao.php");
+
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+
+}
 ?>
 
 
 <div class="container">
 
-<h1>Anamnese</h1>
+<h3>Anamnese</h3>
 </div>
 
 

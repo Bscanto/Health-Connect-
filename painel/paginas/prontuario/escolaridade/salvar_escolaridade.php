@@ -55,8 +55,9 @@ WHERE fk_paciente_id = :paciente_id");
     $query->execute();
 
     // Redirecionar de volta à página de escolaridade após salvar
-    header("Location: escolaridade.php?id=$id_paciente");
+   echo 'Salvo com Sucesso';
     exit;
 } else {
     echo "Erro: Dados do paciente não fornecidos!";
 }
+

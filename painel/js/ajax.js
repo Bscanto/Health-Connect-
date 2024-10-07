@@ -1,17 +1,22 @@
 $(document).ready(function () {
   console.log(window.location.pathname);
-  if(window.location.pathname.includes('/painel/pacientes') || window.location.pathname.includes('/painel/usuarios')){
+  if(!window.location.pathname.includes('/painel/prontuario')){
     listar(); // Chama a função de listar registros inicialmente
   }
+
+
+  $('#editModal').on('show.bs.modal', function () {
+    $(this).removeAttr('aria-hidden');
+});
 
   });
   
   // Função para listar registros
-  function listar(p1, p2, p3, p4, p5, p6) {
+  function listar(p1, p2) {
     $.ajax({
       url: "paginas/" + pag + "/listar.php",
       method: "POST",
-      data: { p1, p2, p3, p4, p5, p6 },
+      data: { p1, p2 },
       dataType: "html",
   
       success: function (result) {
@@ -77,6 +82,35 @@ $(document).ready(function () {
         }
     });
 }
+
+
+// FUNÇÃO PARA SALVAR ESCOLARIDADE
+$("#formEscolaridade").submit(function (event) {
+  event.preventDefault(); // Previne o envio padrão do formulário
+  var formData = new FormData(this);
+
+  $.ajax({
+    url: "paginas/" + pag + "/escolaridade/salvar_escolaridade.php",
+    type: "POST",
+    data: formData,
+
+    success: function (mensagem) {
+      $("#mensagem").text("");
+      $("#mensagem").removeClass();
+      if (mensagem.trim() == "Salvo com Sucesso") {
+        $("#btn-fechar").click();
+
+      } else {
+        $("#mensagem").addClass("text-danger");
+        $("#mensagem").text(mensagem);
+      }
+    },
+
+    cache: false,
+    contentType: false,
+    processData: false,
+  });
+});
 
 
   // Função para excluir um registro

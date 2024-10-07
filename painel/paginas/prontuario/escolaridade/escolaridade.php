@@ -53,6 +53,7 @@ if (isset($_GET['id'])) {
 	} else {
 		echo "Paciente sem Escolaridade Cadastrada!";
 		// Adicionando o botão para cadastrar escolaridade
+		
 	echo '<br><a href="#" data-toggle="modal" data-target="#editModal" title="Adicionar Escolaridade">';
 	echo '<i class="btn btn-primary">Adicionar Escolaridade</i></a>';
 
@@ -90,7 +91,7 @@ if (isset($_GET['id'])) {
 				
 			</div>
 
-			<a href="#" data-toggle="modal" data-target="#editModal" title="Editar Dados" onclick="editar()">
+			<a href="#" data-toggle="modal" data-target="#editModal" title="Editar Dados" ">
 				<i class="btn btn-primary">Editar escolaridade</i></a>
 		</div>
 	</div>
@@ -98,20 +99,16 @@ if (isset($_GET['id'])) {
 
 
 
-
-
 <!-- Modal para Editar/Adicionar Escolaridade -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="editModalLabel">Editar Escolaridade</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form id="formEscolaridade" method="POST" action="salvar_escolaridade.php">
+				<form id="formEscolaridade" method="POST" 
 					<input type="hidden" name="paciente_id" value="<?php echo $id_paciente; ?>">
 
 					<div class="form-group">
@@ -152,7 +149,7 @@ if (isset($_GET['id'])) {
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-				<button type="submit" form="formEscolaridade" class="btn btn-primary">Salvar</button>
+				<button type="submit" class="btn btn-primary">Salvar</button>
 			</div>
 		</div>
 	</div>

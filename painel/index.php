@@ -328,9 +328,7 @@ if ($linhas > 0) {
 
 	<!-- Mascaras JS -->
 	<script type="text/javascript" src="js/mascaras.js"></script>
-
-
-
+	<script type="text/javascript" src="js/ajax.js"></script>
 
 </body>
 
@@ -427,12 +425,6 @@ if ($linhas > 0) {
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
 
 
 <!-- Modal Config -->
@@ -550,8 +542,6 @@ if ($linhas > 0) {
 	</div>
 </div>
 
-
-<script src="./js/function.js"></script>
 
 <script type="text/javascript">
 	function carregarImgPerfil() {
@@ -711,8 +701,6 @@ if ($linhas > 0) {
 		}
 	}
 </script>
-
-<script src="js/mascaras.js"></script>
 
 <script type="text/javascript">
 	function fecharNav() {

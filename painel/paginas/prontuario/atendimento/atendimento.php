@@ -126,11 +126,13 @@ HTML;
 			</div>
 
 			<div class="modal-body">
-				<form id="formEditAtendimento" method="POST" action="atualizar_atendimento.php">
+				<form id="formEditAtendimento" method="POST" action="/salvar_atendimento.php">
 					<input type="hidden" name="id_atendimento" value="<?php echo htmlspecialchars($id_atendimento); ?>">
 
 
 					<div class="form-group">
+					<input type="hidden" name="id_atendimento" value="<?php echo htmlspecialchars($id_atendimento); ?>">
+
 						<label for="cid_principal">CID Principal e Diagnóstico Principal</label>
 						<div class="row">
 							<div class="col-md-6">
