@@ -102,8 +102,8 @@ HTML;
 
 				<br>
 
-				<a href="#" data-toggle="modal" data-target="#editAtendimentoModal" title="Editar Dados" onclick="editarAtendimento()">
-					<i class="btn btn-primary">Editar Atendimento</i></a>
+				<a href="#" data-toggle="modal" data-target="#modalAtendimento" title="Editar Dados" ">
+				<i class="btn btn-primary">Editar Atendimento</i></a>
 
 			</div>
 
@@ -115,7 +115,7 @@ HTML;
 
 
 <!-- Modal para Editar Atendimento -->
-<div class="modal fade" id="editAtendimentoModal" tabindex="-1" role="dialog" >
+<div class="modal fade" id="modalAtendimento" tabindex="-1" role="dialog" >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">

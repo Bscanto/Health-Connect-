@@ -1,6 +1,6 @@
 <?php
 
-$pag = 'identificação';
+$pag = 'prontuario/identificacao';
 $tabela = 'paciente';
 
 require_once("../../../../conexao.php");
@@ -51,6 +51,7 @@ if (isset($_GET['id'])) {
 	exit; // Saia do script se o ID não estiver presente
 }
 ?>
+
 <!-- DADOS DO PACIENTE IDENTIFICAÇÃO -->
 <div class="container">
 	<h3>Identificação do Paciente</h3>
@@ -107,233 +108,153 @@ if (isset($_GET['id'])) {
 			<p><b>Data de Cadastro:</b> <span><?php echo htmlspecialchars($data_cad); ?></span></p>
 		</div>
 
-		<a href="#" data-toggle="modal" data-target="#editModal" title="Editar Dados" onclick="editar('<?= htmlspecialchars($id) ?>', '<?= htmlspecialchars($nome) ?>', '<?= htmlspecialchars($cpf) ?>', '<?= htmlspecialchars($telefone) ?>', '<?= htmlspecialchars($email) ?>', '<?= htmlspecialchars($estado) ?>', '<?= htmlspecialchars($cidade) ?>', '<?= htmlspecialchars($bairro) ?>', '<?= htmlspecialchars($endereco) ?>', '<?= htmlspecialchars($cep) ?>', '<?= htmlspecialchars($numero) ?>', '<?= htmlspecialchars($data_nasc) ?>', '<?= htmlspecialchars($sexo) ?>', '<?= htmlspecialchars($cns) ?>', '<?= htmlspecialchars($nome_responsavel) ?>', '<?= htmlspecialchars($nome_pai) ?>', '<?= htmlspecialchars($ocupacao_pai) ?>', '<?= htmlspecialchars($nome_mae) ?>', '<?= htmlspecialchars($ocupacao_mae) ?>', '<?= htmlspecialchars($celular) ?>', '<?= htmlspecialchars($raca) ?>', '<?= htmlspecialchars($nacionalidade) ?>', '<?= htmlspecialchars($queixa) ?>', '<?= htmlspecialchars($data_cad) ?>')">
-    <i class="btn btn-primary">Editar</i>
-</a>
+		<a href="#" data-toggle="modal" data-target="#editarIdentificacao222" title="Editar Dados" ">
+				<i class="btn btn-primary">Editar Identificação</i> </a>
 
 	</div>
 </div>
-
-<script type="text/javascript">
-	window.editar = function(id, nome, cpf, telefone, email, estado, cidade, bairro, endereco, cep, numero, data_nasc, sexo, cns, nome_responsavel, nome_pai, ocupacao_pai, nome_mae, ocupacao_mae, celular, raca, nacionalidade, queixa, data_cad) {
-		document.getElementById('prontuario_numero').textContent = id; // Preencher o prontuário
-		document.getElementById('nome').value = nome;
-		document.getElementById('cpf').value = cpf;
-		document.getElementById('telefone').value = telefone;
-		document.getElementById('email').value = email;
-		document.getElementById('estado').value = estado;
-		document.getElementById('cidade').value = cidade;
-		document.getElementById('bairro').value = bairro;
-		document.getElementById('endereco').value = endereco;
-		document.getElementById('cep').value = cep;
-		document.getElementById('numero').value = numero;
-		document.getElementById('data_nasc').value = data_nasc;
-		document.getElementById('sexo').value = sexo;
-		document.getElementById('cns').value = cns;
-		document.getElementById('nome_responsavel').value = nome_responsavel;
-		document.getElementById('nome_pai').value = nome_pai;
-		document.getElementById('ocupacao_pai').value = ocupacao_pai;
-		document.getElementById('nome_mae').value = nome_mae;
-		document.getElementById('ocupacao_mae').value = ocupacao_mae;
-		document.getElementById('celular').value = celular;
-		document.getElementById('raca').value = raca;
-		document.getElementById('nacionalidade').value = nacionalidade;
-		document.getElementById('queixa').value = queixa;
-		document.getElementById('data_cad').value = data_cad;
-		// Preencher os outros campos
-		$('#editModal').modal('show');
-	}
-</script>
 
 
 
 <!-- Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="editModalLabel">Editar Dados do Paciente</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form id="editModal">
-					<div class="modal-body">
-
-						<div class="row mt-3">
-							<p><b>Prontuário Número:</b> <span id="prontuario_numero"><?php echo $id;?></span></p>
-						</div>
-
-						<div class="row">
-							<div class="col-md-4">
-								<label>Nome</label>
-								<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do Paciente">
-							</div>
-
-							<div class="col-md-4">
-								<label>Cartão Nacional de Saúde (CNS)</label>
-								<input type="text" class="form-control" id="cartaosus" name="cns" placeholder="Cartão Nacional de Saúde">
-							</div>
-
-							<div class="col-md-4">
-								<label>cpf</label>
-								<input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF">
-							</div>
-
-						</div>
-
-
-						<div class="row">
-
-							<div class="col-md-6">
-								<label>Email</label>
-								<input type="email" class="form-control" id="email" name="email" placeholder="Email do Paciente">
-							</div>
-
-							<div class="col-md-3">
-								<label>Data de Nascimento</label>
-								<input type="date" class="form-control" id="data_nasc" name="data_nasc">
-							</div>
-
-							<div class="col-md-3">
-								<label>Sexo</label>
-								<select class="form-control" name="sexo" id="sexo">
-									<option value="M">Masculino</option>
-									<option value="F">Feminino</option>
-									<option value="O">Outro</option>
-								</select>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-4">
-								<label>Endereço</label>
-								<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço">
-							</div>
-
-							<div class="col-md-4">
-								<label>Número</label>
-								<input type="number" class="form-control" id="numero" name="numero" placeholder="Número">
-							</div>
-
-							<div class="col-md-4">
-								<label>CEP</label>
-								<input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
-							</div>
-
-						</div>
-
-						<div class="row">
-
-							<div class="col-md-4">
-								<label>Bairro</label>
-								<input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro">
-							</div>
-
-							<div class="col-md-4">
-								<label>Cidade</label>
-								<input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade">
-							</div>
-
-							<div class="col-md-4">
-								<label>Estado</label>
-								<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado">
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-6">
-								<label>Nome do Responsável</label>
-								<input type="text" class="form-control" id="nome_responsavel" name="nome_responsavel" placeholder="Nome do Responsável">
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-6">
-								<label>Nome da Mãe</label>
-								<input type="text" class="form-control" id="nome_mae" name="nome_mae" placeholder="Nome da Mãe">
-							</div>
-
-							<div class="col-md-6">
-								<label>Ocupação da Mãe</label>
-								<input type="text" class="form-control" id="ocupacao_mae" name="ocupacao_mae" placeholder="Ocupação da Mãe">
-							</div>
-
-
-
-							<div class="col-md-6">
-								<label>Nome do Pai</label>
-								<input type="text" class="form-control" id="nome_pai" name="nome_pai" placeholder="Nome do Pai">
-							</div>
-
-							<div class="row">
-								<div class="col-md-6">
-									<label>Ocupação do Pai</label>
-									<input type="text" class="form-control" id="ocupacao_pai" name="ocupacao_pai" placeholder="Ocupação do Pai">
-								</div>
-							</div>
-
-
-
-
-						</div>
-
-						<div class="row">
-							<div class="col-md-4">
-								<label>Telefone</label>
-								<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone Principal">
-							</div>
-
-							<div class="col-md-4">
-								<label>Celular</label>
-								<input type="text" class="form-control" id="celular" name="celular" placeholder="Celular">
-							</div>
-
-							<div class="col-md-4">
-								<label>Raça</label>
-								<input type="text" class="form-control" id="raca" name="raca" placeholder="Raça">
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-6">
-								<label>Nacionalidade</label>
-								<input type="text" class="form-control" id="nacionalidade" name="nacionalidade" placeholder="Nacionalidade">
-							</div>
-							<div class="col-md-6">
-								<label>Data de Cadastro</label>
-								<input type="date" class="form-control" id="data_cad" name="data_cad">
-							</div>
-
-						</div>
-
-
-						<div class="row">
-							<div class="col-md-12">
-								<label>Queixa</label>
-								<textarea class="form-control" name="queixa" id="queixa"></textarea>
-							</div>
-						</div>
-
-						<input type="hidden" class="form-control" id="id" name="id">
-						<br>
-						<small>
-							<div id="mensagem" align="center"></div>
-						</small>
-					</div>
-
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-				<button type="button" class="btn btn-primary" onclick="salvarDados()">Salvar alterações</button>
-			</div>
-		</div>
-	</div>
+<div class="modal fade" id="editarIdentificacao222" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="editModalLabel">Editar Dados do Paciente</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form  method="POST" enctype="multipart/form-data" id="formEditarpaciente">
+                    <div class="modal-body">
+                        <div class="row mt-3">
+                            <p><b>Prontuário Número:</b> <span id="prontuario_numero"><?php echo $id; ?></span></p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do Paciente" value="<?php echo htmlspecialchars($nome); ?>">
+                            </div>
+                            <div class="col-md-4">
+                                <label>Cartão Nacional de Saúde (CNS)</label>
+                                <input type="text" class="form-control" id="cartaosus" name="cns" placeholder="Cartão Nacional de Saúde" value="<?php echo htmlspecialchars($cns); ?>">
+                            </div>
+                            <div class="col-md-4">
+                                <label>CPF</label>
+                                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF" value="<?php echo htmlspecialchars($cpf); ?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email do Paciente" value="<?php echo htmlspecialchars($email); ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Telefone</label>
+                                <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Seu Telefone" value="<?php echo htmlspecialchars($telefone); ?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Celular</label>
+                                <input type="text" class="form-control" id="celular" name="celular" placeholder="Seu Celular" value="<?php echo htmlspecialchars($celular); ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Data de Nascimento</label>
+                                <input type="date" class="form-control" id="data_nasc" name="data_nasc" value="<?php echo htmlspecialchars($data_nasc); ?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Sexo</label>
+                                <select class="form-control" id="sexo" name="sexo">
+                                    <option value="Masculino" <?php echo ($sexo == 'Masculino') ? 'selected' : ''; ?>>Masculino</option>
+                                    <option value="Feminino" <?php echo ($sexo == 'Feminino') ? 'selected' : ''; ?>>Feminino</option>
+                                    <option value="Outro" <?php echo ($sexo == 'Outro') ? 'selected' : ''; ?>>Outro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Raça/Cor</label>
+                                <input type="text" class="form-control" id="raca" name="raca" placeholder="Raça/Cor" value="<?php echo htmlspecialchars($raca); ?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Nacionalidade</label>
+                                <input type="text" class="form-control" id="nacionalidade" name="nacionalidade" placeholder="Nacionalidade" value="<?php echo htmlspecialchars($nacionalidade); ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Queixa Principal</label>
+                                <input type="text" class="form-control" id="queixa" name="queixa" placeholder="Queixa Principal" value="<?php echo htmlspecialchars($queixa); ?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Estado</label>
+                                <input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" value="<?php echo htmlspecialchars($estado); ?>">
+                            </div>
+                            <div class="col-md-4">
+                                <label>Cidade</label>
+                                <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" value="<?php echo htmlspecialchars($cidade); ?>">
+                            </div>
+                            <div class="col-md-4">
+                                <label>Bairro</label>
+                                <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" value="<?php echo htmlspecialchars($bairro); ?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Endereço</label>
+                                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço" value="<?php echo htmlspecialchars($endereco); ?>">
+                            </div>
+                            <div class="col-md-4">
+                                <label>CEP</label>
+                                <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" value="<?php echo htmlspecialchars($cep); ?>">
+                            </div>
+                            <div class="col-md-4">
+                                <label>Número</label>
+                                <input type="text" class="form-control" id="numero" name="numero" placeholder="Número" value="<?php echo htmlspecialchars($numero); ?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Nome do Responsável</label>
+                                <input type="text" class="form-control" id="nome_responsavel" name="nome_responsavel" placeholder="Nome do Responsável" value="<?php echo htmlspecialchars($nome_responsavel); ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Nome do Pai</label>
+                                <input type="text" class="form-control" id="nome_pai" name="nome_pai" placeholder="Nome do Pai" value="<?php echo htmlspecialchars($nome_pai); ?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Ocupação do Pai</label>
+                                <input type="text" class="form-control" id="ocupacao_pai" name="ocupacao_pai" placeholder="Ocupação do Pai" value="<?php echo htmlspecialchars($ocupacao_pai); ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Nome da Mãe</label>
+                                <input type="text" class="form-control" id="nome_mae" name="nome_mae" placeholder="Nome da Mãe" value="<?php echo htmlspecialchars($nome_mae); ?>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Ocupação da Mãe</label>
+                                <input type="text" class="form-control" id="ocupacao_mae" name="ocupacao_mae" placeholder="Ocupação da Mãe" value="<?php echo htmlspecialchars($ocupacao_mae); ?>">
+                            </div>
+                        </div>
+                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 
 
 <script type="text/javascript">

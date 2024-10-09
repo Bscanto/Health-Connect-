@@ -2,6 +2,9 @@
 
 $pag = 'prontuario';
 
+
+require_once("../conexao.php");
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } 
@@ -13,7 +16,7 @@ if (isset($_GET['id'])) {
 <br>
 <br>
 
-<div class="container bg-silver" style="width: 95%;">
+<div class="container bg-silver" style="width: 85%;">
     <br>
     <div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
         <button type="button" class="btn btn-outline-primary" onclick="carregarPaciente('identificacao', <?= $id ?>)">Identificação</button>
@@ -66,7 +69,7 @@ if (isset($_GET['id'])) {
 </script>
 
 <script type="text/javascript">
-    var pag = "<?= $pag ?>"; // A variável pag é definida para uso
+    var pag = "<?= $pag ?>"; 
 </script>
 
 

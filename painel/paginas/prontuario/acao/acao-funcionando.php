@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
     acao_realizada.classificacao, 
     acao_realizada.cbo,           -- Adicionado
     acao_realizada.cnsp,          -- Adicionado
-    acao_realizada.local_acao, 
+    acao_realizada.local_acao,    -- Adicionado
     acao.descricao AS descricao_acao
 FROM 
     acao_realizada

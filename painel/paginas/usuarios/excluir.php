@@ -12,6 +12,8 @@ if($foto != "sem-foto.jpg"){
 	@unlink('../../images/perfil/'.$foto);
 }
 
+// Primeiro, excluir as ações relacionadas ao usuário
+$pdo->query("DELETE FROM acao_realizada WHERE fk_usuarios_id = $id");
+
 $pdo->query("DELETE FROM $tabela WHERE id = '$id' ");
 echo 'Excluído com Sucesso';
-?>

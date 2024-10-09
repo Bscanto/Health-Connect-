@@ -29,8 +29,9 @@ if ($linhas > 0) {
 }
 
 ?>
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+
+<html lang="pt-BR">
 
 <head>
 	<title><?php echo $nome_sistema ?></title>
@@ -333,8 +334,6 @@ if ($linhas > 0) {
 </body>
 
 </html>
-
-
 
 
 

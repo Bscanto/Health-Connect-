@@ -1,31 +1,8 @@
-$(document).ready(function () {
-  console.log(window.location.pathname);
-  if(!window.location.pathname.includes('/painel/prontuario')){
-    listar(); // Chama a função de listar registros inicialmente
-  }
 
 
-  $('#editModal').on('show.bs.modal', function () {
-    $(this).removeAttr('aria-hidden');
-});
 
-  });
-  
-  // Função para listar registros
-  function listar(p1, p2) {
-    $.ajax({
-      url: "paginas/" + pag + "/listar.php",
-      method: "POST",
-      data: { p1, p2 },
-      dataType: "html",
-  
-      success: function (result) {
-        $("#listar").html(result);
-        $("#mensagem-excluir").text("");
-      },
-    });
-  }
-  
+
+
   // Função para abrir modal de inserção
   function inserir() {
     $("#mensagem").text("");
@@ -33,7 +10,34 @@ $(document).ready(function () {
     $("#modalForm").modal("show");
     limparCampos();
   }
+
   
+  // Função inserir acao
+  function inserirAcao() {
+    $("#mensagem").text("");
+    $("#titulo_inserir").text("Inserir Ação");
+    $("#modalAcao").modal("show");
+  }
+
+  // Função listarAcao - Atualiza a lista de ações realizadas
+function listarAcao(p1) {
+    $.ajax({
+        url: "paginas/" + pag + "/acao/listaracao.php", // Endereço do arquivo PHP
+        method: "POST", // Método de envio dos dados
+        data: { p1 }, 
+        dataType: "html", // Tipo de resposta esperada
+        success: function(result) {
+            $("#listarAcao").html(result); // Atualiza o conteúdo do div com os dados recebidos
+            $("#mensagem-excluir").text("");
+        },
+        error: function(xhr, status, error) {
+            console.error("Erro ao listar ações:", error);
+            alert("Erro ao carregar as ações.");
+        }
+    });
+}
+  
+
   // Função de submissão do formulário de edição
   $("#form").submit(function (event) {
     event.preventDefault(); // Previne o envio padrão do formulário
@@ -49,7 +53,7 @@ $(document).ready(function () {
         $("#mensagem").removeClass();
         if (mensagem.trim() == "Salvo com Sucesso") {
           $("#btn-fechar").click();
-          listar(); // Atualiza a lista após sucesso
+          listar(); 
         } else {
           $("#mensagem").addClass("text-danger");
           $("#mensagem").text(mensagem);
@@ -62,27 +66,77 @@ $(document).ready(function () {
     });
   });
 
+  $('#formEditarpaciente').on('submit', function(e) {
+    e.preventDefault();
+
+    var formData = {
+        id: $('#id').val(),
+        nome: $('#nome').val(),
+        cns: $('#cns').val(),
+        cpf: $('#cpf').val(),
+        data_nasc: $('#data_nasc').val(),
+        sexo: $('#sexo').val(),
+        endereco: $('#endereco').val(),
+        numero: $('#numero').val(),
+        cep: $('#cep').val(),
+        bairro: $('#bairro').val(),
+        cidade: $('#cidade').val(),
+        estado: $('#estado').val(),
+        nome_responsavel: $('#nome_responsavel').val(),
+        nome_mae: $('#nome_mae').val(),
+        ocupacao_mae: $('#ocupacao_mae').val(),
+        ocupacao_pai: $('#ocupacao_pai').val(),
+        telefone: $('#telefone').val(),
+        celular: $('#celular').val(),
+        raca: $('#raca').val(),
+        nacionalidade: $('#nacionalidade').val(),
+        queixa: $('#queixa').val(),
+    };
+
+    console.log('Dados do formulário:', formData);
+
+    $.ajax({
+      url: "paginas/" + pag + "/identificacao/salvar.php",
+      type: 'POST',
+      data: formData,
+      dataType: 'json',
+      success: function(response) {
+          console.log('Resposta do servidor:', response);
+          if (response.success) {
+              alert(response.success);
+              $('#editarIdentificacao222').modal('hide');
+          } else {
+              alert(response.error);
+          }
+      },
+      error: function(xhr, status, error) {
+          console.error('Erro AJAX:', xhr.responseText);
+          console.error('Status:', status);
+          console.error('Erro:', error);
+          alert('Erro ao atualizar os dados.');
+      }
+  });
+  
+});
+
 
 
 // FUNCAO PARA EDITAR DADOS DO PRONTUARIO
-  function salvarDados() {
-    var formData = $('#editForm').serialize(); // Obtém os dados do formulário
+  function salvaridentificacao() {
+    var formData = $('#salvarIdentificacao').serialize();
 
     $.ajax({
         type: 'POST',
-        url: "paginas/" + pag + "/identificacao/salvar_paciente",
+        url: "paginas/" + pag + "/identificacao/salvar.php",
         data: formData,
         success: function(response) {
-            // Aqui você pode lidar com a resposta do servidor
             alert('Dados salvos com sucesso!');
-            $('#editModal').modal('hide'); // Fechar a modal
         },
         error: function() {
             alert('Erro ao salvar dados.');
         }
     });
-}
-
+  }
 
 // FUNÇÃO PARA SALVAR ESCOLARIDADE
 $("#formEscolaridade").submit(function (event) {

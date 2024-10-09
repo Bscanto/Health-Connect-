@@ -55,7 +55,7 @@ if (isset($_GET['id'])) {
 		// Adicionando o botão para cadastrar escolaridade
 		
 	echo '<br><a href="#" data-toggle="modal" data-target="#editModal" title="Adicionar Escolaridade">';
-	echo '<i class="btn btn-primary">Adicionar Escolaridade</i></a>';
+	echo '<i class="btn btn-success">Adicionar Escolaridade</i></a>';
 
 		exit; 
 	}
@@ -98,9 +98,8 @@ if (isset($_GET['id'])) {
 </div>
 
 
-
 <!-- Modal para Editar/Adicionar Escolaridade -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" >
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" " >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">

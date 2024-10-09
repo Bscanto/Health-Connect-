@@ -183,6 +183,7 @@ optgroup {
 table {
   border-spacing: 0;
   border-collapse: collapse;
+  
 }
 td,
 th {
@@ -2264,17 +2265,25 @@ th {
   text-align: left;
 }
 .table {
-  width: 100%;
+  width: 80%;
   max-width: 100%;
   margin-bottom: 20px;
 }
+.table-acao {
+  width: 60%;
+  max-width: 70%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px;
+  padding: 2px;
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #ddd;
@@ -2282,6 +2291,7 @@ th {
 .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #ddd;
+ 
 }
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
