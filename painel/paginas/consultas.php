@@ -1,5 +1,5 @@
 <?php
-$pag = 'pacientes';
+$pag = 'consultas';
 
 if (@$pacientes == 'ocultar') {
 	echo "<script>window.location='../index.php'</script>";
@@ -7,6 +7,8 @@ if (@$pacientes == 'ocultar') {
 }
 
 ?>
+<h1>Consultas</h1>
+<br>
 <a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Paciente</a>
 
 <li class="dropdown head-dpdn2" style="display: inline-block;">
@@ -21,7 +23,7 @@ if (@$pacientes == 'ocultar') {
 	</ul>
 </li>
 
-<div class="bs-example widget-shadow" style="padding:15px" id="listar">
+<div class="bs-example widget-shadow" style="padding:15px" id="listarConsulta">
 
 </div>
 
@@ -217,75 +219,152 @@ if (@$pacientes == 'ocultar') {
 	<div class="modal-dialog modal-lg" role="document" style="width:100%">
 		<div class="modal-content">
 
-		<!-- Modal header -->
+			<!-- Modal header -->
 			<div class="modal-header">
 				<h4 class="modal-title" id="exampleModalLabel"><span id="nome_dados"></span> <span style="margin-left: 25px; font-size: 15px"><a title="PDF da Ficha Paciente" href="" onclick="ficha()"><i class="fa fa-file-pdf-o text-danger"></i> Imprimir Ficha</a></span></h4>
 				<button id="btn-fechar-perfil" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -20px">
 					<span aria-hidden="true">&times;</span>
 				</button>
-			</div>
-
-			<div class="modal-body">
-
-
-				<div class="row mt-3">
-					<p><b>Prontuário Número:</b> <span id="prontuario_numero"></span></p>
-				</div>
-
-				<div class="row">
-					<div class="col-md-6">
-						<h4><b>Informações Pessoais</b></h4>
-						<p><b>Nome:</b> <span id="nome_dados"></span></p>
-						<p><b>CPF:</b> <span id="cpf_dados"></span></p>
-						<p><b>Telefone:</b> <span id="telefone_dados"></span></p>
-						<p><b>Email:</b> <span id="email_dados"></span></p>
-						<p><b>Data de Nascimento:</b> <span id="data_nasc_dados"></span></p>
-						<p><b>Sexo:</b> <span id="sexo_dados"></span></p>
-						<p><b>Raça/Cor:</b> <span id="raca_dados"></span></p>
-						<p><b>Nacionalidade:</b> <span id="nacionalidade_dados"></span></p>
-					</div>
-
-					<div class="col-md-6">
-						<h4><b>Endereço</b></h4>
-						<p><b>Estado:</b> <span id="estado_dados"></span></p>
-						<p><b>Cidade:</b> <span id="cidade_dados"></span></p>
-						<p><b>Bairro:</b> <span id="bairro_dados"></span></p>
-						<p><b>Endereço:</b> <span id="endereco_dados"></span></p>
-						<p><b>Cep:</b> <span id="cep_dados"></span></p>
-						<p><b>Número:</b> <span id="numero_dados"></span></p>
-					</div>
-				</div>
-
-				<div class="row mt-3">
-					<div class="col-md-6">
-						<h4><b>Informações do Responsável</b></h4>
-						<p><b>Nome do Responsável:</b> <span id="nome_responsavel_dados"></span></p>
-						<p><b>Nome do Pai:</b> <span id="nome_pai_dados"></span></p>
-						<p><b>Ocupação do Pai:</b> <span id="ocupacao_pai_dados"></span></p>
-						<p><b>Nome da Mãe:</b> <span id="nome_mae_dados"></span></p>
-						<p><b>Ocupação da Mãe:</b> <span id="ocupacao_mae_dados"></span></p>
-					</div>
-
-					<div class="col-md-6">
-						<h4><b>Informações Adicionais</b></h4>
-						<p><b>Celular:</b> <span id="celular_dados"></span></p>
-						<p><b>Ativo:</b> <span id="ativo_dados"></span></p>
-						<p><b>Queixa Principal:</b> <span id="queixa_dados"></span></p>
-					</div>
-				</div>
-
 				<div class="row mt-3">
 					<p><b>Data de Cadastro:</b> <span id="data_cad_dados"></span></p>
 				</div>
 			</div>
+
+
+
+
+			<div class="modal-body">
+
+				<div class="row">
+
+					<!-- DIV PESSOAIS/RESPONSAVEIS -->
+					<div class="col-md-6" style="font-size:14px">
+
+						<div style="margin-bottom: 5px; border-bottom:1px solid #cecece; padding-bottom:3px">
+							<h4><b class="text-danger">Informações Pessoais</b></h4>
+							<br>
+							<span style="margin-right: 20px"><b>Cns</b> <span id="cns_dados"></span></span>
+							<span style="margin-right: 20px"><b>Email</b> <span id="email_dados"></span></span>
+							<span style="margin-right: 20px"><b>CPF</b> <span id="cpf_dados"></span></span>
+							<br>
+							<span style="margin-right: 20px"><b>Telefone</b> <span id="telefone_dados"></span></span>
+							<span style="margin-right: 20px"><b>Celular</b> <span id="celular_dados"></span></span>
+							<span style="margin-right: 20px"><b>Data Nacimentoe</b> <span id="data_nasc_dados"></span></span>
+							<br>
+							<span style="margin-right: 20px"><b>sexo</b> <span id="sexo_dados"></span></span>
+							<span style="margin-right: 20px"><b>Raça/Cor</b> <span id="raca_dados"></span></span>
+							<span style="margin-right: 20px"><b>Nacionalidade</b> <span id="nacionalidade_dados"></span></span>
+							<br>
+						</div>
+
+
+
+						<div style="margin-bottom: 5px; border-bottom:1px solid #cecece; padding-bottom:3px">
+							<h4><b class="text-danger">Informações Pais/Responsável</b></h4>
+							<br>
+							<span style="margin-right: 20px"><b>Nome do Responsável:</b> <span id="nome_responsavel_dados"></span></span>
+							<br>
+							<span style="margin-right: 20px"><b>Nome da Mãe:</b> <span id="nome_mae_dados"></span></span>
+							<span style="margin-right: 20px"><b>Ocupação da Mãe:</b> <span id="ocupacao_mae_dados"></span></span>
+							<br>
+							<span style="margin-right: 20px"><b>Nome do Pai:</b> <span id="nome_pai_dados"></span></span>
+							<span style="margin-right: 20px"><b>Ocupação do Pai:</b> <span id="ocupacao_pai_dados"></span></span>
+							<br>
+							<span style="margin-right: 20px"><b>Queixa:</b> <span id="queixa_dados"></span></span>
+						</div>
+					</div>
+
+
+
+					<!-- DIV ENDERECO/ESCOLARIDADE -->
+					<div class="col-md-6" style="font-size:14px">
+
+						<div style="margin-bottom: 5px; border-bottom:1px solid #cecece; padding-bottom:3px">
+							<h4><b class="text-danger">Endereço</b></h4>
+							<br>
+							<span style="margin-right: 20px"><b>Endereço</b> <span id="endereco_dados"></span></span>
+							<span style="margin-right: 20px"><b>Número</b> <span id="numero_dados"></span></span>
+							<span style="margin-right: 20px"><b>Bairro</b> <span id="bairro_dados"></span></span>
+							<br>
+							<span style="margin-right: 20px"><b>Cidade</b> <span id="cidade_dados"></span></span>
+							<span style="margin-right: 20px"><b>Estado</b> <span id="estado_dados"></span></span>
+							<span style="margin-right: 20px"><b>Cep</b> <span id="cep_dados"></span></span>
+							<br>
+							<br>
+						</div>
+
+						<div style="margin-bottom: 5px; border-bottom:1px solid #cecece; padding-bottom:3px;">
+							<h4><b class="text-danger">Escolaridade</b></h4>
+							<br>
+							<span style="margin-right: 20px"><b>Cns</b> <span id="cns_dados"></span></span>
+							<span style="margin-right: 20px"><b>Email</b> <span id="email_dados"></span></span>
+							<span style="margin-right: 20px"><b>CPF</b> <span id="cpf_dados"></span></span>
+							<br>
+							<span style="margin-right: 20px"><b>Telefone</b> <span id="telefone_dados"></span></span>
+							<span style="margin-right: 20px"><b>Celular</b> <span id="celular_dados"></span></span>
+							<span style="margin-right: 20px"><b>Data Nacimentoe</b> <span id="data_nasc_dados"></span></span>
+							<br>
+							<span style="margin-right: 20px"><b>sexo</b> <span id="sexo_dados"></span></span>
+							<span style="margin-right: 20px"><b>Raça/Cor</b> <span id="raca_dados"></span></span>
+							<span style="margin-right: 20px"><b>Nacionalidade</b> <span id="nacionalidade_dados"></span></span>
+							<br>
+							<br>
+						</div>
+
+					</div>
+
+					<hr>
+				</div>
+			</div>
+
+
+			<div class="modal-body">
+				<div class="row">
+					<!-- DIV HISTóRICO -->
+					<div class="col-md-6" style="border-left: 1px solid #242323; font-size:14px">
+						<br>
+						<b>Histório Clínico</b>
+
+						<div id="historico_div" style="overflow: scroll; max-height:300px; scrollbar-width: thin; padding:2px">
+							<div class="row">
+								<form id="form-historico">
+									<div class="col-md-10">
+										<textarea maxlength="2000" name="historico" id="historico" class="form-control" required></textarea>
+									</div>
+
+									<div class="col-md-2" style="margin-top: 40px">
+										<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check"></i></button>
+									</div>
+									<input type="hidden" name="id_pac" id="id_pac">
+									<input type="hidden" name="id_con" id="id_con">
+								</form>
+							</div>
+							<small>
+								<div id="mensagem-historico"></div>
+							</small>
+						</div>
+					</div>
+
+
+
+					<div class="col-md-6" style="border-left: 1px solid #242323; font-size:14px">
+
+						<div style="margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #000">
+							<b>ANAMNESE</b>
+						</div>
+
+						<div id="listar_ana_pac" style="margin-top:5px">
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+
 		</div>
 	</div>
 </div>
-</div>
-
-<script>
-
-</script>
 
 
 
@@ -294,5 +373,3 @@ if (@$pacientes == 'ocultar') {
 <script type="text/javascript">
 	var pag = "<?= $pag ?>"
 </script>
-
-

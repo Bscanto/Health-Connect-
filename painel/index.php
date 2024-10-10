@@ -153,11 +153,22 @@ if ($linhas > 0) {
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="sidebar-menu">
 							<li class="header">MENU NAVEGAÇÃO</li>
+
+
+
+
+							<!-- MENU HOME -->
 							<li class="treeview <?php echo $home ?>">
 								<a href="index.php">
 									<i class="fa fa-dashboard"></i> <span>Home</span>
 								</a>
 							</li>
+
+
+
+
+
+							<!-- MENU PESSOAS -->
 							<li class="treeview <?php echo $menu_pessoas ?>">
 
 								<a href="#">
@@ -165,7 +176,6 @@ if ($linhas > 0) {
 									<span>Pessoas</span>
 									<i class="fa fa-angle-left pull-right"></i>
 								</a>
-
 
 								<ul class="treeview-menu">
 									<li class="<?php echo $usuarios ?>"><a href="usuarios"><i class="fa fa-angle-right"></i> Admin/Profissional</a></li>
@@ -177,6 +187,13 @@ if ($linhas > 0) {
 
 							</li>
 
+
+
+
+
+
+
+							<!-- MENU Cadastro -->
 							<li class="treeview <?php echo $menu_cadastros ?>">
 								<a href="#">
 									<i class="fa fa-plus"></i>
@@ -195,6 +212,19 @@ if ($linhas > 0) {
 							</li>
 
 
+
+
+
+							<!-- MENU Consulta -->
+							<<li class="treeview <?php echo @$consultas ?>">
+
+<a href="consultas">
+
+	<i class="fa fa-stethoscope"></i> <span>Consultas</span>
+
+</a>
+
+</li>
 
 						</ul>
 					</div>
