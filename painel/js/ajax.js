@@ -77,6 +77,8 @@ function listarConsulta(p1, p2, p3, p4, p5, p6) {
         if (mensagem.trim() == "Salvo com Sucesso") {
           $("#btn-fechar").click();
           listar(); 
+          listarConsulta();
+
         } else {
           $("#mensagem").addClass("text-danger");
           $("#mensagem").text(mensagem);
@@ -88,6 +90,63 @@ function listarConsulta(p1, p2, p3, p4, p5, p6) {
       processData: false,
     });
   });
+
+
+// ESCOLARIDADE
+  function escolaridade(paciente_id) {
+    // Limpa mensagens de erro ou sucesso anteriores
+    $('#formEscolaridade')[0].reset();
+    $('#paciente_id').val(paciente_id);
+    
+    // Fazer uma requisição AJAX para buscar os dados da escolaridade do paciente
+    $.ajax({
+        url: 'paginas/escolaridade/carregarEscolaridade.php',
+        method: 'POST',
+        data: { paciente_id: paciente_id },
+        dataType: 'json',
+        success: function(response) {
+            if (response) {
+                // Preenche os campos da modal com os dados recebidos
+                $('#escolaridade_pai').val(response.escolaridade_pai);
+                $('#escolaridade_mae').val(response.escolaridade_mae);
+                $('#tipo_escola').val(response.tipo_escola);
+                $('#turno').val(response.turno);
+                $('#serie').val(response.serie);
+                $('#data_escolaridade').val(response.data_escolaridade);
+            }
+        }
+    });
+
+    // Abre a modal de escolaridade
+    $('#modalEscolaridade').modal('show');
+}
+
+$('#formEscolaridade').submit(function(event) {
+  event.preventDefault();
+
+  var formData = $(this).serialize(); // Coleta os dados do formulário
+
+  $.ajax({
+      url: 'paginas/escolaridade/salvarEscolaridade.php',
+      method: 'POST',
+      data: formData,
+      success: function(response) {
+          alert(response); // Exibe a resposta (sucesso ou erro)
+          $('#modalEscolaridade').modal('hide'); // Fecha a modal após salvar
+      }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
   // Função para excluir um registro
