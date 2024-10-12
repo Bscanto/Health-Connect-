@@ -387,7 +387,7 @@ if (@$pacientes == 'ocultar') {
 					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="escolaridade_pai">Escolaridade do Pai</label>
-							<input type="text" class="form-control" id="escolaridade_pai" name="escolaridade_pai">
+							<input type="text" class="form-control" id="escolaridade_pai" name="escolaridade_pai" value="">
 						</div>
 
 						<div class="form-group col-md-6">
@@ -403,9 +403,10 @@ if (@$pacientes == 'ocultar') {
 						</div>
 
 						<div class="form-group col-md-4">
-							<label for="turno">Turno</label>
-							<input type="text" class="form-control" id="turno" name="turno">
-						</div>
+    <label for="turno">Turno</label>
+    <input type="text" class="form-control" id="turno" name="turno">
+</div>
+
 
 						<div class="form-group col-md-4">
 							<label for="serie">Série</label>
@@ -424,13 +425,15 @@ if (@$pacientes == 'ocultar') {
 								if ($linhas > 0) {
 									for ($i = 0; $i < $linhas; $i++) {
 								?>
-										<option value="<?php echo $res[$i]['nome_escola'] ?>"><?php echo $res[$i]['nome_escola'] ?></option>
+										<!-- Aqui estamos ajustando o value para enviar o ID da escola -->
+										<option value="<?php echo $res[$i]['id'] ?>"><?php echo $res[$i]['nome_escola'] ?></option>
 
 									<?php }
 								} else { ?>
 									<option value="">Cadastre uma escola</option>
 								<?php } ?>
 							</select>
+
 						</div>
 					</div>
 
@@ -442,14 +445,14 @@ if (@$pacientes == 'ocultar') {
 
 
 
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-					<button type="submit" class="btn btn-primary">Salvar</button>
-				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+						<button type="submit" class="btn btn-primary">Salvar</button>
+					</div>
 				</div>
 
 			</form>
-			
+
 		</div>
 	</div>
 </div>
