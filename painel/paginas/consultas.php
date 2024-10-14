@@ -367,8 +367,8 @@ if (@$pacientes == 'ocultar') {
 </div>
 
 
+
 <!-- MODAL ESCOLARIDADE -->
-<!-- Modal para Adicionar/Editar Escolaridade -->
 <div class="modal fade" id="modalEscolaridade">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -403,9 +403,9 @@ if (@$pacientes == 'ocultar') {
 						</div>
 
 						<div class="form-group col-md-4">
-    <label for="turno">Turno</label>
-    <input type="text" class="form-control" id="turno" name="turno">
-</div>
+							<label for="turno">Turno</label>
+							<input type="text" class="form-control" id="turno" name="turno">
+						</div>
 
 
 						<div class="form-group col-md-4">
@@ -456,6 +456,170 @@ if (@$pacientes == 'ocultar') {
 		</div>
 	</div>
 </div>
+
+
+<!-- MODAL ANAMNESE -->
+<!-- Modal para Adicionar/Editar Anamnese -->
+<div class="modal fade" id="modalAnamnese">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title" id="modalAnamneseLabel">Anamnese</h3>
+				
+				<input type="hidden" id="paciente_id" name="paciente_id">
+				<p>Paciente: <span id="nomePaciente"><?= $nome ?></span></p>
+
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<!-- Formulário Anamnese -->
+				<form id="formAnamnese">
+
+					<!-- Grupo Familiar -->
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label for="grupoFamiliar" style="color: red">Grupo Familiar</label>
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Nome</th>
+										<th>Idade</th>
+										<th>Parentesco</th>
+										<th>Situação Ocupacional</th>
+									</tr>
+								</thead>
+								<tbody id="grupoFamiliarTableBody">
+									<!-- Os dados serão preenchidos via JavaScript -->
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
+					<!-- Formulário para adicionar informações -->
+<div class="row">
+    <div class="form-group col-md-3">
+        <label for="nomeFamiliar">Nome</label>
+        <input type="text" id="nomeFamiliar" class="form-control" placeholder="Nome">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="idadeFamiliar">Idade</label>
+        <input type="number" id="idadeFamiliar" class="form-control" placeholder="Idade">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="parentescoFamiliar">Parentesco</label>
+        <input type="text" id="parentescoFamiliar" class="form-control" placeholder="Parentesco">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="situacaoOcupacionalFamiliar">Situação Ocupacional</label>
+        <input type="text" id="situacaoOcupacionalFamiliar" class="form-control" placeholder="Situação Ocupacional">
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-12">
+        <button id="addFamiliar" class="btn btn-primary">Adicionar ao Grupo Familiar</button>
+    </div>
+</div>
+					<hr style="border: 1px solid black;">
+
+
+					<div class="modal-footer">
+					<input type="hidden" name="grupoFamiliarData" id="grupoFamiliarData">
+
+					<!-- Inclua o campo fk_paciente_id se necessário -->
+					<input type="hidden" name="fk_paciente_id" id="fk_paciente_id">
+
+
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+						<button type="button" class="btn btn-primary" id="salvarAnamnese">Salvar</button>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	// Evento para o botão "Salvar"
+$('#salvarAnamnese').on('click', function(event) {
+    event.preventDefault();
+
+    // Array para armazenar os dados do grupo familiar
+    var grupoFamiliarData = [];
+
+    // Iterar sobre cada linha da tabela
+    $('#grupoFamiliarTableBody tr').each(function() {
+        var nome = $(this).find('td:eq(0)').text();
+        var idade = $(this).find('td:eq(1)').text();
+        var parentesco = $(this).find('td:eq(2)').text();
+        var situacaoOcupacional = $(this).find('td:eq(3)').text();
+
+        grupoFamiliarData.push({
+            nome: nome,
+            idade: idade,
+            parentesco: parentesco,
+            situacao_ocupacional: situacaoOcupacional
+        });
+    });
+
+    // Serializar os dados em JSON
+    var grupoFamiliarJSON = JSON.stringify(grupoFamiliarData);
+
+    // Atribuir os dados serializados ao campo oculto do formulário
+    $('#grupoFamiliarData').val(grupoFamiliarJSON);
+
+    // Submeter o formulário via AJAX
+    $('#formAnamnese').submit();
+});
+</script>
+
+
+<script>
+$('#addFamiliar').on('click', function(event) {
+    event.preventDefault();
+
+    // Obter valores dos campos de entrada
+    var nome = $('#nomeFamiliar').val();
+    var idade = $('#idadeFamiliar').val();
+    var parentesco = $('#parentescoFamiliar').val();
+    var situacaoOcupacional = $('#situacaoOcupacionalFamiliar').val();
+
+    // Validar entradas
+    if (nome === '' || idade === '' || parentesco === '' || situacaoOcupacional === '') {
+        alert('Por favor, preencha todos os campos.');
+        return;
+    }
+
+    // Adicionar nova linha à tabela
+    var newRow = '<tr>' +
+        '<td>' + nome + '</td>' +
+        '<td>' + idade + '</td>' +
+        '<td>' + parentesco + '</td>' +
+        '<td>' + situacaoOcupacional + '</td>' +
+    '</tr>';
+
+    $('#grupoFamiliarTableBody').append(newRow);
+
+    // Limpar os campos de entrada
+    $('#nomeFamiliar').val('');
+    $('#idadeFamiliar').val('');
+    $('#parentescoFamiliar').val('');
+    $('#situacaoOcupacionalFamiliar').val('');
+});
+
+
+</script>
+
+
+
+
+
+
 
 
 

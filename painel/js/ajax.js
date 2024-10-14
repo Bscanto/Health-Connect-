@@ -58,9 +58,6 @@ function listarConsulta(p1, p2, p3, p4, p5, p6) {
     limparCampos();
   }
 
- 
-
-
   // Função de submissão do formulário de edição
   $("#form").submit(function (event) {
     event.preventDefault(); // Previne o envio padrão do formulário
@@ -126,8 +123,6 @@ function escolaridade(paciente_id) {
   // Abre a modal de escolaridade
   $('#modalEscolaridade').modal('show');
 }
-
-
 $('#formEscolaridade').submit(function(event) {
   event.preventDefault();
 
@@ -145,6 +140,89 @@ $('#formEscolaridade').submit(function(event) {
       }
   });
 });
+
+
+
+//===========ANAMNESE=================
+function anamnese(paciente_id) {
+  $("#mensagem").text("");
+  $("#titulo_inserir").text("Inserir Registro");
+  $("#modalAnamnese").modal("show");
+  limparCampos();
+
+  // Definir o valor do campo oculto com o paciente_id
+  $("#fk_paciente_id").val(paciente_id);
+
+  // Limpar a tabela existente
+  $('#grupoFamiliarTableBody').empty();
+
+  // Fazer a requisição AJAX para obter os dados
+  $.ajax({
+      url: "paginas/consultas/carregarAnamnese.php", // Ajuste o caminho conforme necessário
+      type: "GET",
+      data: { paciente_id: paciente_id },
+      dataType: "json",
+      success: function(data) {
+          // Verificar se existem dados
+          if (data.length > 0) {
+              // Preencher a tabela com os dados recebidos
+              data.forEach(function(familiar) {
+                  var newRow = '<tr>' +
+                      '<td>' + familiar.nome + '</td>' +
+                      '<td>' + familiar.idade + '</td>' +
+                      '<td>' + familiar.parentesco + '</td>' +
+                      '<td>' + familiar.situacao_atual + '</td>' +
+                  '</tr>';
+                  $('#grupoFamiliarTableBody').append(newRow);
+              });
+          } else {
+              // Nenhum familiar encontrado
+              console.log("Nenhum familiar encontrado para este paciente.");
+          }
+      },
+      error: function(xhr, status, error) {
+          console.error("Erro ao obter dados do grupo familiar:", error);
+      }
+  });
+}
+
+// Função de submissão do formulário de edição
+$("#formAnamnese").submit(function (event) {
+  event.preventDefault(); // Previne o envio padrão do formulário
+
+  var formData = new FormData(this);
+
+ // Logar os valores do FormData para verificação
+ for (var pair of formData.entries()) {
+  console.log(pair[0]+ ': '+ pair[1]);
+}
+
+  $.ajax({
+      url: "paginas/consultas/salvarAnamnese.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (mensagem) {
+          $("#mensagem").text("");
+          $("#mensagem").removeClass();
+          if (mensagem.trim() == "Salvo com Sucesso") {
+              $('#modalAnamnese').modal('hide');
+              console.log("Anamnese salva com sucesso!");
+          } else {
+              $("#mensagem").addClass("text-danger");
+              $("#mensagem").text(mensagem);
+          }
+      },
+      error: function (xhr, status, error) {
+          console.error("Erro na requisição AJAX:", error);
+          $("#mensagem").addClass("text-danger");
+          $("#mensagem").text("Ocorreu um erro ao salvar a anamnese.");
+      }
+  });
+});
+
+
 
 
 

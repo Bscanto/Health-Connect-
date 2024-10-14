@@ -100,7 +100,7 @@ echo <<<HTML
 <big><a href="#" onclick="escolaridade('{$id}')" title="Editar Escolaridade"><i class="fa fa-book text-warning"></i></a></big>
 
 
-<big><a href="#" onclick="anamnese()" title="Editar Anamnese"><i class="fa fa-stethoscope text-green"></i></a></big>
+<big><a href="#" onclick="anamnese('{$id}')" title="Editar Anamnese"><i class="fa fa-stethoscope text-green"></i></a></big>
 
 </td>
 </tr>
@@ -311,5 +311,5 @@ function listarHistorico(id){
 
 }
 
-	
 </script>
+
