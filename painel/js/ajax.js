@@ -89,6 +89,7 @@ function listarConsulta(p1, p2, p3, p4, p5, p6) {
   });
 
 
+
 // ESCOLARIDADE
 function escolaridade(paciente_id) {
   // Limpa mensagens de erro ou sucesso anteriores
@@ -143,6 +144,15 @@ $('#formEscolaridade').submit(function(event) {
 
 
 
+
+
+
+
+
+
+
+
+
 //===========ANAMNESE=================
 function anamnese(paciente_id) {
   $("#mensagem").text("");
@@ -152,7 +162,6 @@ function anamnese(paciente_id) {
 
   // Definir o valor do campo oculto com o paciente_id
   $("#fk_paciente_id").val(paciente_id);
-
   // Limpar a tabela existente
   $('#grupoFamiliarTableBody').empty();
 
@@ -221,6 +230,15 @@ $("#formAnamnese").submit(function (event) {
       }
   });
 });
+
+
+
+
+
+
+
+
+
 
 
 
