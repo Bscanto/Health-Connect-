@@ -1,20 +1,18 @@
 <?php 
-$pag = 'cargos';
 
-if(@$cargos == 'ocultar'){
+$pag = 'grupos_ana';
+
+if(@$grupos_ana == 'ocultar'){
 	echo "<script>window.location='../index.php'</script>";
     exit();
 }
 
  ?>
 
-<div class="main-page margin-mobile">
-
-<a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Cargo</a>
-
-
+<a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Grupo</a>
 
 <li class="dropdown head-dpdn2" style="display: inline-block;">		
+
 		<a href="#" data-toggle="dropdown"  class="btn btn-danger dropdown-toggle" id="btn-deletar" style="display:none"><span class="fa fa-trash-o"></span> Deletar</a>
 
 		<ul class="dropdown-menu">
@@ -30,8 +28,6 @@ if(@$cargos == 'ocultar'){
 
 </div>
 
-</div>
-
 <input type="hidden" id="ids">
 
 <!-- Modal Perfil -->
@@ -44,41 +40,44 @@ if(@$cargos == 'ocultar'){
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
+
 			<form id="form">
 			<div class="modal-body">
-				
 
 					<div class="row">
-						<div class="col-md-6">							
+						<div class="col-md-12">							
 								<label>Nome</label>
-								<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>							
+								<input maxlength="255" type="text" class="form-control" id="nome" name="nome" placeholder="Nome do Grupo" required>	
 						</div>
-
-						<div class="col-md-6" style="margin-top: 22px">							
-								<button type="submit" class="btn btn-primary">Salvar</button>					
-						</div>
-
-						
 					</div>
 
-			
-					<input type="hidden" class="form-control" id="id" name="id">					
+					<div class="row">
+						<div class="col-md-12">							
+								<label>Descrição</label>
+								<input maxlength="2000" type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição se Houver" >							
+						</div>
 
+					</div>
+					<input type="hidden" class="form-control" id="id" name="id">					
 				<br>
 				<small><div id="mensagem" align="center"></div></small>
 			</div>
-			
+
+			<div class="modal-footer">       
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</div>
 			</form>
 		</div>
 	</div>
 </div>
 
+<script type="text/javascript">var pag = "<?=$pag?>"</script>
 
-
-
-
-<script type="text/javascript">
-var pag = "<?=$pag?>";
-</script>
 <script src="js/ajax.js"></script>
+
+
+
+
+
+
 

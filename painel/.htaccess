@@ -9,4 +9,7 @@ RewriteRule ^grupo_acessos(.*)$ index.php?pagina=grupo_acessos [L]
 RewriteRule ^acessos(.*)$ index.php?pagina=acessos [L]
 RewriteRule ^cargos(.*)$ index.php?pagina=cargos [L]
 
+RewriteRule ^grupos_ana(.*)$ index.php?pagina=grupos_ana [L]
+RewriteRule ^itens_ana(.*)$ index.php?pagina=itens_ana [L]
+
 RewriteRule ^consultas(.*)$ index.php?pagina=consultas [L]

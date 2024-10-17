@@ -1,8 +1,17 @@
 <?php 
-$tabela = 'grupo_acessos';
+
+$tabela = 'itens_ana';
+
 require_once("../../../conexao.php");
 
-$query = $pdo->query("SELECT * from $tabela order by id desc");
+$grupo = @$_POST['p1'];
+
+if($grupo == ""){
+	$query = $pdo->query("SELECT * from $tabela order by id desc");
+}else{
+	$query = $pdo->query("SELECT * from $tabela where grupo = '$grupo' order by id desc");
+}
+
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $linhas = @count($res);
 if($linhas > 0){
@@ -12,7 +21,8 @@ echo <<<HTML
 	<thead> 
 	<tr>
 	<th>Nome</th>	
-	<th>Usuários</th>
+	<th>Descrição</th>	
+	<th>Grupo</th>
 	<th>Ações</th>
 	</tr> 
 	</thead> 
@@ -23,25 +33,30 @@ HTML;
 for($i=0; $i<$linhas; $i++){
 	$id = $res[$i]['id'];
 	$nome = $res[$i]['nome'];
+	$grupo = $res[$i]['grupo'];
+	$descricao = $res[$i]['descricao'];
 
-$query2 = $pdo->query("SELECT * from acessos where grupo = '$id' ");
+$query2 = $pdo->query("SELECT * from grupo_ana where id = '$grupo' ");
 $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-$total_acessos = @count($res2);
-		
+if(@count($res2) > 0){
+	$nome_grupo = $res2[0]['nome'];
+}else{
+	$nome_grupo = 'Sem Grupo';
+}
+
 echo <<<HTML
 <tr>
 <td>
 <input type="checkbox" id="seletor-{$id}" class="form-check-input" onchange="selecionar('{$id}')">
 {$nome}
 </td>
-<td class="esc">{$total_acessos}</td>
-
+<td class="esc">{$descricao}</td>
+<td class="esc">{$nome_grupo}</td>
 <td>
-	<big><a href="#" onclick="editar('{$id}','{$nome}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
+	<big><a href="#" onclick="editar('{$id}','{$nome}','{$descricao}','{$grupo}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
 
 	<li class="dropdown head-dpdn2" style="display: inline-block;">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><big><i class="fa fa-trash-o text-danger"></i></big></a>
-
 		<ul class="dropdown-menu" style="margin-left:-230px;">
 		<li>
 		<div class="notification_desc2">
@@ -58,7 +73,6 @@ HTML;
 
 }
 
-
 echo <<<HTML
 </tbody>
 <small><div align="center" id="mensagem-excluir"></div></small>
@@ -70,7 +84,6 @@ HTML;
 }
 
 ?>
-
 
 
 <script type="text/javascript">
@@ -86,26 +99,26 @@ HTML;
 </script>
 
 <script type="text/javascript">
-	function editar(id, nome){
+	function editar(id, nome, descricao, grupo){
 		$('#mensagem').text('');
     	$('#titulo_inserir').text('Editar Registro');
-
     	$('#id').val(id);
     	$('#nome').val(nome);
-    
+    	$('#descricao').val(descricao);
+    	$('#grupo').val(grupo).change(); 
     	$('#modalForm').modal('show');
 	}
-
-
 
 	function limparCampos(){
 		$('#id').val('');
     	$('#nome').val('');
-    
-
+    	$('#descricao').val('');
+    	$('#grupo').val('0').change();
+    	$('#pagina').val('Sim').change();
     	$('#ids').val('');
     	$('#btn-deletar').hide();	
 	}
+
 
 	function selecionar(id){
 
@@ -123,18 +136,16 @@ HTML;
 		if(ids_final == ""){
 			$('#btn-deletar').hide();
 		}else{
-			$('#btn-deletar').show();
+			('#btn-deletar').show();
 		}
 	}
 
 	function deletarSel(){
 		var ids = $('#ids').val();
 		var id = ids.split("-");
-		
 		for(i=0; i<id.length-1; i++){
 			excluir(id[i]);			
 		}
-
 		limparCampos();
 	}
 </script>

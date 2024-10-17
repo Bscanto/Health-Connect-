@@ -1,18 +1,22 @@
 <?php 
-$tabela = 'grupo_acessos';
+
+$tabela = 'grupo_ana';
+
 require_once("../../../conexao.php");
 
 $query = $pdo->query("SELECT * from $tabela order by id desc");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $linhas = @count($res);
 if($linhas > 0){
+
 echo <<<HTML
 <small>
 	<table class="table table-hover" id="tabela">
 	<thead> 
 	<tr>
 	<th>Nome</th>	
-	<th>Usuários</th>
+	<th>Itens</th>
+	<th>Descrição</th>
 	<th>Ações</th>
 	</tr> 
 	</thead> 
@@ -20,14 +24,16 @@ echo <<<HTML
 HTML;
 
 
+
 for($i=0; $i<$linhas; $i++){
 	$id = $res[$i]['id'];
 	$nome = $res[$i]['nome'];
+	$descricao = $res[$i]['descricao'];
 
-$query2 = $pdo->query("SELECT * from acessos where grupo = '$id' ");
+$query2 = $pdo->query("SELECT * from itens_ana where grupo = '$id' ");
 $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 $total_acessos = @count($res2);
-		
+
 echo <<<HTML
 <tr>
 <td>
@@ -35,13 +41,12 @@ echo <<<HTML
 {$nome}
 </td>
 <td class="esc">{$total_acessos}</td>
-
+<td class="esc">{$descricao}</td>
 <td>
-	<big><a href="#" onclick="editar('{$id}','{$nome}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
+	<big><a href="#" onclick="editar('{$id}','{$nome}','{$descricao}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
 
 	<li class="dropdown head-dpdn2" style="display: inline-block;">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><big><i class="fa fa-trash-o text-danger"></i></big></a>
-
 		<ul class="dropdown-menu" style="margin-left:-230px;">
 		<li>
 		<div class="notification_desc2">
@@ -50,14 +55,11 @@ echo <<<HTML
 		</li>										
 		</ul>
 </li>
-
-
 </td>
 </tr>
 HTML;
 
 }
-
 
 echo <<<HTML
 </tbody>
@@ -71,8 +73,6 @@ HTML;
 
 ?>
 
-
-
 <script type="text/javascript">
 	$(document).ready( function () {		
     $('#tabela').DataTable({
@@ -85,30 +85,26 @@ HTML;
 } );
 </script>
 
+
 <script type="text/javascript">
-	function editar(id, nome){
+	function editar(id, nome, descricao){
 		$('#mensagem').text('');
     	$('#titulo_inserir').text('Editar Registro');
-
-    	$('#id').val(id);
+  	$('#id').val(id);
     	$('#nome').val(nome);
-    
     	$('#modalForm').modal('show');
 	}
-
 
 
 	function limparCampos(){
 		$('#id').val('');
     	$('#nome').val('');
-    
-
+    $('#descricao').val('');
     	$('#ids').val('');
     	$('#btn-deletar').hide();	
 	}
 
 	function selecionar(id){
-
 		var ids = $('#ids').val();
 
 		if($('#seletor-'+id).is(":checked") == true){
@@ -127,14 +123,14 @@ HTML;
 		}
 	}
 
+
+
 	function deletarSel(){
 		var ids = $('#ids').val();
 		var id = ids.split("-");
-		
 		for(i=0; i<id.length-1; i++){
 			excluir(id[i]);			
 		}
-
 		limparCampos();
 	}
 </script>

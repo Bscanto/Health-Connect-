@@ -14,6 +14,11 @@ $paciente = 'ocultar';
 $grupo_acessos = 'ocultar';
 $acessos = 'ocultar';
 $cargos = 'ocultar';
+$grupos_ana = 'ocultar';
+$itens_ana = 'ocultar';
+
+
+$consultas = 'ocultar';
 
 
 $query = $pdo->query("SELECT * FROM usuarios_permissoes where usuario = '$id_usuario'");
@@ -58,6 +63,18 @@ if($total_reg > 0){
 
 		if($chave == 'cargos'){
 			$cargos = '';
+		}
+
+		if($chave == 'grupos_ana'){
+			$grupos_ana = '';
+		}
+
+		if($chave == 'itens_ana'){
+			$itens_ana = '';
+		}
+
+		if($chave == 'consultas'){
+			$consultas = '';
 		}
 
 	}
@@ -109,12 +126,15 @@ if($pacientes == 'ocultar'){
 }
 
 
-if($grupo_acessos == 'ocultar' and $acessos == 'ocultar' and $cargos == 'ocultar'){
+if($grupo_acessos == 'ocultar' and $acessos == 'ocultar' and $cargos == 'ocultar' and $grupos_ana == 'ocultar' and $itens_ana == 'ocultar'){
 	$menu_cadastros = 'ocultar';
 }else{
 	$menu_cadastros = '';
 }
 
 
-
-?>
+if($consultas == 'ocultar' ){
+	$consultas = 'ocultar';
+}else{
+	$consultas = '';
+}

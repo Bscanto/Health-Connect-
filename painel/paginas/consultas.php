@@ -232,6 +232,8 @@ if (@$pacientes == 'ocultar') {
 				</button>
 				<div class="row mt-3">
 					<p><b>Data de Cadastro:</b> <span id="data_cad_dados"></span></p>
+					
+
 				</div>
 			</div>
 
@@ -319,6 +321,22 @@ if (@$pacientes == 'ocultar') {
 
 
 			<div class="modal-body">
+
+			<div class="col-md-6" style="border-left: 1px solid #242323; font-size:14px">
+
+						<div style="margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #000">
+							<b>ANAMNESE</b>
+						</div>
+
+						<div id="listar_ana_pac" style="margin-top:5px">
+
+							
+
+						</div>
+
+					</div>
+
+
 				<div class="row">
 					<!-- DIV HISTóRICO -->
 					<div class="col-md-6" style="border-left: 1px solid #242323; font-size:14px">
@@ -347,28 +365,11 @@ if (@$pacientes == 'ocultar') {
 
 
 
-					<div class="col-md-6" style="border-left: 1px solid #242323; font-size:14px">
-
-						<div style="margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #000">
-							<b>ANAMNESE</b>
-						</div>
-						<div style="margin-bottom: 5px; border-bottom:1px solid #cecece; padding-bottom:3px">
-							
-						<div id="carregarDadosAnamnese"></div>
-
-
-
-							<br>
-							<br>
-						</div>
+					
 
 
 
 
-
-
-
-					</div>
 
 				</div>
 			</div>
@@ -471,268 +472,89 @@ if (@$pacientes == 'ocultar') {
 </div>
 
 
-<!-- MODAL ANAMNESE -->
-<!-- Modal para Adicionar/Editar Anamnese -->
+<!-- Modal Anamnese -->
 <div class="modal fade" id="modalAnamnese">
-	<div class="modal-dialog modal-lg" role="document">
+	<div class="modal-dialog modal-lg" style="width:80%">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3 class="modal-title" id="modalAnamneseLabel">Anamnese</h3>
+				<h4 class="modal-title" id="exampleModalLabel"><span id="nome_permissoes"></span></h4>
 
-				<input type="hidden" id="paciente_id" name="paciente_id">
-				<p>Paciente: <span id="nomePaciente"><?= $nome ?></span></p>
-
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button id="btn-fechar-ana" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -25px">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
+
+
+
+
+
+
 			<div class="modal-body">
-				<!-- Formulário Anamnese -->
-				<form id="formAnamnese">
-
-					<!-- Grupo Familiar -->
-					<div class="row">
-						<div class="form-group col-md-12">
-							<label for="grupoFamiliar" style="color: red">Grupo Familiar</label>
-							<table class="table table-bordered">
-								<thead>
-									<tr>
-										<th>Nome</th>
-										<th>Idade</th>
-										<th>Parentesco</th>
-										<th>Situação Ocupacional</th>
-									</tr>
-								</thead>
-								<tbody id="grupoFamiliarTableBody">
-									<!-- Os dados serão preenchidos via JavaScript -->
-								</tbody>
-							</table>
-						</div>
-					</div>
-
-
-					<!-- Formulário para adicionar informações -->
-					<div class="row">
-						<div class="form-group col-md-3">
-							<label for="nomeFamiliar">Nome</label>
-							<input type="text" id="nomeFamiliar" class="form-control" placeholder="Nome">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="idadeFamiliar">Idade</label>
-							<input type="number" id="idadeFamiliar" class="form-control" placeholder="Idade">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="parentescoFamiliar">Parentesco</label>
-							<input type="text" id="parentescoFamiliar" class="form-control" placeholder="Parentesco">
-						</div>
-						<div class="form-group col-md-3">
-							<label for="situacaoOcupacionalFamiliar">Situação Ocupacional</label>
-							<input type="text" id="situacaoOcupacionalFamiliar" class="form-control" placeholder="Situação Ocupacional">
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-12">
-							<button id="addFamiliar" class="btn btn-primary">Adicionar ao Grupo Familiar</button>
-						</div>
-					</div>
-					<hr style="border: 1px solid black;">
-
-
-	<!-- Revisão de Saúde -->
-	<div class="row">
-						<div class="form-group col-md-12">
-							<label for="revisaoSaude" style="color: red" >Revisão de Saúde</label>
+				<div class="row">
+					<div class="col-md-12">
+						<form id="formAnamnese">
+							<div class="row">
+								<div class="col-md-3">
+									<label for="nome">Nome</label>
+									<input type="text" id="nome" name="nome" class="form-control" required>
+								</div>
+								<div class="col-md-2">
+									<label for="idade">Idade</label>
+									<input type="number" id="idade" name="idade" class="form-control" required>
+								</div>
+								<div class="col-md-3">
+									<label for="parentesco">Parentesco</label>
+									<input type="text" id="parentesco" name="parentesco" class="form-control" required>
+								</div>
+								<div class="col-md-4">
+									<label for="situacao_ocupacional">Situação Ocupacional</label>
+									<input type="text" id="situacao_ocupacional" name="situacao_ocupacional" class="form-control" required>
+								</div>
+							</div>
 							<br>
-						</div>
-
-
-						<div class="row">
-							<div class="form-group col-md-6">
-								<label for="ubsPreNatal">UBS Pré-natal</label>
-								<input type="text" class="form-control" id="ubsPreNatal" placeholder="UBS Pré-natal">
-							</div>
-
-							<div class="form-group col-md-6">
-								<label for="pediatraClinico">Pediatra / Clínico</label>
-								<input type="text" class="form-control" id="pediatraClinico" placeholder="Pediatra / Clínico">
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="form-group col-md-6">
-								<label for="clinico">Clínico</label>
-								<input type="text" class="form-control" id="clinico" placeholder="Clínico">
-							</div>
-
-							<div class="form-group col-md-6">
-								<label for="quantasSemanas">Quantas Semanas</label>
-								<input type="text" class="form-control" id="quantasSemanas" placeholder="Quantas Semanas">
-							</div>
-						</div>
+							<input type="hidden" id="id_familiar" name="id_familiar">
+							<button type="submit" class="btn btn-success">Salvar</button>
+						</form>
 					</div>
+				</div>
+				<br>
+				<table class="table table-bordered" id="tabelaFamiliares">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Idade</th>
+							<th>Parentesco</th>
+							<th>Situação Ocupacional</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Aqui será populado via AJAX -->
+					</tbody>
+				</table>
 
-					<hr style="border: 1px solid black;">
-
-					<!-- Hábitos de Vida -->
-					<div class="row">
-						<div class="form-group">
-							<label for="habitos" style="color: red">Hábitos de Vida</label>
-							<br>
-
-							<div class="row">
-								<div class="form-group col-md-6">
-									<label for="quarto">Quarto:</label><br>
-									<input class="form-check-input" type="radio" name="quarto" id="quartoIndividual" value="Individual" required> Individual
-									<input class="form-check-input" type="radio" name="quarto" id="quartoCompartilhado" value="Compartilhado" required> Compartilhado
-								</div>
-							</div>
-
-
-							<div class="row">
-								<div class="form-group col-md-6">
-									<label for="quemCompartilha">Com quem você compartilha o quarto?</label>
-									<input type="text" class="form-control" id="quemCompartilha" name="quem_compartilha" placeholder="Com quem?" required>
-								</div>
-							</div>
-
-							<!-- Campo para Sono -->
-							<div class="row">
-								<div class="form-group col-md-6">
-									<label for="sono">Sono:</label><br>
-									<input class="form-check-input" type="radio" name="sono" id="sonoNormal" value="Normal" required> Normal
-									<input class="form-check-input" type="radio" name="sono" id="sonoAgitado" value="Agitado" required> Agitado
-									<input class="form-check-input" type="radio" name="sono" id="insonia" value="Insonia" required> Insonia
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<hr style="border: 1px solid black;">
-
-					<!-- Histórico de Dependência Química -->
-					<div class="row">
-						<label for="historicoDependencia" style="color: red">Histórico de Dependência Química</label>
-						<br>
-
-						<!-- Uso de Medicamento Controlado Durante a Gestação -->
-						<div class="row">
-							<label for="medicamentoControlado">Uso de medicamentos controlados durante a gestação?</label>
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="medicamentoControlado" id="medicamentoSim" value="Sim" required>
-								<label class="form-check-label" for="medicamentoSim">Sim</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="medicamentoControlado" id="medicamentoNao" value="Não" required>
-								<label class="form-check-label" for="medicamentoNao">Não</label>
-							</div>
-						</div>
-
-
-
-						<!-- Campo para Qual Medicamento -->
-						<div class="row">
-							<div class="col-md-6">
-								<label for="qualMedicamento">Qual Medicamento?</label>
-								<input type="text" class="form-control" id="qualMedicamento" name="qualMedicamento" placeholder="Qual Medicamento?" required>
-							</div>
-						</div>
-
-
-						<!-- Uso de Substância Durante a Gestação -->
-						<div class="row">
-							<label for="substanciaGestacao">Uso de substância durante a gestação?</label>
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="substanciaGestacao" id="substanciaSim" value="Sim" required>
-								<label class="form-check-label" for="substanciaSim">Sim</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="substanciaGestacao" id="substanciaNao" value="Não" required>
-								<label class="form-check-label" for="substanciaNao">Não</label>
-							</div>
-
-
-							<!-- Campo para Qual Substância -->
-							<div class="row">
-								<div class="col-md-6">
-									<label for="qualSubstancia">Qual Substância?</label>
-									<input type="text" class="form-control" id="qualSubstancia" name="qualSubstancia" placeholder="Qual Substância?" required>
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-					<br>
-
-					<hr style="border: 1px solid black;">
-
-					<!-- Histórico de Agressões -->
-					<div class="row">
-						<label for="historicoAgressao" style="color: red">Histórico de Agressões</label>
-						<br>
-
-						<!-- Campo para Histórico de Agressão -->
-						<label for="historicoAgressao">Histórico de Agressão?</label>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="historicoAgressao" id="historicoAgressaoSim" value="Sim" required>
-							<label class="form-check-label" for="historicoAgressaoSim">Sim</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="historicoAgressao" id="historicoAgressaoNao" value="Não" required>
-							<label class="form-check-label" for="historicoAgressaoNao">Não</label>
-						</div>
-						<br>
-
-						<!-- Campo para Qual Agressão -->
-						<div class="form-group col-md-6">
-							<label for="qualAgressao">Qual Agressão?</label>
-							<input type="text" class="form-control" id="qualAgressao" name="qualAgressao" placeholder="Descreva a agressão">
-						</div>
-					</div>
-
-					<hr style="border: 1px solid black;">
-
-					<!-- Histórico de Saúde Mental -->
-					<div class="row">
-						<label for="historicoMental" style="color: red">Histórico de Saúde Mental</label>
-						<br>
-
-						<!-- Campo para Histórico de Saúde Mental -->
-						<label for="historicoMental">Histórico de Saúde Mental?</label>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="historicoMental" id="historicoMentalSim" value="Sim" required>
-							<label class="form-check-label" for="historicoMentalSim">Sim</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="historicoMental" id="historicoMentalNao" value="Não" required>
-							<label class="form-check-label" for="historicoMentalNao">Não</label>
-						</div>
-						<br>
-
-						<!-- Campo para Grau de Parentesco -->
-						<div class="form-group col-md-6">
-							<label for="grauParentesco">Grau de Parentesco</label>
-							<input type="text" class="form-control" id="grauParentesco" name="grauParentesco" placeholder="Grau de Parentesco">
-						</div>
-					</div>
-
-					<hr style="border: 1px solid black;">
-					
-
-					<div class="modal-footer">
-						<input type="hidden" name="grupoFamiliarData" id="grupoFamiliarData">
-
-						<!-- Inclua o campo fk_paciente_id se necessário -->
-						<input type="hidden" name="fk_paciente_id" id="fk_paciente_id">
-
-
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-						<button type="button" class="btn btn-primary" id="salvarAnamnese">Salvar</button>
-					</div>
-
-				</form>
-
+				<small><div id="mensagem_ana" align="center" class="mt-3"></div></small>
 			</div>
+
+
+
+
+
+
+
+
+			<div class="modal-body">
+				<div class="row" id="listar_ana">
+				</div>
+				<br>
+				<input type="hidden" name="id" id="id_pac_ana">
+				<small><div id="mensagem_ana" align="center" class="mt-3"></div></small>		
+			</div>
+
+			<div class="modal-footer">       
+				<button data-dismiss="modal" type="" class="btn btn-primary">Salvar</button>
+			</div>
+
 		</div>
 	</div>
 </div>
@@ -741,131 +563,202 @@ if (@$pacientes == 'ocultar') {
 
 
 
-
-
-
-
-
-
-
 <script>
-	// Evento para o botão "Salvar"
-	$('#salvarAnamnese').on('click', function(event) {
-		event.preventDefault();
+function listarAnamnese(id){
 
-		// Array para armazenar os dados do grupo familiar
-		var grupoFamiliarData = [];
+$.ajax({
+	 url: 'paginas/' + pag + "/listar_anamnese.php",
+	 method: 'POST',
+	 data: {id},
+	 dataType: "html",
 
-		// Iterar sobre cada linha da tabela
-		$('#grupoFamiliarTableBody tr').each(function() {
-			var nome = $(this).find('td:eq(0)').text();
-			var idade = $(this).find('td:eq(1)').text();
-			var parentesco = $(this).find('td:eq(2)').text();
-			var situacaoOcupacional = $(this).find('td:eq(3)').text();
+	 success:function(result){        	
+			 $("#listar_ana").html(result);
+			 $('#mensagem_ana').text('');
+	 }
+});
 
-			grupoFamiliarData.push({
-				nome: nome,
-				idade: idade,
-				parentesco: parentesco,
-				situacao_ocupacional: situacaoOcupacional
-			});
-		});
-
-		// Serializar os dados em JSON
-		var grupoFamiliarJSON = JSON.stringify(grupoFamiliarData);
-
-		// Atribuir os dados serializados ao campo oculto do formulário
-		$('#grupoFamiliarData').val(grupoFamiliarJSON);
-
-		// Submeter o formulário via AJAX
-		$('#formAnamnese').submit();
-	});
-</script>
-
-
-<script>
-	$('#addFamiliar').on('click', function(event) {
-		event.preventDefault();
-
-		// Obter valores dos campos de entrada
-		var nome = $('#nomeFamiliar').val();
-		var idade = $('#idadeFamiliar').val();
-		var parentesco = $('#parentescoFamiliar').val();
-		var situacaoOcupacional = $('#situacaoOcupacionalFamiliar').val();
-
-		// Validar entradas
-		if (nome === '' || idade === '' || parentesco === '' || situacaoOcupacional === '') {
-			alert('Por favor, preencha todos os campos.');
-			return;
-		}
-
-		// Adicionar nova linha à tabela
-		var newRow = '<tr>' +
-			'<td>' + nome + '</td>' +
-			'<td>' + idade + '</td>' +
-			'<td>' + parentesco + '</td>' +
-			'<td>' + situacaoOcupacional + '</td>' +
-			'</tr>';
-
-		$('#grupoFamiliarTableBody').append(newRow);
-
-		// Limpar os campos de entrada
-		$('#nomeFamiliar').val('');
-		$('#idadeFamiliar').val('');
-		$('#parentescoFamiliar').val('');
-		$('#situacaoOcupacionalFamiliar').val('');
-	});
-</script>
-
-
-
-<script>
-	function carregarDadosAnamnese(paciente_id) {
-    $.ajax({
-        url: "paginas/consultas/carregarDadosAnamnese.php", // Caminho para o arquivo PHP que fará a consulta
-        type: "GET",
-        data: { paciente_id: paciente_id }, // Envia o paciente_id para a requisição
-        dataType: "json", // Espera os dados no formato JSON
-        success: function(data) {
-            if (data) {
-                // Preencher a primeira modal (por exemplo, grupo familiar)
-                $('#grupoFamiliarTableBody').empty(); // Limpa a tabela atual
-                data.grupo_familiar.forEach(function(familiar) {
-                    var newRow = '<tr>' +
-                        '<td>' + familiar.nome + '</td>' +
-                        '<td>' + familiar.idade + '</td>' +
-                        '<td>' + familiar.parentesco + '</td>' +
-                        '<td>' + familiar.situacao_atual + '</td>' +
-                    '</tr>';
-                    $('#grupoFamiliarTableBody').append(newRow); // Preenche a tabela
-                });
-
-                // Preencher outras informações na modal de anamnese
-                $('#ubsPreNatal').val(data.revisao_saude.ubs_pre_natal);
-                $('#pediatraClinico').val(data.revisao_saude.pediatra_clinico);
-                $('#clinico').val(data.revisao_saude.clinico);
-                $('#quantasSemanas').val(data.revisao_saude.quantas_semana);
-
-                // Exibir os dados em outras modais conforme necessário
-                // Exemplo: Preencher os hábitos
-                $('#sonoNormal').prop('checked', data.habitos.sono === 'Normal');
-                $('#sonoAgitado').prop('checked', data.habitos.sono === 'Agitado');
-                $('#insonia').prop('checked', data.habitos.sono === 'Insonia');
-                $('#quemCompartilha').val(data.habitos.quem_compartilha);
-
-                // Outros dados podem ser preenchidos nas modais conforme a estrutura do JSON
-            } else {
-                console.log("Nenhum dado encontrado.");
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error("Erro ao carregar a anamnese: ", error);
-        }
-    });
 }
 
+
+	function listarAnaPac(id){
+		 $.ajax({
+        url: 'paginas/' + pag + "/listar_ana_pac.php",
+        method: 'POST',
+        data: {id},
+        dataType: "html",
+
+        success:function(result){        	
+            $("#listar_ana_pac").html(result);
+        }
+    });
+	}
+
+
+function adicionarItem(id, paciente){
+		$.ajax({
+        url: 'paginas/' + pag + "/add_item.php",
+        method: 'POST',
+        data: {id, paciente},
+        dataType: "html",
+        success:function(result){        	
+           listarAnamnese(paciente);
+        }
+    });
+
+	}
+
+	function adicionarDesc(id, paciente){
+		var desc = $('#desc_'+id).val();
+		$.ajax({
+        url: 'paginas/' + pag + "/editar_item.php",
+        method: 'POST',
+        data: {id, paciente, desc},
+        dataType: "html",
+        success:function(result){        	
+          listarAnamnese(paciente);
+        }
+
+    });
+
+	}
 </script>
 
+
+
+
+
+
+<!-- SCRIPT GRUPO FAMILIAR-->
+<script>
+$(document).ready(function() {
+	// Função para listar os familiares
+	function listarFamiliares() {
+		$.ajax({
+			url: 'listar_familiares.php',  // URL do arquivo que fará a listagem
+			method: 'GET',
+			success: function(data) {
+				$('#tabelaFamiliares tbody').html(data);
+			}
+		});
+	}
+
+	// Função para inserir/editar um familiar
+	$('#formAnamnese').on('submit', function(event) {
+		event.preventDefault();
+		var formData = $(this).serialize();
+
+		$.ajax({
+			url: 'salvar_familiar.php',  // URL do arquivo PHP que fará a inserção/edição
+			method: 'POST',
+			data: formData,
+			success: function(response) {
+				$('#mensagem_ana').html(response);
+				$('#formAnamnese')[0].reset();  // Limpa o formulário
+				listarFamiliares();  // Atualiza a tabela
+			}
+		});
+	});
+
+	// Função para excluir um familiar
+	$(document).on('click', '.btn-delete', function() {
+		var id = $(this).data('id');
+
+		if (confirm('Tem certeza que deseja excluir este registro?')) {
+			$.ajax({
+				url: 'excluir_familiar.php',
+				method: 'POST',
+				data: { id_familiar: id },
+				success: function(response) {
+					$('#mensagem_ana').html(response);
+					listarFamiliares();
+				}
+			});
+		}
+	});
+
+	// Função para editar um familiar
+	$(document).on('click', '.btn-edit', function() {
+		var id = $(this).data('id');
+
+		$.ajax({
+			url: 'buscar_familiar.php',
+			method: 'GET',
+			data: { id_familiar: id },
+			success: function(data) {
+				var familiar = JSON.parse(data);
+				$('#id_familiar').val(familiar.id_familiar);
+				$('#nome').val(familiar.nome);
+				$('#idade').val(familiar.idade);
+				$('#parentesco').val(familiar.parentesco);
+				$('#situacao_ocupacional').val(familiar.situacao_ocupacional);
+			}
+		});
+	});
+
+	// Chama a função para listar os familiares ao abrir a modal
+	listarFamiliares();
+});
+
+</script>
+
+
+
+<!-- SCRIPT ESCOLARIDADE -->
+ <script>
+	// ESCOLARIDADE
+function escolaridade(paciente_id) {
+  // Limpa mensagens de erro ou sucesso anteriores
+  $('#formEscolaridade')[0].reset();
+  $('#paciente_id').val(paciente_id);
+  
+  // Fazer uma requisição AJAX para buscar os dados da escolaridade do paciente
+  $.ajax({
+      url: "paginas/" + pag + "/carregarEscolaridade.php",
+      method: 'POST',
+      data: { paciente_id: paciente_id },
+      dataType: 'json',
+      success: function(response) {
+          if (response) {
+              // Preenche os campos da modal com os dados recebidos
+              $('#escolaridade_pai').val(response.escolaridade_pai);
+              $('#escolaridade_mae').val(response.escolaridade_mae);
+              $('#tipo_escola').val(response.tipo_escola);
+              $('#turno').val(response.turno);
+              $('#serie').val(response.serie);
+              $('#data_escolaridade').val(response.data_escol);
+              $('#nome_escola').val(response.nome_escola);
+              
+              // Para selecionar a escola certa no dropdown
+              $('#nome_escola').val(response.nome_escola);
+
+              
+          }
+      }
+  });
+
+  // Abre a modal de escolaridade
+  $('#modalEscolaridade').modal('show');
+}
+$('#formEscolaridade').submit(function(event) {
+  event.preventDefault();
+
+  var formData = $(this).serialize(); 
+
+  $.ajax({
+      url: "paginas/"+ pag + "/salvarEscolaridade.php",
+      method: 'POST',
+      data: formData,
+      success: function(response) {
+          alert(response); 
+          $('#modalEscolaridade').modal('hide');
+          
+          listarConsulta();
+      }
+  });
+});
+
+ </script> 
 
 
 

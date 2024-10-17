@@ -39,7 +39,7 @@ if ($linhas > 0) {
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" href="../img/logo azul.png" type="image/x-icon">
 
-	
+
 	<script type="application/x-javascript">
 		addEventListener("load", function() {
 			setTimeout(hideURLbar, 0);
@@ -81,8 +81,8 @@ if ($linhas > 0) {
 	<script src="js/metisMenu.min.js"></script>
 	<script src="js/custom.js"></script>
 	<link href="css/custom.css" rel="stylesheet">
-		<!-- Ajax para funcionar Mascaras JS -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+	<!-- Ajax para funcionar Mascaras JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 	<!--//Metis Menu -->
 	<style>
 		#chartdiv {
@@ -208,7 +208,9 @@ if ($linhas > 0) {
 
 									<li class="<?php echo $acessos ?>"><a href="acessos"><i class="fa fa-angle-right"></i> Acessos</a></li>
 
-									
+									<li class="<?php echo $grupos_ana ?>"><a href="grupos_ana"><i class="fa fa-angle-right"></i> Grupos Anamnese</a></li>
+
+									<li class="<?php echo $itens_ana ?>"><a href="itens_ana"><i class="fa fa-angle-right"></i> Itens Anamnese</a></li>
 
 								</ul>
 							</li>
@@ -219,16 +221,17 @@ if ($linhas > 0) {
 
 							<!-- MENU Consulta -->
 							<<li class="treeview <?php echo @$consultas ?>">
+								<a href="#">
+									<i class="fa fa-stethoscope"></i>
+									<span>Consultas</span>
+									<i class="fa fa-angle-left pull-right"></i>
+								</a>
+								<ul class="treeview-menu">
 
-<a href="consultas">
+									<li class="<?php echo @$consultas ?>"><a href="consultas"><i class="fa fa-angle-right"></i> Consultas</a></li>
 
-	<i class="fa fa-stethoscope"></i> <span>Consultas</span>
 
-</a>
-
-</li>
-
-						</ul>
+								</ul>
 					</div>
 					<!-- /.navbar-collapse -->
 				</nav>
