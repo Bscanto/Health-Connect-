@@ -99,4 +99,3 @@ $query->execute();
   // Recupera o ID do último prontuário inserido
 $prontuario_id = $pdo->lastInsertId();
 echo 'Salvo com Sucesso';
-?>

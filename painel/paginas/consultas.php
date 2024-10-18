@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-include ('listar_grupo_familiar');
 
 
 $pag = 'consultas';
@@ -31,7 +30,6 @@ if (@$pacientes == 'ocultar') {
 <div class="bs-example widget-shadow" style="padding:15px" id="listarConsulta">
 
 </div>
-
 <input type="hidden" id="ids">
 
 <!-- MODAL PACIENTES -->
@@ -221,7 +219,7 @@ if (@$pacientes == 'ocultar') {
 
 <!-- Modal Dados -->
 <div class="modal fade" id="modalDados">
-	<div class="modal-dialog modal-lg" role="document" style="width:100%">
+	<div class="modal-dialog modal-lg" role="document" style="width:95%">
 		<div class="modal-content">
 
 			<!-- Modal header -->
@@ -232,7 +230,7 @@ if (@$pacientes == 'ocultar') {
 				</button>
 				<div class="row mt-3">
 					<p><b>Data de Cadastro:</b> <span id="data_cad_dados"></span></p>
-					
+
 
 				</div>
 			</div>
@@ -322,19 +320,19 @@ if (@$pacientes == 'ocultar') {
 
 			<div class="modal-body">
 
-			<div class="col-md-6" style="border-left: 1px solid #242323; font-size:14px">
+				<div class="col-md-6" style="border-left: 1px solid #242323; font-size:14px">
 
-						<div style="margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #000">
-							<b>ANAMNESE</b>
-						</div>
+					<div style="margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #000">
+						<b>ANAMNESE</b>
+					</div>
 
-						<div id="listar_ana_pac" style="margin-top:5px">
+					<div id="listar_ana_pac" style="margin-top:5px">
 
-							
 
-						</div>
 
 					</div>
+
+				</div>
 
 
 				<div class="row">
@@ -365,7 +363,7 @@ if (@$pacientes == 'ocultar') {
 
 
 
-					
+
 
 
 
@@ -474,7 +472,7 @@ if (@$pacientes == 'ocultar') {
 
 <!-- Modal Anamnese -->
 <div class="modal fade" id="modalAnamnese">
-	<div class="modal-dialog modal-lg" style="width:80%">
+	<div class="modal-dialog modal-xl" style="width:90%">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="exampleModalLabel"><span id="nome_permissoes"></span></h4>
@@ -489,52 +487,70 @@ if (@$pacientes == 'ocultar') {
 
 
 
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-12">
-						<form id="formAnamnese">
-							<div class="row">
-								<div class="col-md-3">
-									<label for="nome">Nome</label>
-									<input type="text" id="nome" name="nome" class="form-control" required>
-								</div>
-								<div class="col-md-2">
-									<label for="idade">Idade</label>
-									<input type="number" id="idade" name="idade" class="form-control" required>
-								</div>
-								<div class="col-md-3">
-									<label for="parentesco">Parentesco</label>
-									<input type="text" id="parentesco" name="parentesco" class="form-control" required>
-								</div>
-								<div class="col-md-4">
-									<label for="situacao_ocupacional">Situação Ocupacional</label>
-									<input type="text" id="situacao_ocupacional" name="situacao_ocupacional" class="form-control" required>
-								</div>
-							</div>
-							<br>
-							<input type="hidden" id="id_familiar" name="id_familiar">
-							<button type="submit" class="btn btn-success">Salvar</button>
-						</form>
-					</div>
-				</div>
-				<br>
-				<table class="table table-bordered" id="tabelaFamiliares">
-					<thead>
-						<tr>
-							<th>Nome</th>
-							<th>Idade</th>
-							<th>Parentesco</th>
-							<th>Situação Ocupacional</th>
-							<th>Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-						<!-- Aqui será populado via AJAX -->
-					</tbody>
-				</table>
 
-				<small><div id="mensagem_ana" align="center" class="mt-3"></div></small>
+
+
+
+
+
+
+
+			<!-- Grupo Familiar -->
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label for="grupoFamiliar" style="color: red">Grupo Familiar</label>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>Idade</th>
+								<th>Parentesco</th>
+								<th>Situação Ocupacional</th>
+							</tr>
+						</thead>
+						<tbody id="grupoFamiliarTableBody">
+							<!-- Os dados serão preenchidos via JavaScript -->
+						</tbody>
+					</table>
+				</div>
 			</div>
+
+
+			<!-- Formulário para adicionar informações -->
+			<div class="row">
+				<div class="form-group col-md-3">
+					<label for="nomeFamiliar">Nome</label>
+					<input type="text" id="nomeFamiliar" class="form-control" placeholder="Nome">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="idadeFamiliar">Idade</label>
+					<input type="number" id="idadeFamiliar" class="form-control" placeholder="Idade">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="parentescoFamiliar">Parentesco</label>
+					<input type="text" id="parentescoFamiliar" class="form-control" placeholder="Parentesco">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="situacaoOcupacionalFamiliar">Situação Ocupacional</label>
+					<input type="text" id="situacaoOcupacionalFamiliar" class="form-control" placeholder="Situação Ocupacional">
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<!-- Campo oculto para o ID do paciente -->
+					<input type="hidden" id="idPaciente" value="<?= $id_paciente ?>">
+
+					<button id="addFamiliar" class="btn btn-primary">Adicionar ao Grupo Familiar</button>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
 
 
 
@@ -548,10 +564,12 @@ if (@$pacientes == 'ocultar') {
 				</div>
 				<br>
 				<input type="hidden" name="id" id="id_pac_ana">
-				<small><div id="mensagem_ana" align="center" class="mt-3"></div></small>		
+				<small>
+					<div id="mensagem_ana" align="center" class="mt-3"></div>
+				</small>
 			</div>
 
-			<div class="modal-footer">       
+			<div class="modal-footer">
 				<button data-dismiss="modal" type="" class="btn btn-primary">Salvar</button>
 			</div>
 
@@ -561,65 +579,265 @@ if (@$pacientes == 'ocultar') {
 
 
 
+<!-- MODAL ACAO ATENDIMENTO -->
+<!-- Modal para inserir Ações Realizadas -->
+<div class="modal fade" id="modalAtendimento">
+	<div class="modal-dialog modal-lg" role="document" style="width:95%">
+		<div class="modal-content" style="width:85%">
+
+			<div class="modal-header">
+				<h3 class="modal-title" id="modalAcoesLabel">Inserir Ações Realizadas </h3>
+				<?php echo $id_paciente ?>
+
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+
+
+				<!-- Aqui vai a lista das ações realizadas -->
+				<div id="listaAcoesRealizadas">
+					<!-- A lista de ações realizadas será inserida dinamicamente aqui -->
+				</div>
+
+
+
+
+
+
+
+
+				<form id="formAcaoRealizada">
+
+					<input type="hidden" name="idPaciente" value="<?= $id_paciente ?>">
+
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label>Ação Realizada</label>
+							<select class="form-control" name="acaorealizada" id="acaorealizada" required>
+								<option value="">Selecione uma ação</option>
+								<?php
+								$query = $pdo->query("SELECT * from acao order by id asc");
+								$res = $query->fetchAll(PDO::FETCH_ASSOC);
+								$linhas = @count($res);
+								if ($linhas > 0) {
+									for ($i = 0; $i < $linhas; $i++) { ?>
+										<option value="<?php echo $res[$i]['id']; ?>">
+											<?php echo $res[$i]['codigo'] . " - " . $res[$i]['descricao']; ?>
+										</option>
+									<?php }
+								} else { ?>
+									<option value="">Cadastre nova Ação</option>
+								<?php } ?>
+							</select>
+						</div>
+
+						<div class="form-group col-md-2">
+							<label for="quantidade">Quantidade</label>
+							<input type="number" class="form-control" id="quantidade" placeholder="Qtd." required>
+						</div>
+
+						<div class="form-group col-md-3">
+							<label for="dataAcao">Data da Ação</label>
+							<input type="date" class="form-control" id="dataAcao" required>
+						</div>
+
+						<div class="form-group col-md-2">
+							<label for="servico">Serviço</label>
+							<input type="text" class="form-control" id="servico" placeholder="Serviço" required>
+						</div>
+
+						<div class="form-group col-md-2">
+							<label for="classificacao">Classificação</label>
+							<input type="text" class="form-control" id="classificacao" placeholder="Classificação" required>
+						</div>
+					</div>
+
+					<div class="row">
+						
+
+						<div class="form-group col-md-3">
+							<label for="localacao">Local da Ação</label><br>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="localacao" id="localCapis" value="CAPSi" required>
+								<label class="form-check-label" for="localCapis">CAPSi</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="localacao" id="localTerritorio" value="Território" required>
+								<label class="form-check-label" for="localTerritorio">Território</label>
+							</div>
+						</div>
+
+						<div class="form-group col-md-12">
+							<label for="descricao_procedimento">Descrição dos Procedimentos / Evolução</label>
+							<textarea class="form-control" id="descricao_procedimento" rows="5" placeholder="Digite a descrição dos procedimentos ou evolução" required></textarea>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+
+						<input type="hidden" id="idPaciente" value="<?= $id_paciente ?>">
+
+
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+						<button type="button" class="btn btn-primary" id="salvarAcao">Salvar Ação Realizada</button>
+					</div>
+
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
 
 
 <script>
-function listarAnamnese(id){
+	function abrirAtendimento(id) {
 
-$.ajax({
-	 url: 'paginas/' + pag + "/listar_anamnese.php",
-	 method: 'POST',
-	 data: {id},
-	 dataType: "html",
+		$('#modalAtendimento').modal('show');
+		$('#idPaciente').val(id);
 
-	 success:function(result){        	
-			 $("#listar_ana").html(result);
-			 $('#mensagem_ana').text('');
-	 }
-});
-
-}
-
-
-	function listarAnaPac(id){
-		 $.ajax({
-        url: 'paginas/' + pag + "/listar_ana_pac.php",
+		$.ajax({
+        url: 'paginas/consultas/listar_acoes_realizadas.php',  // Arquivo PHP para listar as ações
         method: 'POST',
-        data: {id},
-        dataType: "html",
-
-        success:function(result){        	
-            $("#listar_ana_pac").html(result);
+        data: { idPaciente: id },
+        success: function(response) {
+            // Insere a lista de ações no div
+            $('#listaAcoesRealizadas').html(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('Erro ao carregar as ações realizadas: ' + errorThrown);
         }
     });
 	}
 
 
-function adicionarItem(id, paciente){
+
+	$(document).ready(function() {
+		$('#salvarAcao').on('click', function(e) {
+			e.preventDefault();
+
+			// Pegando os valores do formulário
+			let quantidade = $('#quantidade').val();
+			let servico = $('#servico').val();
+			let dataAcao = $('#dataAcao').val();
+			let classificacao = $('#classificacao').val();
+			let localacao = $('input[name="localacao"]:checked').val();
+			let descricao_procedimento = $('#descricao_procedimento').val();
+			let fk_acao_id = $('#acaorealizada').val();
+			let fk_paciente_id = $('#idPaciente').val();
+
+
+			// Verificando se os campos estão preenchidos
+			if (!quantidade || !servico || !dataAcao || !classificacao || !localacao || !descricao_procedimento || !fk_acao_id) {
+				alert('Por favor, preencha todos os campos obrigatórios.');
+				return;
+			}
+
+			$.ajax({
+				url: "paginas/consultas/salvar_acao.php", // Arquivo PHP que irá processar a requisição
+				method: 'POST',
+				data: {
+					quantidade: quantidade,
+					servico: servico,
+					dataAcao: dataAcao,
+					classificacao: classificacao,
+					local_acao: localacao,
+					descricao_procedimento: descricao_procedimento,
+					fk_acao_id: fk_acao_id,
+					fk_paciente_id: fk_paciente_id
+				},
+				success: function(response) {
+					alert(response);
+					$('#modalAtendimento').modal('hide');
+
+					location.reload();
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					alert('Ocorreu um erro ao salvar a ação realizada: ' + errorThrown);
+				}
+			});
+		});
+	});
+</script>
+
+
+
+
+
+
+
+<script>
+	function listarAnamnese(id) {
+
 		$.ajax({
-        url: 'paginas/' + pag + "/add_item.php",
-        method: 'POST',
-        data: {id, paciente},
-        dataType: "html",
-        success:function(result){        	
-           listarAnamnese(paciente);
-        }
-    });
+			url: 'paginas/' + pag + "/listar_anamnese.php",
+			method: 'POST',
+			data: {
+				id
+			},
+			dataType: "html",
+
+			success: function(result) {
+				$("#listar_ana").html(result);
+				$('#mensagem_ana').text('');
+			}
+		});
 
 	}
 
-	function adicionarDesc(id, paciente){
-		var desc = $('#desc_'+id).val();
-		$.ajax({
-        url: 'paginas/' + pag + "/editar_item.php",
-        method: 'POST',
-        data: {id, paciente, desc},
-        dataType: "html",
-        success:function(result){        	
-          listarAnamnese(paciente);
-        }
 
-    });
+	function listarAnaPac(id) {
+		$.ajax({
+			url: 'paginas/' + pag + "/listar_ana_pac.php",
+			method: 'POST',
+			data: {
+				id
+			},
+			dataType: "html",
+
+			success: function(result) {
+				$("#listar_ana_pac").html(result);
+			}
+		});
+	}
+
+
+	function adicionarItem(id, paciente) {
+		$.ajax({
+			url: 'paginas/' + pag + "/add_item.php",
+			method: 'POST',
+			data: {
+				id,
+				paciente
+			},
+			dataType: "html",
+			success: function(result) {
+				listarAnamnese(paciente);
+			}
+		});
+
+	}
+
+	function adicionarDesc(id, paciente) {
+		var desc = $('#desc_' + id).val();
+		$.ajax({
+			url: 'paginas/' + pag + "/editar_item.php",
+			method: 'POST',
+			data: {
+				id,
+				paciente,
+				desc
+			},
+			dataType: "html",
+			success: function(result) {
+				listarAnamnese(paciente);
+			}
+
+		});
 
 	}
 </script>
@@ -631,138 +849,114 @@ function adicionarItem(id, paciente){
 
 <!-- SCRIPT GRUPO FAMILIAR-->
 <script>
-$(document).ready(function() {
-	// Função para listar os familiares
-	function listarFamiliares() {
-		$.ajax({
-			url: 'listar_familiares.php',  // URL do arquivo que fará a listagem
-			method: 'GET',
-			success: function(data) {
-				$('#tabelaFamiliares tbody').html(data);
-			}
-		});
-	}
+	document.getElementById('addFamiliar').addEventListener('click', function() {
+		var nome = document.getElementById('nomeFamiliar').value;
+		var idade = document.getElementById('idadeFamiliar').value;
+		var parentesco = document.getElementById('parentescoFamiliar').value;
+		var situacao = document.getElementById('situacaoOcupacionalFamiliar').value;
+		var idPaciente = document.getElementById('idPaciente').value; // Pega o ID do paciente
 
-	// Função para inserir/editar um familiar
-	$('#formAnamnese').on('submit', function(event) {
-		event.preventDefault();
-		var formData = $(this).serialize();
+		if (nome && idade && parentesco && situacao && idPaciente) {
+			// Adicionar os dados à tabela dinamicamente
+			var tableBody = document.getElementById('grupoFamiliarTableBody');
+			var newRow = tableBody.insertRow();
 
-		$.ajax({
-			url: 'salvar_familiar.php',  // URL do arquivo PHP que fará a inserção/edição
-			method: 'POST',
-			data: formData,
-			success: function(response) {
-				$('#mensagem_ana').html(response);
-				$('#formAnamnese')[0].reset();  // Limpa o formulário
-				listarFamiliares();  // Atualiza a tabela
-			}
-		});
-	});
+			newRow.innerHTML = `<td>${nome}</td><td>${idade}</td><td>${parentesco}</td><td>${situacao}</td>`;
 
-	// Função para excluir um familiar
-	$(document).on('click', '.btn-delete', function() {
-		var id = $(this).data('id');
-
-		if (confirm('Tem certeza que deseja excluir este registro?')) {
-			$.ajax({
-				url: 'excluir_familiar.php',
-				method: 'POST',
-				data: { id_familiar: id },
-				success: function(response) {
-					$('#mensagem_ana').html(response);
-					listarFamiliares();
+			// Enviar dados via AJAX para o PHP
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "salvar_grupo_familiar.php", true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.onreadystatechange = function() {
+				if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+					alert('Familiar adicionado com sucesso!');
 				}
-			});
+			}
+
+			// Envia os dados, incluindo o ID do paciente
+			xhr.send(`nome=${nome}&idade=${idade}&parentesco=${parentesco}&situacao=${situacao}&idPaciente=${idPaciente}`);
+
+			// Limpar os campos do formulário
+			document.getElementById('nomeFamiliar').value = '';
+			document.getElementById('idadeFamiliar').value = '';
+			document.getElementById('parentescoFamiliar').value = '';
+			document.getElementById('situacaoOcupacionalFamiliar').value = '';
+		} else {
+			alert('Por favor, preencha todos os campos');
 		}
 	});
-
-	// Função para editar um familiar
-	$(document).on('click', '.btn-edit', function() {
-		var id = $(this).data('id');
-
-		$.ajax({
-			url: 'buscar_familiar.php',
-			method: 'GET',
-			data: { id_familiar: id },
-			success: function(data) {
-				var familiar = JSON.parse(data);
-				$('#id_familiar').val(familiar.id_familiar);
-				$('#nome').val(familiar.nome);
-				$('#idade').val(familiar.idade);
-				$('#parentesco').val(familiar.parentesco);
-				$('#situacao_ocupacional').val(familiar.situacao_ocupacional);
-			}
-		});
-	});
-
-	// Chama a função para listar os familiares ao abrir a modal
-	listarFamiliares();
-});
-
 </script>
 
 
 
+
+
+
+
 <!-- SCRIPT ESCOLARIDADE -->
- <script>
+<script>
 	// ESCOLARIDADE
-function escolaridade(paciente_id) {
-  // Limpa mensagens de erro ou sucesso anteriores
-  $('#formEscolaridade')[0].reset();
-  $('#paciente_id').val(paciente_id);
-  
-  // Fazer uma requisição AJAX para buscar os dados da escolaridade do paciente
-  $.ajax({
-      url: "paginas/" + pag + "/carregarEscolaridade.php",
-      method: 'POST',
-      data: { paciente_id: paciente_id },
-      dataType: 'json',
-      success: function(response) {
-          if (response) {
-              // Preenche os campos da modal com os dados recebidos
-              $('#escolaridade_pai').val(response.escolaridade_pai);
-              $('#escolaridade_mae').val(response.escolaridade_mae);
-              $('#tipo_escola').val(response.tipo_escola);
-              $('#turno').val(response.turno);
-              $('#serie').val(response.serie);
-              $('#data_escolaridade').val(response.data_escol);
-              $('#nome_escola').val(response.nome_escola);
-              
-              // Para selecionar a escola certa no dropdown
-              $('#nome_escola').val(response.nome_escola);
+	function escolaridade(paciente_id) {
+		// Limpa mensagens de erro ou sucesso anteriores
+		$('#formEscolaridade')[0].reset();
+		$('#paciente_id').val(paciente_id);
 
-              
-          }
-      }
-  });
+		// Fazer uma requisição AJAX para buscar os dados da escolaridade do paciente
+		$.ajax({
+			url: "paginas/" + pag + "/carregarEscolaridade.php",
+			method: 'POST',
+			data: {
+				paciente_id: paciente_id
+			},
+			dataType: 'json',
+			success: function(response) {
+				if (response) {
+					// Preenche os campos da modal com os dados recebidos
+					$('#escolaridade_pai').val(response.escolaridade_pai);
+					$('#escolaridade_mae').val(response.escolaridade_mae);
+					$('#tipo_escola').val(response.tipo_escola);
+					$('#turno').val(response.turno);
+					$('#serie').val(response.serie);
+					$('#data_escolaridade').val(response.data_escol);
+					$('#nome_escola').val(response.nome_escola);
 
-  // Abre a modal de escolaridade
-  $('#modalEscolaridade').modal('show');
-}
-$('#formEscolaridade').submit(function(event) {
-  event.preventDefault();
+					// Para selecionar a escola certa no dropdown
+					$('#nome_escola').val(response.nome_escola);
 
-  var formData = $(this).serialize(); 
 
-  $.ajax({
-      url: "paginas/"+ pag + "/salvarEscolaridade.php",
-      method: 'POST',
-      data: formData,
-      success: function(response) {
-          alert(response); 
-          $('#modalEscolaridade').modal('hide');
-          
-          listarConsulta();
-      }
-  });
-});
+				}
+			}
+		});
 
- </script> 
+		// Abre a modal de escolaridade
+		$('#modalEscolaridade').modal('show');
+	}
+	$('#formEscolaridade').submit(function(event) {
+		event.preventDefault();
+
+		var formData = $(this).serialize();
+
+		$.ajax({
+			url: "paginas/" + pag + "/salvarEscolaridade.php",
+			method: 'POST',
+			data: formData,
+			success: function(response) {
+				alert(response);
+				$('#modalEscolaridade').modal('hide');
+
+				listarConsulta();
+			}
+		});
+	});
+</script>
 
 
 
 
 <script type="text/javascript">
 	var pag = "<?= $pag ?>"
+</script>
+
+<script type="text/javascript">
+
 </script>

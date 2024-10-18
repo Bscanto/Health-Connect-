@@ -7,6 +7,8 @@ $(document).ready(function () {
     $('#cbo').mask('00.000.0');
     $('#cnsp').mask('0000.0000.0000.0000');
     $('#cartaosus').mask('0000-0000-0000-0000');
+    $('#servico').mask('000');
+    $('#classificacao').mask('000');
 
     $('#telefone_perfil').mask('(00) 00000-0000');
 	$('#cpf_perfil').mask('000.000.000-00');

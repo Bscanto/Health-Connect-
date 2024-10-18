@@ -23,6 +23,9 @@ if($linhas > 0){
 	$_SESSION['nome'] = $res[0]['nome'];
 	$_SESSION['id'] = $res[0]['id'];
 	$_SESSION['nivel'] = $res[0]['nivel'];
+	$_SESSION['cbo'] = $res[0]['cbo'];
+	$_SESSION['cnsp'] = $res[0]['cnsp'];
+
 
 	echo '<script>window.location="painel"</script>';
 }else{

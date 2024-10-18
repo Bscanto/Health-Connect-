@@ -103,6 +103,7 @@ HTML;
 <big><a href="#" onclick="anamnese('{$id}', '{$nome}')" title="Editar anamnese"><i class="fa fa-stethoscope text-silver"></i></a></big>
 
 
+<big><a href="#" onclick="abrirAtendimento('{$id}')" title="Editar anamnese"><i class="fa fa-calendar-plus-o"></i></a></big>
 
 
 </td>
