@@ -5,7 +5,7 @@ require_once("../../../conexao.php");
 $id_paciente = $_POST['idPaciente'];
 
 // Busca todas as ações realizadas para o paciente específico
-$query = $pdo->prepare("SELECT ar.*, a.descricao AS acao_descricao, u.cbo AS cbo_executante, u.nome AS nome_executante
+$query = $pdo->prepare("SELECT ar.*, a.codigo AS acao_codigo, u.cbo AS cbo_executante, u.nome AS nome_executante
                         FROM acao_realizada ar 
                         JOIN acao a ON ar.fk_acao_id = a.id
                         JOIN usuarios u ON ar.fk_usuarios_id = u.id
@@ -25,7 +25,7 @@ if (count($acoes) > 0) {
             <div class='card-header' id='heading$index'>
                 <h2 class='mb-0'>
                     <button class='btn btn-link text-primary' type='button' data-toggle='collapse' data-target='#$accordionId' aria-expanded='true' aria-controls='$accordionId'>
-                        Ação: " . htmlspecialchars($acao['acao_descricao']) . " - Data: " . date('d/m/Y', strtotime($acao['data_acao'])) . "
+                        Ação: " . htmlspecialchars($acao['acao_codigo']) . " - Data: " . date('d/m/Y', strtotime($acao['data_acao'])) . "
                     </button>
                 </h2>
             </div>
@@ -39,12 +39,11 @@ if (count($acoes) > 0) {
                     <strong>CBO do Executante:</strong> " . htmlspecialchars($acao['cbo_executante']) . "<br>
                     <strong>Nome do Executante:</strong> " . htmlspecialchars($acao['nome_executante']) . "<br>
                     <strong>Descrição:</strong> " . htmlspecialchars($acao['descricao_procedimento']) . "<br>
-                    <strong>Data da Ação:</strong> " . date('d/m/Y', strtotime($acao['data_acao'])) . "<br>
+                    <strong>Data da Ação:</strong> " . date('d/m/Y', strtotime($acao['data_acao'])) . "
                 </div>
             </div>
         </div>
         <hr>
-        <br>
         ";
     }
 

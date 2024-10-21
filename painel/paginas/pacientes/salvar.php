@@ -28,14 +28,7 @@ $data_cad = $_POST['data_cad'];
 $queixa = $_POST['queixa'];
 $id = $_POST['id'];
 
-// Validação email
-$query = $pdo->query("SELECT * from paciente where email = '$email'");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-$id_reg = @$res[0]['id'];
-if(@count($res) > 0 and $id != $id_reg){
-    echo 'Email já Cadastrado!';
-    exit();
-}
+
 
 // Validação cns
 $query = $pdo->query("SELECT * from $tabela where cns = '$cns'");

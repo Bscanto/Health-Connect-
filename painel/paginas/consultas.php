@@ -340,25 +340,12 @@ if (@$pacientes == 'ocultar') {
 					<div class="col-md-6" style="border-left: 1px solid #242323; font-size:14px">
 						<br>
 						<b>Histório Clínico</b>
+						<br>
+						<div id="listaAcoesPaciente">
+          <!-- O histórico será carregado dinamicamente aqui via AJAX -->
+        </div>
 
-						<div id="historico_div" style="overflow: scroll; max-height:300px; scrollbar-width: thin; padding:2px">
-							<div class="row">
-								<form id="form-historico">
-									<div class="col-md-10">
-										<textarea maxlength="2000" name="historico" id="historico" class="form-control" required></textarea>
-									</div>
 
-									<div class="col-md-2" style="margin-top: 40px">
-										<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check"></i></button>
-									</div>
-									<input type="hidden" name="id_pac" id="id_pac">
-									<input type="hidden" name="id_con" id="id_con">
-								</form>
-							</div>
-							<small>
-								<div id="mensagem-historico"></div>
-							</small>
-						</div>
 					</div>
 
 
@@ -693,7 +680,7 @@ if (@$pacientes == 'ocultar') {
 </div>
 
 
-
+<!-- SCRIPT PARA ATENDIMENTO -->
 <script>
 	function abrirAtendimento(id) {
 
@@ -770,6 +757,7 @@ if (@$pacientes == 'ocultar') {
 
 
 
+<!-- SCRIPT PARA LISTAR ANAMNESE E DADOS -->
 <script>
 	function listarAnamnese(id) {
 
@@ -806,6 +794,28 @@ if (@$pacientes == 'ocultar') {
 	}
 
 
+
+	function abrirModalAcoesRealizadas(idPaciente) {
+		console.log(idPaciente);
+    $.ajax({
+        url: "paginas/consultas/listar_acoes_realizadas.php",  
+        method: 'POST',
+        data: { idPaciente: idPaciente},
+        success: function(response) {
+            // Insere a lista de ações na div da segunda modal
+            $('#listaAcoesPaciente').html(response);
+
+            
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('Erro ao carregar as ações realizadas: ' + errorThrown);
+        }
+    });
+}
+
+
+
+
 	function adicionarItem(id, paciente) {
 		$.ajax({
 			url: 'paginas/' + pag + "/add_item.php",
@@ -840,6 +850,26 @@ if (@$pacientes == 'ocultar') {
 		});
 
 	}
+
+
+	function listarAcoesDados(){
+		$.ajax({
+        url: 'paginas/consultas/listar_acoes_realizadas.php',  // Arquivo PHP para listar as ações
+        method: 'POST',
+        data: { idPaciente: id },
+        success: function(response) {
+            // Insere a lista de ações no div
+            $('#listaAcoesDados').html(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('Erro ao carregar as ações realizadas: ' + errorThrown);
+        }
+    });
+	
+	}
+	
+	
+
 </script>
 
 
