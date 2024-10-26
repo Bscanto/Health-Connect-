@@ -14,7 +14,7 @@ $query = $pdo->prepare("SELECT
         escolaridade.escolaridade_mae,
         escolaridade.fk_escola_id,
         escolaridade.fk_paciente_id,
-        escola.nome_escola
+        escola.nome_escola 
         
     FROM 
         escolaridade 

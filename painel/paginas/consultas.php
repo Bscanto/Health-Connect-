@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-
+$id_paciente = $_SESSION['id_paciente'];
 
 $pag = 'consultas';
 
@@ -224,7 +224,8 @@ if (@$pacientes == 'ocultar') {
 
 			<!-- Modal header -->
 			<div class="modal-header">
-				<h4 class="modal-title" id="exampleModalLabel"><span id="nome_dados"></span> <span style="margin-left: 25px; font-size: 15px"><a title="PDF da Ficha Paciente" href="" onclick="ficha()"><i class="fa fa-file-pdf-o text-danger"></i> Imprimir Ficha</a></span></h4>
+			<h4 class="modal-title" id="exampleModalLabel"><span id="nome_dados"></span> <span style="margin-left: 25px; font-size: 15px"><a title="PDF da Ficha Paciente" href="" onclick="ficha()"><i class="fa fa-file-pdf-o text-danger"></i> Imprimir Ficha</a></span></h4>
+
 				<button id="btn-fechar-perfil" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -20px">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -468,72 +469,6 @@ if (@$pacientes == 'ocultar') {
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			<!-- Grupo Familiar -->
-			<div class="row">
-				<div class="form-group col-md-12">
-					<label for="grupoFamiliar" style="color: red">Grupo Familiar</label>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Nome</th>
-								<th>Idade</th>
-								<th>Parentesco</th>
-								<th>Situação Ocupacional</th>
-							</tr>
-						</thead>
-						<tbody id="grupoFamiliarTableBody">
-							<!-- Os dados serão preenchidos via JavaScript -->
-						</tbody>
-					</table>
-				</div>
-			</div>
-
-
-			<!-- Formulário para adicionar informações -->
-			<div class="row">
-				<div class="form-group col-md-3">
-					<label for="nomeFamiliar">Nome</label>
-					<input type="text" id="nomeFamiliar" class="form-control" placeholder="Nome">
-				</div>
-				<div class="form-group col-md-3">
-					<label for="idadeFamiliar">Idade</label>
-					<input type="number" id="idadeFamiliar" class="form-control" placeholder="Idade">
-				</div>
-				<div class="form-group col-md-3">
-					<label for="parentescoFamiliar">Parentesco</label>
-					<input type="text" id="parentescoFamiliar" class="form-control" placeholder="Parentesco">
-				</div>
-				<div class="form-group col-md-3">
-					<label for="situacaoOcupacionalFamiliar">Situação Ocupacional</label>
-					<input type="text" id="situacaoOcupacionalFamiliar" class="form-control" placeholder="Situação Ocupacional">
-				</div>
-			</div>
-			<div class="row">
-				<div class="form-group col-md-12">
-					<!-- Campo oculto para o ID do paciente -->
-					<input type="hidden" id="idPaciente" value="<?= $id_paciente ?>">
-
-					<button id="addFamiliar" class="btn btn-primary">Adicionar ao Grupo Familiar</button>
-				</div>
-			</div>
-
-
-
-
 
 
 
@@ -877,50 +812,6 @@ if (@$pacientes == 'ocultar') {
 
 
 
-<!-- SCRIPT GRUPO FAMILIAR-->
-<script>
-	document.getElementById('addFamiliar').addEventListener('click', function() {
-		var nome = document.getElementById('nomeFamiliar').value;
-		var idade = document.getElementById('idadeFamiliar').value;
-		var parentesco = document.getElementById('parentescoFamiliar').value;
-		var situacao = document.getElementById('situacaoOcupacionalFamiliar').value;
-		var idPaciente = document.getElementById('idPaciente').value; // Pega o ID do paciente
-
-		if (nome && idade && parentesco && situacao && idPaciente) {
-			// Adicionar os dados à tabela dinamicamente
-			var tableBody = document.getElementById('grupoFamiliarTableBody');
-			var newRow = tableBody.insertRow();
-
-			newRow.innerHTML = `<td>${nome}</td><td>${idade}</td><td>${parentesco}</td><td>${situacao}</td>`;
-
-			// Enviar dados via AJAX para o PHP
-			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "salvar_grupo_familiar.php", true);
-			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			xhr.onreadystatechange = function() {
-				if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-					alert('Familiar adicionado com sucesso!');
-				}
-			}
-
-			// Envia os dados, incluindo o ID do paciente
-			xhr.send(`nome=${nome}&idade=${idade}&parentesco=${parentesco}&situacao=${situacao}&idPaciente=${idPaciente}`);
-
-			// Limpar os campos do formulário
-			document.getElementById('nomeFamiliar').value = '';
-			document.getElementById('idadeFamiliar').value = '';
-			document.getElementById('parentescoFamiliar').value = '';
-			document.getElementById('situacaoOcupacionalFamiliar').value = '';
-		} else {
-			alert('Por favor, preencha todos os campos');
-		}
-	});
-</script>
-
-
-
-
-
 
 
 <!-- SCRIPT ESCOLARIDADE -->
@@ -980,7 +871,16 @@ if (@$pacientes == 'ocultar') {
 	});
 </script>
 
+<!-- FICHA -->
+<script>
+	function ficha() {
+    const idPaciente = document.getElementById('id_paciente').value; // substitua por como você obtém o id
+    const link = document.querySelector('#exampleModalLabel a');
+    link.href = `../paginas/relatorios/ficha.php?id=${idPaciente}`;
+}
 
+
+</script>
 
 
 <script type="text/javascript">

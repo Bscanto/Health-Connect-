@@ -1,42 +1,34 @@
 <?php
-// salvarAnamnese.php
 
-// Incluir a conexão com o banco de dados
 
 require_once("../../../conexao.php");
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nome = $_POST['nome'];
-    $idade = $_POST['idade'];
-    $parentesco = $_POST['parentesco'];
-    $situacao = $_POST['situacao'];
-    $paciente_id = $_POST['id'];
+header('Content-Type: application/json');
 
-    var_dump($paciente_id);
+if (isset($_POST['nomeFamiliar'], $_POST['idadeFamiliar'], $_POST['parentescoFamiliar'], $_POST['situacaoOcupacionalFamiliar'], $_POST['idPaciente'])) {
+    $nome = $_POST['nomeFamiliar'];
+    $idade = $_POST['idadeFamiliar'];
+    $parentesco = $_POST['parentescoFamiliar'];
+    $situacao_ocupacional = $_POST['situacaoOcupacionalFamiliar'];
+    $id_paciente = $_POST['idPaciente'];
 
-    // Query de inserção no banco de dados
-    $query = "INSERT INTO grupo_familiar (nome, idade, parentesco, situacao_atual) VALUES ('$nome', '$idade', '$parentesco', '$situacao')";
+    echo $id_paciente;
 
-    if (mysqli_query($conn, $query)) {
-        echo "Familiar salvo com sucesso!";
+    $stmt = $pdo->prepare("INSERT INTO grupo_familiar (nome, idade, parentesco, situacao_ocupacional, fk_paciente_id)
+                           VALUES (:nome, :idade, :parentesco, :situacao_ocupacional, :fk_paciente_id)");
+    $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':idade', $idade);
+    $stmt->bindParam(':parentesco', $parentesco);
+    $stmt->bindParam(':situacao_ocupacional', $situacao_ocupacional);
+    $stmt->bindParam(':fk_paciente_id', $id_paciente);
+
+    if ($stmt->execute()) {
+        echo json_encode(["success" => true]);
     } else {
-        echo "Erro ao salvar familiar: " . mysqli_error($conn);
+        echo json_encode(["success" => false, "message" => "Erro ao inserir dados"]);
     }
-    
-    mysqli_close($conn);
+} else {
+    echo json_encode(["success" => false, "message" => "Dados incompletos"]);
 }
 
-// Query para buscar membros do grupo familiar
-$query = "SELECT nome, idade, parentesco, situacao_atual FROM grupo_familiar WHERE fk_anamnese_id_anamnese = $id_anamnese";
-$result = mysqli_query($conn, $query);
-
-while($row = mysqli_fetch_assoc($result)) {
-    echo "<tr>
-            <td>{$row['nome']}</td>
-            <td>{$row['idade']}</td>
-            <td>{$row['parentesco']}</td>
-            <td>{$row['situacao_atual']}</td>
-          </tr>";
-}
-?>

@@ -65,4 +65,28 @@ exit();
 
 $total_profissional = $pdo->query("SELECT COUNT(*) FROM usuarios")->fetchColumn();
 $total_paciente = $pdo->query("SELECT COUNT(*) FROM paciente")->fetchColumn();
+$total_acao = $pdo->query("SELECT COUNT(*) FROM acao_realizada")->fetchColumn();
+$total_anamnese = $pdo->query("SELECT COUNT(*) FROM anamnese")->fetchColumn();
+
+
+$total_acoes_hoje = $pdo->query("SELECT COUNT(*) 
+                                 FROM acao_realizada 
+                                 WHERE DATE(data_acao) = CURDATE()")->fetchColumn();
+
+
+$total_atendimentos_mes = $pdo->query("SELECT COUNT(*) 
+                                       FROM acao_realizada 
+                                       WHERE MONTH(data_acao) = MONTH(CURDATE()) 
+                                       AND YEAR(data_acao) = YEAR(CURDATE())")->fetchColumn();
+
+
+$total_atendimentos_ano = $pdo->query("SELECT COUNT(*) 
+                                       FROM acao_realizada 
+                                       WHERE YEAR(data_acao) = YEAR(CURDATE())")->fetchColumn();
+
+
+
+
+
+
  ?>
