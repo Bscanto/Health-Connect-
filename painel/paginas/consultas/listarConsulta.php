@@ -97,6 +97,10 @@ HTML;
 
 <big><a href="#" onclick="mostrar('{$id}','{$nome}','{$cpf}','{$telefone}', '{$email}', '{$ativo}', '{$estado}', '{$cidade}', '{$bairro}', '{$endereco}', '{$cep}', '{$numero}', '{$data_nasc}', '{$sexo}', '{$cns}', '{$nome_responsavel}', '{$nome_pai}', '{$ocupacao_pai}', '{$nome_mae}', '{$ocupacao_mae}', '{$celular}', '{$raca}', '{$nacionalidade}', '{$queixa}', '{$data_cad}', '{$escolaridade_pai}', '{$escolaridade_mae}', '{$tipo_escola}', '{$turno}', '{$serie}', '{$data_escolaridade}', '{$nome_escola}')" title="Mostrar Dados"><i class="fa fa-info-circle text-primary"></i></a></big>
 
+
+<big><a href="#" onclick="atestado('{$id}','{$nome}')" title="Gerar Atestado"><i class="fa fa-file-pdf-o text-danger"></i></a></big>
+
+
 <big><a href="#" onclick="escolaridade('{$id}')" title="Editar Escolaridade"><i class="fa fa-book text-warning"></i></a></big>
 
 
@@ -289,6 +293,19 @@ HTML;
 			}
 		});
 	}
+</script>
+
+
+
+<script>
+	
+function atestado(id, nome){
+
+$('#id_atestado').val(id);	
+$('#nome_atestado').text(nome);	
+$('#modalAtestado').modal('show');
+}
+
 </script>
 
 

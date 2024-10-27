@@ -508,7 +508,15 @@ if ($linhas > 0) {
 					</div>
 
 
-
+<div class="row">
+	<div class="col-md-3">
+		<label> Marca D'Agua</label>
+		<select class="form-control" name="marca_dagua" id="">
+			<option value="Sim" <?php if( $marca_dagua == 'Sim') echo 'selected'?> >Sim</option>
+			<option value="Não" <?php if( $marca_dagua == 'Não') echo 'selected'?>>Não</option>
+		</select>
+	</div>
+</div>
 
 
 

@@ -224,7 +224,7 @@ if (@$pacientes == 'ocultar') {
 
 			<!-- Modal header -->
 			<div class="modal-header">
-			<h4 class="modal-title" id="exampleModalLabel"><span id="nome_dados"></span> <span style="margin-left: 25px; font-size: 15px"><a title="PDF da Ficha Paciente" href="" onclick="ficha()"><i class="fa fa-file-pdf-o text-danger"></i> Imprimir Ficha</a></span></h4>
+				<h4 class="modal-title" id="exampleModalLabel"><span id="nome_dados"></span> <span style="margin-left: 25px; font-size: 15px"><a title="PDF da Ficha Paciente" href="" onclick="ficha()"><i class="fa fa-file-pdf-o text-danger"></i> Imprimir Ficha</a></span></h4>
 
 				<button id="btn-fechar-perfil" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -20px">
 					<span aria-hidden="true">&times;</span>
@@ -343,8 +343,8 @@ if (@$pacientes == 'ocultar') {
 						<b>Histório Clínico</b>
 						<br>
 						<div id="listaAcoesPaciente">
-          <!-- O histórico será carregado dinamicamente aqui via AJAX -->
-        </div>
+							<!-- O histórico será carregado dinamicamente aqui via AJAX -->
+						</div>
 
 
 					</div>
@@ -578,7 +578,7 @@ if (@$pacientes == 'ocultar') {
 					</div>
 
 					<div class="row">
-						
+
 
 						<div class="form-group col-md-3">
 							<label for="localacao">Local da Ação</label><br>
@@ -615,6 +615,64 @@ if (@$pacientes == 'ocultar') {
 </div>
 
 
+
+<!-- Modal Atestado -->
+<div class="modal fade" id="modalAtestado" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel"><span id="nome_atestado"></span>		Atestado		
+				</h4>
+				<button id="btn-fechar-atestado" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -25px">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form method="POST" action="relatorios/atestado_class.php" target="_blank">
+			<div class="modal-body">
+
+				<div class="row">
+						<div class="col-md-6">	
+								<label>Data Inicial</label>
+								<input type="date" name="dataInicial" class="form-control" placeholder="" value="<?php echo $data_atual ?>">			
+							</div>
+
+							<div class="col-md-6">	
+								<label>Data Final</label>
+								<input type="date" name="dataFinal" class="form-control" placeholder="" value="<?php echo $data_atual ?>" >			
+							</div>										
+
+						</div>
+						<div class="row">
+							<div class="col-md-12">	
+								<label>Motivo</label>
+								<input type="text" name="motivo" class="form-control" placeholder="Motivo do Afastamento" >	
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">	
+								<label>Informações Relevantes</label>
+								<input type="text" name="obs" class="form-control" placeholder="Demais Informações" >	
+							</div>
+						</div>
+				<br>
+				<input type="hidden" name="id" id="id_atestado">
+				<small><div id="mensagem_atestado" align="center" class="mt-3"></div></small>		
+			</div>
+
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Gerar Atestado</button>
+			</div>
+			</form>		
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
 <!-- SCRIPT PARA ATENDIMENTO -->
 <script>
 	function abrirAtendimento(id) {
@@ -623,17 +681,19 @@ if (@$pacientes == 'ocultar') {
 		$('#idPaciente').val(id);
 
 		$.ajax({
-        url: 'paginas/consultas/listar_acoes_realizadas.php',  // Arquivo PHP para listar as ações
-        method: 'POST',
-        data: { idPaciente: id },
-        success: function(response) {
-            // Insere a lista de ações no div
-            $('#listaAcoesRealizadas').html(response);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('Erro ao carregar as ações realizadas: ' + errorThrown);
-        }
-    });
+			url: 'paginas/consultas/listar_acoes_realizadas.php', // Arquivo PHP para listar as ações
+			method: 'POST',
+			data: {
+				idPaciente: id
+			},
+			success: function(response) {
+				// Insere a lista de ações no div
+				$('#listaAcoesRealizadas').html(response);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert('Erro ao carregar as ações realizadas: ' + errorThrown);
+			}
+		});
 	}
 
 
@@ -732,21 +792,23 @@ if (@$pacientes == 'ocultar') {
 
 	function abrirModalAcoesRealizadas(idPaciente) {
 		console.log(idPaciente);
-    $.ajax({
-        url: "paginas/consultas/listar_acoes_realizadas.php",  
-        method: 'POST',
-        data: { idPaciente: idPaciente},
-        success: function(response) {
-            // Insere a lista de ações na div da segunda modal
-            $('#listaAcoesPaciente').html(response);
+		$.ajax({
+			url: "paginas/consultas/listar_acoes_realizadas.php",
+			method: 'POST',
+			data: {
+				idPaciente: idPaciente
+			},
+			success: function(response) {
+				// Insere a lista de ações na div da segunda modal
+				$('#listaAcoesPaciente').html(response);
 
-            
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('Erro ao carregar as ações realizadas: ' + errorThrown);
-        }
-    });
-}
+
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert('Erro ao carregar as ações realizadas: ' + errorThrown);
+			}
+		});
+	}
 
 
 
@@ -787,27 +849,35 @@ if (@$pacientes == 'ocultar') {
 	}
 
 
-	function listarAcoesDados(){
+	function listarAcoesDados() {
 		$.ajax({
-        url: 'paginas/consultas/listar_acoes_realizadas.php',  // Arquivo PHP para listar as ações
-        method: 'POST',
-        data: { idPaciente: id },
-        success: function(response) {
-            // Insere a lista de ações no div
-            $('#listaAcoesDados').html(response);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('Erro ao carregar as ações realizadas: ' + errorThrown);
-        }
-    });
-	
+			url: 'paginas/consultas/listar_acoes_realizadas.php', // Arquivo PHP para listar as ações
+			method: 'POST',
+			data: {
+				idPaciente: id
+			},
+			success: function(response) {
+				// Insere a lista de ações no div
+				$('#listaAcoesDados').html(response);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert('Erro ao carregar as ações realizadas: ' + errorThrown);
+			}
+		});
+
 	}
-	
-	
 
+
+
+
+	function ficha() {
+
+		var id_pac = $('#id_pac').val();
+
+		window.open("rel/ficha_class.php?id=" + id_pac);
+
+	}
 </script>
-
-
 
 
 
@@ -874,12 +944,10 @@ if (@$pacientes == 'ocultar') {
 <!-- FICHA -->
 <script>
 	function ficha() {
-    const idPaciente = document.getElementById('id_paciente').value; // substitua por como você obtém o id
-    const link = document.querySelector('#exampleModalLabel a');
-    link.href = `../paginas/relatorios/ficha.php?id=${idPaciente}`;
-}
-
-
+		const idPaciente = document.getElementById('id_paciente').value; // substitua por como você obtém o id
+		const link = document.querySelector('#exampleModalLabel a');
+		link.href = `../paginas/relatorios/ficha.php?id=${idPaciente}`;
+	}
 </script>
 
 
