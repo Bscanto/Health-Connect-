@@ -1,5 +1,6 @@
 <?php 
 
+
 require_once("../../conexao.php");
 
 $id = $_POST['id'];
@@ -17,8 +18,12 @@ $paciente = $query->fetch(PDO::FETCH_ASSOC);
 $nome_paciente = $paciente['nome'];
 $cpf_paciente = $paciente['cpf'];
 
+session_start();
+$id_usuario = $_SESSION['id'];
+
+
 // Construir a URL para o conteúdo HTML
-$url = $url_sistema . "painel/relatorios/atestado.php?id=$id&dataInicial=$dataInicial&dataFinal=$dataFinal&obs=$obs&motivo=$motivo";
+$url = $url_sistema . "painel/relatorios/atestado.php?id=$id&dataInicial=$dataInicial&dataFinal=$dataFinal&obs=$obs&motivo=$motivo&id_usuario=$id_usuario";
 
 // Obter o conteúdo HTML da URL
 $html = file_get_contents($url);

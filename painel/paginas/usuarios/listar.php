@@ -49,6 +49,9 @@ HTML;
 
 		$dataF = implode('/', array_reverse(@explode('-', $data)));
 
+
+
+
 		if ($ativo == 'Sim') {
 			$icone = 'fa-check-square';
 			$titulo_link = 'Desativar Usuário';
@@ -108,6 +111,7 @@ HTML;
 	}
 
 
+	
 	echo <<<HTML
 </tbody>
 <small><div align="center" id="mensagem-excluir"></div></small>

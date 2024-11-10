@@ -1,17 +1,23 @@
 <?php 
-session_start();
+
 
 include('../../conexao.php');
 include('data_formatada.php');
 
-// Capturar dados enviados via GET
 $id = $_GET['id'];
 $dataInicial = $_GET['dataInicial'];
 $dataFinal = $_GET['dataFinal'];
-$obs = urldecode($_GET['obs']); // Decodificar para exibir corretamente
-$motivo = urldecode($_GET['motivo']); // Decodificar para exibir corretamente
-$nome_profissional = $_SESSION['nome']; 
-$id_usuario = $_SESSION['id'];
+$obs = urldecode($_GET['obs']); 
+$motivo = urldecode($_GET['motivo']); 
+$id_usuario = @$_GET['id_usuario']; 
+
+
+
+$query = $pdo->query("SELECT * FROM usuarios where id = '$id_usuario' order by id asc");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$nome_Profissional = $res[0]['nome'];
+
+
 
 $dataInicialF = implode('/', array_reverse(explode('-', $dataInicial)));
 $dataFinalF = implode('/', array_reverse(explode('-', $dataFinal)));
@@ -124,7 +130,7 @@ if ($marca_dagua == 'Sim') { ?>
 	<div style="margin-top: 80px; font-size:13px" align="center">
 		__________________________________________________
 		<br>
-		<?php echo $nome_profissional ?>
+		<?php echo $nome_Profissional ?>
 	</div>
 </div>
 
