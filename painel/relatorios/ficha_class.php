@@ -1,93 +1,185 @@
-<?php 
+<?php
+session_start();
 
-require_once("../../../conexao.php");
-
-
-
-$id = @$_GET['id'];
-
-$id_pac = @$_POST['id'];
-
-$historico = @$_POST['acao_dados'];
-
-$anamnese = @$_POST['anamnese'];
-
-
-
-if($id == ""){
-
-	$id = $id_pac;
-
-}
-
-
-
-$html = file_get_contents($url_sistema."painel/rel/ficha.php?id=$id&historico=$historico&anamnese=$anamnese");
-
-
-
-//CARREGAR DOMPDF
-
-require_once '../dompdf/autoload.inc.php';
+require '../dompdf/vendor/autoload.php'; 
 
 use Dompdf\Dompdf;
+$caminhoImagem = __DIR__ . '/img/logo.jpg';
 
-use Dompdf\Options;
-
-
-
-header("Content-Transfer-Encoding: binary");
-
-header("Content-Type: image/png");
+$options = new \Dompdf\Options();
+$options->set('isRemoteEnabled', true);
+$dompdf = new Dompdf($options);
 
 
 
-//INICIALIZAR A CLASSE DO DOMPDF
+// Receba os dados via POST
+$id_dados = $_POST['id_dados'];
+$nome_dados = $_POST['nome_dados'];
+$data_cad_dados = $_POST['data_cad_dados'];
+$cns_dados = $_POST['cns_dados'];
+$email_dados = $_POST['email_dados'];
+$cpf_dados = $_POST['cpf_dados'];
+$telefone_dados = $_POST['telefone_dados'];
+$celular_dados = $_POST['celular_dados'];
+$data_nasc_dados = $_POST['data_nasc_dados'];
+$sexo_dados = $_POST['sexo_dados'];
+$raca_dados = $_POST['raca_dados'];
+$nacionalidade_dados = $_POST['nacionalidade_dados'];
+$nome_responsavel_dados = $_POST['nome_responsavel_dados'];
+$nome_mae_dados = $_POST['nome_mae_dados'];
+$ocupacao_mae_dados = $_POST['ocupacao_mae_dados'];
+$nome_pai_dados = $_POST['nome_pai_dados'];
+$ocupacao_pai_dados = $_POST['ocupacao_pai_dados'];
+$queixa_dados = $_POST['queixa_dados'];
+$endereco_dados = $_POST['endereco_dados'];
+$numero_dados = $_POST['numero_dados'];
+$bairro_dados = $_POST['bairro_dados'];
+$cidade_dados = $_POST['cidade_dados'];
+$estado_dados = $_POST['estado_dados'];
+$cep_dados = $_POST['cep_dados'];
+$escolaridade_pai_dados = $_POST['escolaridade_pai_dados'];
+$escolaridade_mae_dados = $_POST['escolaridade_mae_dados'];
+$turno = $_POST['turno'];
+$serie_dados = $_POST['serie_dados'];
+$tipo_escola = $_POST['tipo_escola'];
+$nome_escola_dados = $_POST['nome_escola_dados'];
+$anamese = $_POST['anamese'];
+$historico_clinico = $_POST['historico_clinico'];
 
-$options = new Options();
+// Crie o conteúdo HTML do PDF
+$html = '
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: DejaVu Sans, sans-serif; font-size: 12px; }
+        h1 { text-align: center; font-size: 18px; }
+        h2 { font-size: 16px; border-bottom: 1px solid #000; }
+        .section { margin-bottom: 20px; }
+        .info { margin-bottom: 5px; }
+        .label { font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        table td { padding: 5px; border: 1px solid #ccc; }
 
-$options->set('isRemoteEnabled', TRUE);
+        .marca {
+	        position: fixed;
+	        left: 50;
+	        top: 120;
+	        width: 80%;
+	        opacity: 8%;
+}
+    </style>
+</head>
+<body>
+	<img class="marca" src="'. $caminhoImagem .'">	
 
-$pdf = new DOMPDF($options);
+    <h1>Ficha do Paciente</h1>
 
+    <div class="header">
+    <h3>FICHA DO PACIENTE</h3>
+    <p>Prontuário: ' . $id_dados . '</p>
+    <p>Data de Cadastro: ' . date('d/m/Y', strtotime($data_cad)) . '</p>
+</div>
 
+    <div class="section">
+        <h2>Informações Pessoais</h2>
+        <table>
+            <tr>
+                <td><span class="label">CNS:</span> ' . $cns_dados . '</td>
+                <td><span class="label">Email:</span> ' . $email_dados . '</td>
+                <td><span class="label">CPF:</span> ' . $cpf_dados . '</td>
+            </tr>
+            <tr>
+                <td><span class="label">Telefone:</span> ' . $telefone_dados . '</td>
+                <td><span class="label">Celular:</span> ' . $celular_dados . '</td>
+                <td><span class="label">Data de Nascimento:</span> ' . $data_nasc_dados . '</td>
+            </tr>
+            <tr>
+                <td><span class="label">Sexo:</span> ' . $sexo_dados . '</td>
+                <td><span class="label">Raça/Cor:</span> ' . $raca_dados . '</td>
+                <td><span class="label">Nacionalidade:</span> ' . $nacionalidade_dados . '</td>
+            </tr>
+        </table>
+    </div>
 
+    <div class="section">
+        <h2>Informações dos Pais/Responsável</h2>
+        <table>
+            <tr>
+                <td><span class="label">Nome do Responsável:</span> ' . $nome_responsavel_dados . '</td>
+            </tr>
+            <tr>
+                <td><span class="label">Nome da Mãe:</span> ' . $nome_mae_dados . '</td>
+                <td><span class="label">Ocupação da Mãe:</span> ' . $ocupacao_mae_dados . '</td>
+            </tr>
+            <tr>
+                <td><span class="label">Nome do Pai:</span> ' . $nome_pai_dados . '</td>
+                <td><span class="label">Ocupação do Pai:</span> ' . $ocupacao_pai_dados . '</td>
+            </tr>
+            <tr>
+                <td colspan="2"><span class="label">Queixa:</span> ' . $queixa_dados . '</td>
+            </tr>
+        </table>
+    </div>
 
+    <div class="section">
+        <h2>Endereço</h2>
+        <table>
+            <tr>
+                <td><span class="label">Endereço:</span> ' . $endereco_dados . '</td>
+                <td><span class="label">Número:</span> ' . $numero_dados . '</td>
+                <td><span class="label">Bairro:</span> ' . $bairro_dados . '</td>
+            </tr>
+            <tr>
+                <td><span class="label">Cidade:</span> ' . $cidade_dados . '</td>
+                <td><span class="label">Estado:</span> ' . $estado_dados . '</td>
+                <td><span class="label">CEP:</span> ' . $cep_dados . '</td>
+            </tr>
+        </table>
+    </div>
 
-//Definir o tamanho do papel e orientação da página
+    <div class="section">
+        <h2>Escolaridade</h2>
+        <table>
+            <tr>
+                <td><span class="label">Escolaridade Pai:</span> ' . $escolaridade_pai_dados . '</td>
+                <td><span class="label">Escolaridade Mãe:</span> ' . $escolaridade_mae_dados . '</td>
+            </tr>
+            <tr>
+                <td><span class="label">Turno:</span> ' . $turno . '</td>
+                <td><span class="label">Série:</span> ' . $serie_dados . '</td>
+                <td><span class="label">Tipo Escola:</span> ' . $tipo_escola . '</td>
+            </tr>
+            <tr>
+                <td colspan="3"><span class="label">Nome Escola:</span> ' . $nome_escola_dados . '</td>
+            </tr>
+        </table>
+    </div>
 
-$pdf->set_paper('A4', 'portrait');
+    <div class="section">
+        <h2>Anamnese</h2>
+        <div>' . $anamese . '</div>
+    </div>
 
+    <div class="section">
+        <h2>Histórico Clínico</h2>
+        <div>' . $historico_clinico . '</div>
+    </div>
+</body>
+</html>
+';
 
+// Inicialize o Dompdf
+$dompdf = new Dompdf();
 
-//CARREGAR O CONTEÚDO HTML
+// Carregue o HTML
+$dompdf->loadHtml($html);
 
-$pdf->load_html($html);
+// (Opcional) Defina o tamanho e a orientação do papel
+$dompdf->setPaper('A4', 'portrait');
 
+// Renderize o PDF
+$dompdf->render();
 
-
-//RENDERIZAR O PDF
-
-$pdf->render();
-
-//NOMEAR O PDF GERADO
-
-
-
-
-
-$pdf->stream(
-
-	'ficha.pdf',
-
-	array("Attachment" => false)
-
-);
-
-
-
-
-
-
-
- ?>
+// Envie o PDF para o navegador
+$dompdf->stream('ficha_paciente.pdf', ['Attachment' => false]);

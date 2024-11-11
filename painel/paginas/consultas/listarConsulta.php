@@ -183,6 +183,7 @@ HTML;
 		$('#titulo_dados').text('Detalhes do Paciente - ' + nome);
 
 		// Preenchendo os dados do paciente
+		$('#id_dados').text(id);
 		$('#nome_dados').text(nome);
 		$('#cpf_dados').text(cpf);
 		$('#telefone_dados').text(telefone);
@@ -206,6 +207,7 @@ HTML;
 		$('#raca_dados').text(raca);
 		$('#nacionalidade_dados').text(nacionalidade);
 		$('#queixa_dados').text(queixa);
+		$('#data_cad_dados').text(data_cad);
 
 		// Preenchendo os dados de escolaridade e escola
 		$('#nome_escola_dados').text(escola_nome);

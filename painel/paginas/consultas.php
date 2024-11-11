@@ -1,7 +1,11 @@
 <?php
 session_start();
 
-$id_paciente = $_SESSION['id_paciente'];
+// Certifique-se de que o ID do paciente está definido na sessão
+isset($_SESSION['id_dados']);
+    $id_pac = $_SESSION['id_dados'];
+
+
 
 $pag = 'consultas';
 
@@ -224,7 +228,19 @@ if (@$pacientes == 'ocultar') {
 
 			<!-- Modal header -->
 			<div class="modal-header">
-				<h4 class="modal-title" id="exampleModalLabel"><span id="nome_dados"></span> <span style="margin-left: 25px; font-size: 15px"><a title="PDF da Ficha Paciente" href="" onclick="ficha()"><i class="fa fa-file-pdf-o text-danger"></i> Imprimir Ficha</a></span></h4>
+
+				<h4>Prontuário Número: <span id="id_dados"></span></h4>
+				<h4 class="modal-title" id="exampleModalLabel">
+					<span id="nome_dados"></span>
+					<span style="margin-left: 25px; font-size: 15px">
+						<a title="PDF da Ficha Paciente" href="#" onclick="ficha()">
+							<i class="fa fa-file-pdf-o text-danger"></i> Imprimir Ficha
+						</a>
+						<br>
+
+
+					</span>
+				</h4>
 
 				<button id="btn-fechar-perfil" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -20px">
 					<span aria-hidden="true">&times;</span>
@@ -600,7 +616,8 @@ if (@$pacientes == 'ocultar') {
 
 					<div class="modal-footer">
 
-						<input type="hidden" id="idPaciente" value="<?= $id_paciente ?>">
+					<input type="hidden" id="id_paciente" value="<?php echo $id_pac; ?>">
+
 
 
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -617,53 +634,55 @@ if (@$pacientes == 'ocultar') {
 
 
 <!-- Modal Atestado -->
-<div class="modal fade" id="modalAtestado" >
+<div class="modal fade" id="modalAtestado">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="exampleModalLabel"><span id="nome_atestado"></span>		Atestado		
+				<h4 class="modal-title" id="exampleModalLabel"><span id="nome_atestado"></span> Atestado
 				</h4>
 				<button id="btn-fechar-atestado" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -25px">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<form method="POST" action="relatorios/atestado_class.php" target="_blank">
-			<div class="modal-body">
+				<div class="modal-body">
 
-				<div class="row">
-						<div class="col-md-6">	
-								<label>Data Inicial</label>
-								<input type="date" name="dataInicial" class="form-control" placeholder="" value="<?php echo $data_atual ?>">			
-							</div>
-
-							<div class="col-md-6">	
-								<label>Data Final</label>
-								<input type="date" name="dataFinal" class="form-control" placeholder="" value="<?php echo $data_atual ?>" >			
-							</div>										
-
-						</div>
-						<div class="row">
-							<div class="col-md-12">	
-								<label>Motivo</label>
-								<input type="text" name="motivo" class="form-control" placeholder="Motivo do Afastamento" >	
-							</div>
+					<div class="row">
+						<div class="col-md-6">
+							<label>Data Inicial</label>
+							<input type="date" name="dataInicial" class="form-control" placeholder="" value="<?php echo $data_atual ?>">
 						</div>
 
-						<div class="row">
-							<div class="col-md-12">	
-								<label>Informações Relevantes</label>
-								<input type="text" name="obs" class="form-control" placeholder="Demais Informações" >	
-							</div>
+						<div class="col-md-6">
+							<label>Data Final</label>
+							<input type="date" name="dataFinal" class="form-control" placeholder="" value="<?php echo $data_atual ?>">
 						</div>
-				<br>
-				<input type="hidden" name="id" id="id_atestado">
-				<small><div id="mensagem_atestado" align="center" class="mt-3"></div></small>		
-			</div>
 
-			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Gerar Atestado</button>
-			</div>
-			</form>		
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>Motivo</label>
+							<input type="text" name="motivo" class="form-control" placeholder="Motivo do Afastamento">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<label>Informações Relevantes</label>
+							<input type="text" name="obs" class="form-control" placeholder="Demais Informações">
+						</div>
+					</div>
+					<br>
+					<input type="hidden" name="id" id="id_atestado">
+					<small>
+						<div id="mensagem_atestado" align="center" class="mt-3"></div>
+					</small>
+				</div>
+
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Gerar Atestado</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -791,7 +810,6 @@ if (@$pacientes == 'ocultar') {
 
 
 	function abrirModalAcoesRealizadas(idPaciente) {
-		console.log(idPaciente);
 		$.ajax({
 			url: "paginas/consultas/listar_acoes_realizadas.php",
 			method: 'POST',
@@ -867,21 +885,99 @@ if (@$pacientes == 'ocultar') {
 
 	}
 
-
-
-
+	
+	
 	function ficha() {
+    var id_dados = document.getElementById('id_dados').innerText;
+    var nome_dados = document.getElementById('nome_dados').innerText;
+    var data_cad_dados = document.getElementById('data_cad_dados').innerText;
+    var cns_dados = document.getElementById('cns_dados').innerText;
+    var email_dados = document.getElementById('email_dados').innerText;
+    var cpf_dados = document.getElementById('cpf_dados').innerText;
+    var telefone_dados = document.getElementById('telefone_dados').innerText;
+    var celular_dados = document.getElementById('celular_dados').innerText;
+    var data_nasc_dados = document.getElementById('data_nasc_dados').innerText;
+    var sexo_dados = document.getElementById('sexo_dados').innerText;
+    var raca_dados = document.getElementById('raca_dados').innerText;
+    var nacionalidade_dados = document.getElementById('nacionalidade_dados').innerText;
+    var nome_responsavel_dados = document.getElementById('nome_responsavel_dados').innerText;
+    var nome_mae_dados = document.getElementById('nome_mae_dados').innerText;
+    var ocupacao_mae_dados = document.getElementById('ocupacao_mae_dados').innerText;
+    var nome_pai_dados = document.getElementById('nome_pai_dados').innerText;
+    var ocupacao_pai_dados = document.getElementById('ocupacao_pai_dados').innerText;
+    var queixa_dados = document.getElementById('queixa_dados').innerText;
+    var endereco_dados = document.getElementById('endereco_dados').innerText;
+    var numero_dados = document.getElementById('numero_dados').innerText;
+    var bairro_dados = document.getElementById('bairro_dados').innerText;
+    var cidade_dados = document.getElementById('cidade_dados').innerText;
+    var estado_dados = document.getElementById('estado_dados').innerText;
+    var cep_dados = document.getElementById('cep_dados').innerText;
+    var escolaridade_pai_dados = document.getElementById('escolaridade_pai_dados').innerText;
+    var escolaridade_mae_dados = document.getElementById('escolaridade_mae_dados').innerText;
+    var turno = document.querySelector('[value="<?= $turno ?>"]').innerText;
+    var serie_dados = document.getElementById('serie_dados').innerText;
+    var tipo_escola = document.getElementById('tipo_escola').innerText;
+    var nome_escola_dados = document.getElementById('nome_escola_dados').innerText;
+    var anamese = document.getElementById('listar_ana_pac').innerHTML;
+    var historico_clinico = document.getElementById('listaAcoesPaciente').innerHTML;
 
-		var id_pac = $('#id_pac').val();
+    // Crie um formulário para enviar os dados
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'relatorios/ficha_class.php';
+    form.target = '_blank'; // Opcional: abre o PDF em uma nova aba
 
-		window.open("rel/ficha_class.php?id=" + id_pac);
+    var inputs = [
+        { name: 'id_dados', value: id_dados },
+        { name: 'nome_dados', value: nome_dados },
+        { name: 'data_cad_dados', value: data_cad_dados },
+        { name: 'cns_dados', value: cns_dados },
+        { name: 'email_dados', value: email_dados },
+        { name: 'cpf_dados', value: cpf_dados },
+        { name: 'telefone_dados', value: telefone_dados },
+        { name: 'celular_dados', value: celular_dados },
+        { name: 'data_nasc_dados', value: data_nasc_dados },
+        { name: 'sexo_dados', value: sexo_dados },
+        { name: 'raca_dados', value: raca_dados },
+        { name: 'nacionalidade_dados', value: nacionalidade_dados },
+        { name: 'nome_responsavel_dados', value: nome_responsavel_dados },
+        { name: 'nome_mae_dados', value: nome_mae_dados },
+        { name: 'ocupacao_mae_dados', value: ocupacao_mae_dados },
+        { name: 'nome_pai_dados', value: nome_pai_dados },
+        { name: 'ocupacao_pai_dados', value: ocupacao_pai_dados },
+        { name: 'queixa_dados', value: queixa_dados },
+        { name: 'endereco_dados', value: endereco_dados },
+        { name: 'numero_dados', value: numero_dados },
+        { name: 'bairro_dados', value: bairro_dados },
+        { name: 'cidade_dados', value: cidade_dados },
+        { name: 'estado_dados', value: estado_dados },
+        { name: 'cep_dados', value: cep_dados },
+        { name: 'escolaridade_pai_dados', value: escolaridade_pai_dados },
+        { name: 'escolaridade_mae_dados', value: escolaridade_mae_dados },
+        { name: 'turno', value: turno },
+        { name: 'serie_dados', value: serie_dados },
+        { name: 'tipo_escola', value: tipo_escola },
+        { name: 'nome_escola_dados', value: nome_escola_dados },
+        { name: 'anamese', value: anamese },
+        { name: 'historico_clinico', value: historico_clinico },
+    ];
 
-	}
+    inputs.forEach(function(inputData) {
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = inputData.name;
+        input.value = inputData.value;
+        form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+}
+
+	
+
 </script>
-
-
-
-
 
 
 <!-- SCRIPT ESCOLARIDADE -->
@@ -941,20 +1037,9 @@ if (@$pacientes == 'ocultar') {
 	});
 </script>
 
-<!-- FICHA -->
-<script>
-	function ficha() {
-		const idPaciente = document.getElementById('id_paciente').value; // substitua por como você obtém o id
-		const link = document.querySelector('#exampleModalLabel a');
-		link.href = `../paginas/relatorios/ficha.php?id=${idPaciente}`;
-	}
-</script>
+<
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	var pag = "<?= $pag ?>"
-</script>
-
-<script type="text/javascript">
-
-</script>
+	</script>

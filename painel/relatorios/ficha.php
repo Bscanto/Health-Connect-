@@ -6,10 +6,10 @@ include('data_formatada.php');
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 
-$id = $_GET['id'];
+$id = $_GET['id_pac'];
 
 // Dados do paciente
-$queryPaciente = $pdo->query("SELECT * FROM pacientes WHERE id = '$id'");
+$queryPaciente = $pdo->query("SELECT * FROM paciente WHERE id = '$id'");
 $paciente = $queryPaciente->fetch(PDO::FETCH_ASSOC);
 
 if ($paciente) {
@@ -56,7 +56,7 @@ $queryAnamnese = $pdo->query("SELECT * FROM anamnese WHERE paciente = '$id'");
 $anamneses = $queryAnamnese->fetchAll(PDO::FETCH_ASSOC);
 
 // Histórico clínico
-$queryHistorico = $pdo->query("SELECT * FROM historico_paciente WHERE paciente = '$id' ORDER BY id DESC");
+$queryHistorico = $pdo->query("SELECT * FROM acao_realizada WHERE paciente = '$id' ORDER BY id DESC");
 $historicos = $queryHistorico->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
