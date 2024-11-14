@@ -549,7 +549,6 @@ if (@$pacientes == 'ocultar') {
 
 				<form id="formAcaoRealizada">
 
-					<input type="hidden" name="idPaciente" value="<?= $id_paciente ?>">
 
 					<div class="row">
 						<div class="form-group col-md-3">
@@ -616,9 +615,7 @@ if (@$pacientes == 'ocultar') {
 
 					<div class="modal-footer">
 
-					<input type="hidden" id="id_paciente" value="<?php echo $id_pac; ?>">
-
-
+					<input type="hidden" id="id_paciente" value="<?php echo $id_paciente; ?>">
 
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 						<button type="button" class="btn btn-primary" id="salvarAcao">Salvar Ação Realizada</button>
@@ -697,7 +694,7 @@ if (@$pacientes == 'ocultar') {
 	function abrirAtendimento(id) {
 
 		$('#modalAtendimento').modal('show');
-		$('#idPaciente').val(id);
+		$('#id_dados').val(id);
 
 		$.ajax({
 			url: 'paginas/consultas/listar_acoes_realizadas.php', // Arquivo PHP para listar as ações
@@ -729,7 +726,7 @@ if (@$pacientes == 'ocultar') {
 			let localacao = $('input[name="localacao"]:checked').val();
 			let descricao_procedimento = $('#descricao_procedimento').val();
 			let fk_acao_id = $('#acaorealizada').val();
-			let fk_paciente_id = $('#idPaciente').val();
+			let fk_paciente_id = $('#id_dados').val();
 
 
 			// Verificando se os campos estão preenchidos

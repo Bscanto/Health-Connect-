@@ -3,6 +3,7 @@ session_start();
 require_once("../../../conexao.php");
 
 
+
 if (isset($_POST['quantidade'])) {
     $quantidade = $_POST['quantidade'];
     $servico = $_POST['servico'];
@@ -13,7 +14,7 @@ if (isset($_POST['quantidade'])) {
     $fk_acao_id = $_POST['fk_acao_id'];
     $fk_paciente_id = $_POST['fk_paciente_id'];
 
-    
+    var_dump($fk_paciente_id );
     
     $fk_usuarios_id = $_SESSION['id']; 
     $cbo = $_SESSION['cbo'];

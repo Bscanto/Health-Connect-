@@ -51,4 +51,3 @@ if (count($acoes) > 0) {
 } else {
     echo "<p class='alert alert-info'>Nenhuma ação realizada foi encontrada para este paciente.</p>";
 }
-?>
