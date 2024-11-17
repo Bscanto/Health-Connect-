@@ -3,7 +3,7 @@ session_start();
 
 // Certifique-se de que o ID do paciente está definido na sessão
 isset($_SESSION['id_dados']);
-    $id_pac = $_SESSION['id_dados'];
+$id_pac = $_SESSION['id_dados'];
 
 
 
@@ -403,12 +403,21 @@ if (@$pacientes == 'ocultar') {
 					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="escolaridade_pai">Escolaridade do Pai</label>
-							<input type="text" class="form-control" id="escolaridade_pai" name="escolaridade_pai" value="">
+							<select id="escolaridade_pai" name="escolaridade_pai">
+								<option value="fundamental">Ensino Fundamental</option>
+								<option value="medio">Ensino Médio</option>
+								<option value="superior">Ensino Superior</option>
+							</select>
 						</div>
 
 						<div class="form-group col-md-6">
 							<label for="escolaridade_mae">Escolaridade da Mãe</label>
-							<input type="text" class="form-control" id="escolaridade_mae" name="escolaridade_mae">
+							<select id="escolaridade_mae" name="escolaridade_mae">
+								<option value="fundamental">Ensino Fundamental</option>
+								<option value="medio">Ensino Médio</option>
+								<option value="superior">Ensino Superior</option>
+							</select>
+							
 						</div>
 					</div>
 
@@ -615,7 +624,7 @@ if (@$pacientes == 'ocultar') {
 
 					<div class="modal-footer">
 
-					<input type="hidden" id="id_paciente" value="<?php echo $id_paciente; ?>">
+						<input type="hidden" id="id_paciente" value="<?php echo $id_paciente; ?>">
 
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 						<button type="button" class="btn btn-primary" id="salvarAcao">Salvar Ação Realizada</button>
@@ -882,98 +891,190 @@ if (@$pacientes == 'ocultar') {
 
 	}
 
-	
-	
+
+
 	function ficha() {
-    var id_dados = document.getElementById('id_dados').innerText;
-    var nome_dados = document.getElementById('nome_dados').innerText;
-    var data_cad_dados = document.getElementById('data_cad_dados').innerText;
-    var cns_dados = document.getElementById('cns_dados').innerText;
-    var email_dados = document.getElementById('email_dados').innerText;
-    var cpf_dados = document.getElementById('cpf_dados').innerText;
-    var telefone_dados = document.getElementById('telefone_dados').innerText;
-    var celular_dados = document.getElementById('celular_dados').innerText;
-    var data_nasc_dados = document.getElementById('data_nasc_dados').innerText;
-    var sexo_dados = document.getElementById('sexo_dados').innerText;
-    var raca_dados = document.getElementById('raca_dados').innerText;
-    var nacionalidade_dados = document.getElementById('nacionalidade_dados').innerText;
-    var nome_responsavel_dados = document.getElementById('nome_responsavel_dados').innerText;
-    var nome_mae_dados = document.getElementById('nome_mae_dados').innerText;
-    var ocupacao_mae_dados = document.getElementById('ocupacao_mae_dados').innerText;
-    var nome_pai_dados = document.getElementById('nome_pai_dados').innerText;
-    var ocupacao_pai_dados = document.getElementById('ocupacao_pai_dados').innerText;
-    var queixa_dados = document.getElementById('queixa_dados').innerText;
-    var endereco_dados = document.getElementById('endereco_dados').innerText;
-    var numero_dados = document.getElementById('numero_dados').innerText;
-    var bairro_dados = document.getElementById('bairro_dados').innerText;
-    var cidade_dados = document.getElementById('cidade_dados').innerText;
-    var estado_dados = document.getElementById('estado_dados').innerText;
-    var cep_dados = document.getElementById('cep_dados').innerText;
-    var escolaridade_pai_dados = document.getElementById('escolaridade_pai_dados').innerText;
-    var escolaridade_mae_dados = document.getElementById('escolaridade_mae_dados').innerText;
-    var turno = document.querySelector('[value="<?= $turno ?>"]').innerText;
-    var serie_dados = document.getElementById('serie_dados').innerText;
-    var tipo_escola = document.getElementById('tipo_escola').innerText;
-    var nome_escola_dados = document.getElementById('nome_escola_dados').innerText;
-    var anamese = document.getElementById('listar_ana_pac').innerHTML;
-    var historico_clinico = document.getElementById('listaAcoesPaciente').innerHTML;
+		var id_dados = document.getElementById('id_dados').innerText;
+		var nome_dados = document.getElementById('nome_dados').innerText;
+		var data_cad_dados = document.getElementById('data_cad_dados').innerText;
+		var cns_dados = document.getElementById('cns_dados').innerText;
+		var email_dados = document.getElementById('email_dados').innerText;
+		var cpf_dados = document.getElementById('cpf_dados').innerText;
+		var telefone_dados = document.getElementById('telefone_dados').innerText;
+		var celular_dados = document.getElementById('celular_dados').innerText;
+		var data_nasc_dados = document.getElementById('data_nasc_dados').innerText;
+		var sexo_dados = document.getElementById('sexo_dados').innerText;
+		var raca_dados = document.getElementById('raca_dados').innerText;
+		var nacionalidade_dados = document.getElementById('nacionalidade_dados').innerText;
+		var nome_responsavel_dados = document.getElementById('nome_responsavel_dados').innerText;
+		var nome_mae_dados = document.getElementById('nome_mae_dados').innerText;
+		var ocupacao_mae_dados = document.getElementById('ocupacao_mae_dados').innerText;
+		var nome_pai_dados = document.getElementById('nome_pai_dados').innerText;
+		var ocupacao_pai_dados = document.getElementById('ocupacao_pai_dados').innerText;
+		var queixa_dados = document.getElementById('queixa_dados').innerText;
+		var endereco_dados = document.getElementById('endereco_dados').innerText;
+		var numero_dados = document.getElementById('numero_dados').innerText;
+		var bairro_dados = document.getElementById('bairro_dados').innerText;
+		var cidade_dados = document.getElementById('cidade_dados').innerText;
+		var estado_dados = document.getElementById('estado_dados').innerText;
+		var cep_dados = document.getElementById('cep_dados').innerText;
+		var escolaridade_pai_dados = document.getElementById('escolaridade_pai_dados').innerText;
+		var escolaridade_mae_dados = document.getElementById('escolaridade_mae_dados').innerText;
+		var turno = document.querySelector('[value="<?= $turno ?>"]').innerText;
+		var serie_dados = document.getElementById('serie_dados').innerText;
+		var tipo_escola = document.getElementById('tipo_escola').innerText;
+		var nome_escola_dados = document.getElementById('nome_escola_dados').innerText;
+		var anamese = document.getElementById('listar_ana_pac').innerHTML;
+		var historico_clinico = document.getElementById('listaAcoesPaciente').innerHTML;
 
-    // Crie um formulário para enviar os dados
-    var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'relatorios/ficha_class.php';
-    form.target = '_blank'; // Opcional: abre o PDF em uma nova aba
+		// Crie um formulário para enviar os dados
+		var form = document.createElement('form');
+		form.method = 'POST';
+		form.action = 'relatorios/ficha_class.php';
+		form.target = '_blank'; // Opcional: abre o PDF em uma nova aba
 
-    var inputs = [
-        { name: 'id_dados', value: id_dados },
-        { name: 'nome_dados', value: nome_dados },
-        { name: 'data_cad_dados', value: data_cad_dados },
-        { name: 'cns_dados', value: cns_dados },
-        { name: 'email_dados', value: email_dados },
-        { name: 'cpf_dados', value: cpf_dados },
-        { name: 'telefone_dados', value: telefone_dados },
-        { name: 'celular_dados', value: celular_dados },
-        { name: 'data_nasc_dados', value: data_nasc_dados },
-        { name: 'sexo_dados', value: sexo_dados },
-        { name: 'raca_dados', value: raca_dados },
-        { name: 'nacionalidade_dados', value: nacionalidade_dados },
-        { name: 'nome_responsavel_dados', value: nome_responsavel_dados },
-        { name: 'nome_mae_dados', value: nome_mae_dados },
-        { name: 'ocupacao_mae_dados', value: ocupacao_mae_dados },
-        { name: 'nome_pai_dados', value: nome_pai_dados },
-        { name: 'ocupacao_pai_dados', value: ocupacao_pai_dados },
-        { name: 'queixa_dados', value: queixa_dados },
-        { name: 'endereco_dados', value: endereco_dados },
-        { name: 'numero_dados', value: numero_dados },
-        { name: 'bairro_dados', value: bairro_dados },
-        { name: 'cidade_dados', value: cidade_dados },
-        { name: 'estado_dados', value: estado_dados },
-        { name: 'cep_dados', value: cep_dados },
-        { name: 'escolaridade_pai_dados', value: escolaridade_pai_dados },
-        { name: 'escolaridade_mae_dados', value: escolaridade_mae_dados },
-        { name: 'turno', value: turno },
-        { name: 'serie_dados', value: serie_dados },
-        { name: 'tipo_escola', value: tipo_escola },
-        { name: 'nome_escola_dados', value: nome_escola_dados },
-        { name: 'anamese', value: anamese },
-        { name: 'historico_clinico', value: historico_clinico },
-    ];
+		var inputs = [{
+				name: 'id_dados',
+				value: id_dados
+			},
+			{
+				name: 'nome_dados',
+				value: nome_dados
+			},
+			{
+				name: 'data_cad_dados',
+				value: data_cad_dados
+			},
+			{
+				name: 'cns_dados',
+				value: cns_dados
+			},
+			{
+				name: 'email_dados',
+				value: email_dados
+			},
+			{
+				name: 'cpf_dados',
+				value: cpf_dados
+			},
+			{
+				name: 'telefone_dados',
+				value: telefone_dados
+			},
+			{
+				name: 'celular_dados',
+				value: celular_dados
+			},
+			{
+				name: 'data_nasc_dados',
+				value: data_nasc_dados
+			},
+			{
+				name: 'sexo_dados',
+				value: sexo_dados
+			},
+			{
+				name: 'raca_dados',
+				value: raca_dados
+			},
+			{
+				name: 'nacionalidade_dados',
+				value: nacionalidade_dados
+			},
+			{
+				name: 'nome_responsavel_dados',
+				value: nome_responsavel_dados
+			},
+			{
+				name: 'nome_mae_dados',
+				value: nome_mae_dados
+			},
+			{
+				name: 'ocupacao_mae_dados',
+				value: ocupacao_mae_dados
+			},
+			{
+				name: 'nome_pai_dados',
+				value: nome_pai_dados
+			},
+			{
+				name: 'ocupacao_pai_dados',
+				value: ocupacao_pai_dados
+			},
+			{
+				name: 'queixa_dados',
+				value: queixa_dados
+			},
+			{
+				name: 'endereco_dados',
+				value: endereco_dados
+			},
+			{
+				name: 'numero_dados',
+				value: numero_dados
+			},
+			{
+				name: 'bairro_dados',
+				value: bairro_dados
+			},
+			{
+				name: 'cidade_dados',
+				value: cidade_dados
+			},
+			{
+				name: 'estado_dados',
+				value: estado_dados
+			},
+			{
+				name: 'cep_dados',
+				value: cep_dados
+			},
+			{
+				name: 'escolaridade_pai_dados',
+				value: escolaridade_pai_dados
+			},
+			{
+				name: 'escolaridade_mae_dados',
+				value: escolaridade_mae_dados
+			},
+			{
+				name: 'turno',
+				value: turno
+			},
+			{
+				name: 'serie_dados',
+				value: serie_dados
+			},
+			{
+				name: 'tipo_escola',
+				value: tipo_escola
+			},
+			{
+				name: 'nome_escola_dados',
+				value: nome_escola_dados
+			},
+			{
+				name: 'anamese',
+				value: anamese
+			},
+			{
+				name: 'historico_clinico',
+				value: historico_clinico
+			},
+		];
 
-    inputs.forEach(function(inputData) {
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = inputData.name;
-        input.value = inputData.value;
-        form.appendChild(input);
-    });
+		inputs.forEach(function(inputData) {
+			var input = document.createElement('input');
+			input.type = 'hidden';
+			input.name = inputData.name;
+			input.value = inputData.value;
+			form.appendChild(input);
+		});
 
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-}
-
-	
-
+		document.body.appendChild(form);
+		form.submit();
+		document.body.removeChild(form);
+	}
 </script>
 
 

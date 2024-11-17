@@ -60,7 +60,7 @@ if ($total_reg > 0) {
 		<br>
 		';
 			}
-			echo '</div><hr style="border: 1px solid red;"> <br>';
+			echo '</div><hr style="border: 1px solid ;"> <br>';
 		}
 	}
 }

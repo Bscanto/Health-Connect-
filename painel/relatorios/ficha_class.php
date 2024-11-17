@@ -81,9 +81,10 @@ $html = <<<HTML
     <!-- Marca d'água incorporada como Base64 -->
    
     <h1>Ficha do Paciente</h1>
+    <p style="text-align: center;  font-size: 16px;  font-weight: bold;"> {$nome_dados}</p>
+
 
     <div class="header">
-        <h3>FICHA DO PACIENTE</h3>
         <p>Prontuário: {$id_dados}</p>
         <p>Data de Cadastro: {$data_cad_dados}</p>
     </div>
@@ -189,4 +190,3 @@ $dompdf->render();
 
 // Envie o PDF para o navegador
 $dompdf->stream('ficha_paciente.pdf', ['Attachment' => false]);
-?>
