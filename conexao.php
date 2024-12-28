@@ -86,8 +86,4 @@ $total_atendimentos_ano = $pdo->query("SELECT COUNT(*)
                                        WHERE YEAR(data_acao) = YEAR(CURDATE())")->fetchColumn();
 
 
-
-
-
-
  ?>

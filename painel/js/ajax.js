@@ -59,7 +59,7 @@ function listarConsulta(p1, p2, p3, p4, p5, p6) {
   }
 
   // Função de submissão do formulário de edição
-  $("#form").submit(function (event) {
+  $("#form").off("submit").on("submit", function (event) {
     event.preventDefault(); // Previne o envio padrão do formulário
     var formData = new FormData(this);
   
@@ -73,9 +73,7 @@ function listarConsulta(p1, p2, p3, p4, p5, p6) {
         $("#mensagem").removeClass();
         if (mensagem.trim() == "Salvo com Sucesso") {
           $("#btn-fechar").click();
-          listar(); 
-          listarConsulta();
-
+          listar();
         } else {
           $("#mensagem").addClass("text-danger");
           $("#mensagem").text(mensagem);
@@ -87,6 +85,7 @@ function listarConsulta(p1, p2, p3, p4, p5, p6) {
       processData: false,
     });
   });
+  
 
 
 

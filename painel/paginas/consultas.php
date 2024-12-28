@@ -931,7 +931,7 @@ if (@$pacientes == 'ocultar') {
 		var form = document.createElement('form');
 		form.method = 'POST';
 		form.action = 'relatorios/ficha_class.php';
-		form.target = '_blank'; // Opcional: abre o PDF em uma nova aba
+		form.target = '_blank'; 
 
 		var inputs = [{
 				name: 'id_dados',
@@ -1135,7 +1135,6 @@ if (@$pacientes == 'ocultar') {
 	});
 </script>
 
-<
 
 
 	<script type="text/javascript">

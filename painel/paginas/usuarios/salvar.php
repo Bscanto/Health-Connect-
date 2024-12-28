@@ -21,12 +21,14 @@ $senha_crip = sha1($senha);
 $id = $_POST['id'];
 
 // Validação email
+if($id == ""){
 $query = $pdo->query("SELECT * from $tabela where email = '$email'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $id_reg = @$res[0]['id'];
 if(@count($res) > 0 and $id != $id_reg){
     echo 'Email já Cadastrado!';
     exit();
+}
 }
 
 // Validação telefone
