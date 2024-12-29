@@ -164,12 +164,6 @@ if (@$usuarios == 'ocultar') {
 					</small>
 
 
-
-
-
-
-					<input type="hidden" class="form-control" id="id" name="id">
-
 					<br>
 					<small>
 						<div id="mensagem" align="center"></div>

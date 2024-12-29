@@ -4,12 +4,19 @@ if (@$home == 'ocultar') {
     exit();
 }
 
-// Definindo as metas de atendimentos
-$meta_diaria = 30;
-$meta_mensal = 100;
-$meta_anual = 1000;
+$config = $pdo->query("SELECT meta_diaria, meta_mensal, meta_anual FROM config WHERE id = 1")->fetch(PDO::FETCH_ASSOC);
 
-// Defina valores padrão para evitar erros de variáveis indefinidas
+
+$meta_diaria = $config['meta_diaria'] ?? 30; 
+$meta_mensal = $config['meta_mensal'] ?? 100;
+$meta_anual = $config['meta_anual'] ?? 1000;
+
+
+//$meta_diaria = 30;
+//$meta_mensal = 100;
+//$meta_anual = 1000;
+
+
 $total_acoes_hoje = $total_acoes_hoje ?? 0;
 $total_atendimentos_mes = $total_atendimentos_mes ?? 0;
 $total_atendimentos_ano = $total_atendimentos_ano ?? 0;
@@ -19,8 +26,7 @@ $percentual_mes = ($total_atendimentos_mes / $meta_mensal) * 100;
 $percentual_ano = ($total_atendimentos_ano / $meta_anual) * 100;
 
 // Consulta SQL para obter os atendimentos por profissional no mês atual
-$atendimentos_por_profissional = $pdo->query("
-    SELECT u.id AS profissional_id, u.nome, COUNT(ar.id_acao_realizada) AS total_atendimentos
+$atendimentos_por_profissional = $pdo->query("SELECT u.id AS profissional_id, u.nome, COUNT(ar.id_acao_realizada) AS total_atendimentos
     FROM usuarios u
     JOIN acao_realizada ar ON u.id = ar.fk_usuarios_id
     WHERE MONTH(ar.data_acao) = MONTH(CURDATE()) 

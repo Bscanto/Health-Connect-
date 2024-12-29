@@ -507,15 +507,15 @@ if ($linhas > 0) {
 						</div>
 					</div>
 
-<div class="row">
-	<div class="col-md-3">
-		<label> Marca D'Agua</label>
-		<select class="form-control" name="marca_dagua" id="">
-			<option value="Sim" <?php if( $marca_dagua == 'Sim') echo 'selected'?> >Sim</option>
-			<option value="Não" <?php if( $marca_dagua == 'Não') echo 'selected'?>>Não</option>
-		</select>
-	</div>
-</div>
+					<div class="row">
+						<div class="col-md-3">
+							<label> Marca D'Agua</label>
+							<select class="form-control" name="marca_dagua" id="">
+								<option value="Sim" <?php if ($marca_dagua == 'Sim') echo 'selected' ?>>Sim</option>
+								<option value="Não" <?php if ($marca_dagua == 'Não') echo 'selected' ?>>Não</option>
+							</select>
+						</div>
+					</div>
 
 
 
@@ -569,6 +569,23 @@ if ($linhas > 0) {
 
 					</div>
 
+					<div class="row">
+						<div class="col-md-4">
+							<label>Meta Diária</label>
+							<input type="number" class="form-control" id="meta_diaria" name="meta_diaria" placeholder="Ex: 30" value="<?php echo @$meta_diaria ?>" required>
+						</div>
+
+						<div class="col-md-4">
+							<label>Meta Mensal</label>
+							<input type="number" class="form-control" id="meta_mensal" name="meta_mensal" placeholder="Ex: 100" value="<?php echo @$meta_mensal ?>" required>
+						</div>
+
+						<div class="col-md-4">
+							<label>Meta Anual</label>
+							<input type="number" class="form-control" id="meta_anual" name="meta_anual" placeholder="Ex: 1000" value="<?php echo @$meta_anual ?>" required>
+						</div>
+					</div>
+
 
 					<br>
 					<small>
@@ -578,6 +595,7 @@ if ($linhas > 0) {
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary">Salvar</button>
 				</div>
+
 			</form>
 		</div>
 	</div>

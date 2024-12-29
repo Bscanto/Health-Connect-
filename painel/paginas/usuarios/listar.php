@@ -142,11 +142,24 @@ HTML;
 		$('#titulo_inserir').text('Editar Registro');
 
 		$('#id').val(id);
-		$('#nome').val(nome);
-		$('#email').val(email);
-		$('#telefone').val(telefone);
-		$('#endereco').val(endereco);
-		$('#nivel').val(nivel).change();
+  $('#nome').val(nome);
+  $('#email').val(email);
+  $('#nivel').val(nivel).change();
+  $('#ativo').val(ativo).change();
+  $('#telefone').val(telefone);
+  $('#endereco').val(endereco);
+  $('#foto').val(foto);
+  $('#data').val(data);
+  $('#estado').val(estado).change();
+  $('#cidade').val(cidade).change();
+  $('#bairro').val(bairro);
+  $('#cep').val(cep);
+  $('#numero').val(numero);
+  $('#data_nasc').val(data_nasc);
+  $('#sexo').val(sexo).change();
+  $('#cpf').val(cpf);
+  $('#cbo').val(cbo);
+  $('#cnsp').val(cnsp);
 
 		$('#modalForm').modal('show');
 	}
