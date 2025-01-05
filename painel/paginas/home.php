@@ -25,6 +25,7 @@ $percentual_hoje = ($total_acoes_hoje / $meta_diaria) * 100;
 $percentual_mes = ($total_atendimentos_mes / $meta_mensal) * 100;
 $percentual_ano = ($total_atendimentos_ano / $meta_anual) * 100;
 
+
 // Consulta SQL para obter os atendimentos por profissional no mês atual
 $atendimentos_por_profissional = $pdo->query("SELECT u.id AS profissional_id, u.nome, COUNT(ar.id_acao_realizada) AS total_atendimentos
     FROM usuarios u
@@ -33,6 +34,7 @@ $atendimentos_por_profissional = $pdo->query("SELECT u.id AS profissional_id, u.
       AND YEAR(ar.data_acao) = YEAR(CURDATE())
     GROUP BY u.id, u.nome
 ")->fetchAll(PDO::FETCH_ASSOC);
+
 
 $profissionais = [];
 $totalAtendimentos = [];
