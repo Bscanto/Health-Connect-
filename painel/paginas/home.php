@@ -40,7 +40,7 @@ $profissionais = [];
 $totalAtendimentos = [];
 
 foreach ($atendimentos_por_profissional as $atendimento) {
-    $profissionais[] = $atendimento['nome']; // Corrigido para acessar o campo 'nome'
+    $profissionais[] = $atendimento['nome']; 
     $totalAtendimentos[] = $atendimento['total_atendimentos'];
 }
 ?>
@@ -149,7 +149,6 @@ foreach ($atendimentos_por_profissional as $atendimento) {
     </div>
 </div>
 
-<!-- Importando Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- Script para o Gráfico de Atendimentos por Profissional -->

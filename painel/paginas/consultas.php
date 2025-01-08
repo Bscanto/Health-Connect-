@@ -496,16 +496,6 @@ if (@$pacientes == 'ocultar') {
 			</div>
 
 
-
-
-
-
-
-
-
-
-
-
 			<div class="modal-body">
 				<div class="row" id="listar_ana">
 				</div>
