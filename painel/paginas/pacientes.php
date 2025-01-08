@@ -5,12 +5,21 @@ if (@$pacientes == 'ocultar') {
 	echo "<script>window.location='../index.php'</script>";
 	exit();
 }
+// Verifica o nível do usuário 
+session_start();
+$nivel_usuario = $_SESSION['nivel'];
 
 ?>
 <a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Paciente</a>
 
 
-<a target="_blank"  href="relatorios/pacientes_class.php" type="button" class="btn btn-success"  style="position: absolute; right: 30px"><span class="fa fa-file-pdf-o"></span>   Relatorio Pacientes</a>
+<?php if ($nivel_usuario == 'Administrador') { ?>
+        <a target="_blank" href="relatorios/pacientes_class.php" type="button" class="btn btn-success" style="position: absolute; right: 30px">
+            <span class="fa fa-file-pdf-o"></span> Relatório Pacientes
+        </a>
+    <?php } ?>
+
+
 
 <li class="dropdown head-dpdn2" style="display: inline-block;">
 	<a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle" id="btn-deletar" style="display:none"><span class="fa fa-trash-o"></span> Deletar</a>

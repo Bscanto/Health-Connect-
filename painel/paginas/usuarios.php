@@ -5,13 +5,22 @@ if (@$usuarios == 'ocultar') {
 	echo "<script>window.location='../index.php'</script>";
 	exit();
 }
-
+// Verifica o nível do usuário 
+session_start();
+$nivel_usuario = $_SESSION['nivel'];
 ?>
 
 <div class="main-page margin-mobile">
 	<a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Usuário</a>
 
-	<a target="_blank"  href="relatorios/usuarios_class.php" type="button" class="btn btn-success"  style="position: absolute; right: 30px"><span class="fa fa-file-pdf-o"></span>   Relatorio Usuarios</a>
+
+	<?php if ($nivel_usuario == 'Administrador') { ?>
+		<a target="_blank" href="relatorios/usuarios_class.php" type="button" class="btn btn-success" style="position: absolute; right: 30px">
+			<span class="fa fa-file-pdf-o"></span> Relatório Usuários
+		</a>
+	<?php } ?>
+
+
 
 	<li class="dropdown head-dpdn2" style="display: inline-block;">
 		<a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle" id="btn-deletar" style="display:none"><span class="fa fa-trash-o"></span> Deletar</a>
@@ -35,7 +44,7 @@ if (@$usuarios == 'ocultar') {
 
 <!-- Modal Perfil -->
 <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-lg">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="exampleModalLabel"><span id="titulo_inserir"></span></h4>
@@ -43,7 +52,7 @@ if (@$usuarios == 'ocultar') {
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form id="form" >
+			<form id="form">
 				<div class="modal-body">
 
 
@@ -93,7 +102,7 @@ if (@$usuarios == 'ocultar') {
 
 						<div class="col-md-3">
 							<label>CEP</label>
-							<input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" >
+							<input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
 						</div>
 
 
@@ -107,31 +116,31 @@ if (@$usuarios == 'ocultar') {
 
 						<div class="col-md-3">
 							<label>Número</label>
-							<input type="text" class="form-control" id="numero" name="numero" placeholder="Número" >
+							<input type="text" class="form-control" id="numero" name="numero" placeholder="Número">
 						</div>
 
 						<div class="col-md-3">
 							<label>Bairro</label>
-							<input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" >
+							<input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro">
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-4">
 							<label>Cidade</label>
-							<input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" >
+							<input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade">
 						</div>
 
 						<div class="col-md-4">
 							<label>Estado</label>
-							<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" >
+							<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado">
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-4">
 							<label>Data de Nascimento</label>
-							<input type="date" class="form-control" id="data_nasc" name="data_nasc" >
+							<input type="date" class="form-control" id="data_nasc" name="data_nasc">
 						</div>
 
 						<div class="col-md-4">
@@ -148,12 +157,12 @@ if (@$usuarios == 'ocultar') {
 					<div class="row">
 						<div class="col-md-4">
 							<label>CBO</label>
-							<input type="text" class="form-control" id="cbo" name="cbo" placeholder="CBO" >
+							<input type="text" class="form-control" id="cbo" name="cbo" placeholder="CBO">
 						</div>
 
 						<div class="col-md-4">
 							<label>CNSP</label>
-							<input type="text" class="form-control" id="cnsp" name="cnsp" placeholder="CNSP" >
+							<input type="text" class="form-control" id="cnsp" name="cnsp" placeholder="CNSP">
 						</div>
 					</div>
 
@@ -182,95 +191,108 @@ if (@$usuarios == 'ocultar') {
 
 <!-- Modal Dados -->
 <div class="modal fade" id="modalDados" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"><span id="titulo_dados"></span></h4>
-                <button id="btn-fechar-dados" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel"><span id="titulo_dados"></span></h4>
+				<button id="btn-fechar-dados" type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
 
-            <div class="modal-body">
-                <div class="row" style="margin-top: 0px">
 
-                    <!-- Informações Pessoais -->
-                    <div class="col-md-12 mb-3">
-                        <h5><b>Informações Pessoais</b></h5>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <span><b>Nome: </b></span><span id="nome_dados"></span>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <span><b>CPF: </b></span><span id="cpf_dados"></span>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <span><b>Telefone: </b></span><span id="telefone_dados"></span>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <span><b>Sexo: </b></span><span id="sexo_dados"></span>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <span><b>Data Nascimento: </b></span><span id="data_nasc_dados"></span>
-                    </div>
 
-                    <!-- Endereço -->
-                    <div class="col-md-12 mb-3">
-                        <h5><b>Endereço</b></h5>
-                    </div>
-                    <div class="col-md-8 mb-2">
-                        <span><b>Endereço: </b></span><span id="endereco_dados"></span>
-                    </div>
-                    <div class="col-md-4 mb-2">
-                        <span><b>Número: </b></span><span id="numero_dados"></span>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <span><b>Cidade: </b></span><span id="cidade_dados"></span>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <span><b>Estado: </b></span><span id="estado_dados"></span>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <span><b>Bairro: </b></span><span id="bairro_dados"></span>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <span><b>CEP: </b></span><span id="cep_dados"></span>
-                    </div>
+			<div class="modal-body">
+				<div class="row" style="margin-top: 0px">
 
-                    <!-- Informações Profissionais -->
-                    <div class="col-md-12 mb-3">
-                        <h5><b>Informações Profissionais</b></h5>
-                    </div>
-                    <div class="col-md-12 mb-2">
-                        <span><b>CBO: </b></span><span id="cbo_dados"></span>
-                    </div>
-                    <div class="col-md-12 mb-2">
-                        <span><b>Cadastro Nacional de Saúde do Profissional: </b></span><span id="cnsp_dados"></span>
-                    </div>
+					<!-- Informações Pessoais -->
+					<div class="col-md-12 mb-3">
+						<h5><b>Informações Pessoais</b></h5>
+					</div>
+					<div class="col-md-6 mb-2">
+						<span><b>Nome: </b></span><span id="nome_dados"></span>
+					</div>
+					<div class="col-md-6 mb-2">
+						<span><b>CPF: </b></span><span id="cpf_dados"></span>
+					</div>
+					<div class="col-md-6 mb-2">
+						<span><b>Telefone: </b></span><span id="telefone_dados"></span>
+					</div>
+					<div class="col-md-6 mb-2">
+						<span><b>Sexo: </b></span><span id="sexo_dados"></span>
+					</div>
+					<div class="col-md-6 mb-2">
+						<span><b>Data Nascimento: </b></span><span id="data_nasc_dados"></span>
+					</div>
 
-                    <!-- Informações Adicionais -->
-                    <div class="col-md-12 mb-3">
-                        <h5><b>Informações Adicionais</b></h5>
-                    </div>
-                    <div class="col-md-12 mb-2">
-                        <span><b>Email: </b></span><span id="email_dados"></span>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <span><b>Data Cadastro: </b></span><span id="data_dados"></span>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <span><b>Nível: </b></span><span id="nivel_dados"></span>
-                    </div>
+					<!-- Endereço -->
+					<div class="col-md-12 mb-3">
+						<h5><b>Endereço</b></h5>
+					</div>
+					<div class="col-md-8 mb-2">
+						<span><b>Endereço: </b></span><span id="endereco_dados"></span>
+					</div>
+					<div class="col-md-4 mb-2">
+						<span><b>Número: </b></span><span id="numero_dados"></span>
+					</div>
+					<div class="col-md-6 mb-2">
+						<span><b>Cidade: </b></span><span id="cidade_dados"></span>
+					</div>
+					<div class="col-md-6 mb-2">
+						<span><b>Estado: </b></span><span id="estado_dados"></span>
+					</div>
+					<div class="col-md-6 mb-2">
+						<span><b>Bairro: </b></span><span id="bairro_dados"></span>
+					</div>
+					<div class="col-md-6 mb-2">
+						<span><b>CEP: </b></span><span id="cep_dados"></span>
+					</div>
 
-                    <!-- Foto -->
-                    <div class="col-md-12 mb-2 text-center">
-                        <img src="" id="foto_dados" width="200px" class="img-fluid">
-                    </div>
+					<!-- Informações Profissionais -->
+					<div class="col-md-12 mb-3">
+						<h5><b>Informações Profissionais</b></h5>
+					</div>
+					<div class="col-md-12 mb-2">
+						<span><b>CBO: </b></span><span id="cbo_dados"></span>
+					</div>
+					<div class="col-md-12 mb-2">
+						<span><b>Cadastro Nacional de Saúde do Profissional: </b></span><span id="cnsp_dados"></span>
+					</div>
 
-                </div>
-            </div>
-        </div>
-    </div>
+					<!-- Informações Adicionais -->
+					<div class="col-md-12 mb-3">
+						<h5><b>Informações Adicionais</b></h5>
+					</div>
+					<div class="col-md-12 mb-2">
+						<span><b>Email: </b></span><span id="email_dados"></span>
+					</div>
+					<div class="col-md-6 mb-2">
+						<span><b>Data Cadastro: </b></span><span id="data_dados"></span>
+					</div>
+					<div class="col-md-6 mb-2">
+						<span><b>Nível: </b></span><span id="nivel_dados"></span>
+					</div>
+
+					<!-- Foto -->
+					<div class="col-md-12 mb-2 text-center">
+						<img src="" id="foto_dados" width="200px" class="img-fluid">
+					</div>
+<br>
+<br>
+
+
+<a target="_blank" href="relatorios/usuariosFicha_class.php" type="button" class="btn btn-success" >
+				<span class="fa fa-file-pdf-o"></span> Imprimir Ficha Usuário
+			</a>
+
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 
