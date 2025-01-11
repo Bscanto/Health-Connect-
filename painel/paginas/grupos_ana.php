@@ -9,7 +9,7 @@ if(@$grupos_ana == 'ocultar'){
 
  ?>
 
-<a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Grupo</a>
+<a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Grupo Anamnese</a>
 
 <li class="dropdown head-dpdn2" style="display: inline-block;">		
 

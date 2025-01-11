@@ -11,7 +11,7 @@ if (@$itens_ana == 'ocultar') {
 
 <div class="row">
 	<div class="col-md-2">
-		<a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Itens</a>
+		<a onclick="inserir()" type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Itens Anamnese</a>
 	</div>
 
 	<div class="col-md-3">

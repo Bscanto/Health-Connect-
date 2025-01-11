@@ -96,7 +96,7 @@ HTML;
 		</ul>
 </li>
 
-<big><a href="#" onclick="mostrar('{$nome}', '{$email}', '{$telefone}', '{$endereco}', '{$dataF}', '{$nivel}', '{$foto}', '{$estado}', '{$cidade}', '{$bairro}', '{$cep}', '{$numero}', '{$data_nasc}', '{$sexo}', '{$cpf}', '{$cbo}', '{$cnsp}')"
+<big><a href="#" onclick="mostrar('{$id}', '{$nome}', '{$email}', '{$telefone}', '{$endereco}', '{$dataF}', '{$nivel}', '{$foto}', '{$estado}', '{$cidade}', '{$bairro}', '{$cep}', '{$numero}', '{$data_nasc}', '{$sexo}', '{$cpf}', '{$cbo}', '{$cnsp}')"
 title="Mostrar Dados"><i class="fa fa-info-circle text-primary"></i></a></big>
 
 
@@ -165,8 +165,8 @@ HTML;
 	}
 
 
-	function mostrar(nome, email, telefone, endereco, dataF, nivel, foto, estado, cidade, bairro, cep, numero, data_nasc, sexo, cpf, cbo, cnsp) {
-
+	function mostrar(id, nome, email, telefone, endereco, dataF, nivel, foto, estado, cidade, bairro, cep, numero, data_nasc, sexo, cpf, cbo, cnsp) {
+		$('#id_dados').text(id);
 			$('#nome_dados').text(nome);
 			$('#email_dados').text(email);
 			$('#nivel_dados').text(nivel);
@@ -186,6 +186,9 @@ HTML;
 
 		
 		$('#foto_dados').attr("src", "images/perfil/" + foto);
+
+		// Configura o botão "Imprimir Ficha"
+    $('#btn-imprimir').attr("href", `relatorios/usuariosFicha_class.php?id=${id}`);
 
 
 		$('#modalDados').modal('show');

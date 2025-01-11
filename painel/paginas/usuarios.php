@@ -43,7 +43,7 @@ $nivel_usuario = $_SESSION['nivel'];
 <input type="hidden" id="ids">
 
 <!-- Modal Perfil -->
-<div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalForm" >
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -206,6 +206,7 @@ $nivel_usuario = $_SESSION['nivel'];
 			<div class="modal-body">
 				<div class="row" style="margin-top: 0px">
 
+				<input type="hidden" id="id_dados">
 					<!-- Informações Pessoais -->
 					<div class="col-md-12 mb-3">
 						<h5><b>Informações Pessoais</b></h5>
@@ -281,11 +282,9 @@ $nivel_usuario = $_SESSION['nivel'];
 <br>
 <br>
 
-
-<a target="_blank" href="relatorios/usuariosFicha_class.php" type="button" class="btn btn-success" >
-				<span class="fa fa-file-pdf-o"></span> Imprimir Ficha Usuário
-			</a>
-
+<a target="_blank" id="btn-imprimir" href="#" type="button" class="btn btn-success">
+	<span class="fa fa-print"></span> Imprimir Ficha
+</a>
 
 
 
@@ -336,6 +335,26 @@ $nivel_usuario = $_SESSION['nivel'];
 </div>
 
 
+
+<script>
+   function imprimirModal() {
+    // Coletar dados do modal
+    const nome = document.getElementById('nome_dados').innerText;
+    const cpf = document.getElementById('cpf_dados').innerText;
+    const telefone = document.getElementById('telefone_dados').innerText;
+    const endereco = document.getElementById('endereco_dados').innerText;
+    const numero = document.getElementById('numero_dados').innerText;
+    const cidade = document.getElementById('cidade_dados').innerText;
+    const estado = document.getElementById('estado_dados').innerText;
+
+    // Criar URL com os parâmetros
+    const url = `usuariosFicha_class.php?nome=${nome}&cpf=${cpf}&telefone=${telefone}&endereco=${endereco}&numero=${numero}&cidade=${cidade}&estado=${estado}`;
+    
+    // Abrir a página de impressão
+    window.open(url, '_blank');
+}
+
+</script>
 
 
 <script type="text/javascript">
