@@ -261,7 +261,7 @@ if (@$pacientes == 'ocultar') {
 					<div class="col-md-6" style="font-size:14px">
 
 						<div style="margin-bottom: 5px; border-bottom:1px solid #cecece; padding-bottom:3px">
-							<h4><b class="text-danger">Informações Pessoais</b></h4>
+							<h4><b class="text-black">Informações Pessoais</b></h4>
 							<br>
 							<span style="margin-right: 20px"><b>Cns</b> <span id="cns_dados"></span></span>
 							<span style="margin-right: 20px"><b>Email</b> <span id="email_dados"></span></span>
@@ -280,7 +280,7 @@ if (@$pacientes == 'ocultar') {
 
 
 						<div style="margin-bottom: 5px; border-bottom:1px solid #cecece; padding-bottom:3px">
-							<h4><b class="text-danger">Informações Pais/Responsável</b></h4>
+							<h4><b class="text-black">Informações Pais/Responsável</b></h4>
 							<br>
 							<span style="margin-right: 20px"><b>Nome do Responsável:</b> <span id="nome_responsavel_dados"></span></span>
 							<br>
@@ -300,7 +300,7 @@ if (@$pacientes == 'ocultar') {
 					<div class="col-md-6" style="font-size:14px">
 
 						<div style="margin-bottom: 5px; border-bottom:1px solid #cecece; padding-bottom:3px">
-							<h4><b class="text-danger">Endereço</b></h4>
+							<h4><b class="text-black">Endereço</b></h4>
 							<br>
 							<span style="margin-right: 20px"><b>Endereço</b> <span id="endereco_dados"></span></span>
 							<span style="margin-right: 20px"><b>Número</b> <span id="numero_dados"></span></span>
@@ -314,7 +314,7 @@ if (@$pacientes == 'ocultar') {
 						</div>
 
 						<div style="margin-bottom: 5px; border-bottom:1px solid #cecece; padding-bottom:3px;">
-							<h4><b class="text-danger">Escolaridade</b></h4>
+							<h4><b class="text-black">Escolaridade</b></h4>
 							<br>
 							<span style="margin-right: 20px"><b>Escolaridade Pai: </b> <span id="escolaridade_pai_dados"></span></span>
 							<span style="margin-right: 20px"><b>Escolaridade Mãe: </b> <span id="escolaridade_mae_dados"></span></span>

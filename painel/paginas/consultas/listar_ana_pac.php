@@ -21,7 +21,7 @@ $nome_grupo = $res[$i]['nome'];
 
 		if($total_reg2 > 0){
 			$total_itens += 1;
-			echo '<div style="color:red"><b>'.$nome_grupo.'</b></div><div style="margin-bottom:10px; border-bottom:1px solid #383838">';
+			echo '<div style="color:black"><b>'.$nome_grupo.'</b></div><div style="margin-bottom:10px; border-bottom:1px solid #383838">';
 			for($i2=0; $i2 < $total_reg2; $i2++){
 
 			
