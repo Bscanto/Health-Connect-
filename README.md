@@ -19,13 +19,13 @@ O **Health Connect** é um sistema web desenvolvido para informatizar os prontu�
 
 ## Tecnologias Utilizadas
 
-- **Back-end:** PHP 7+ com banco de dados MySQL.
-- **Front-end:** HTML5, CSS3, JavaScript (com suporte AJAX).
-- **Controle de Versão:** Git e GitHub.
-- **Frameworks de Teste:** PHPUnit para testes unitários.
-- **Outras Tecnologias:**
-  - Arquitetura modular com padrão MVC.
-  - Design responsivo para interfaces amigáveis.
+- **Frontend**: 🌐 **HTML5**, 🎨 **CSS3**, 📚 **Bootstrap**, ⚡ **JavaScript**, 🌀 **jQuery**, 🔄 **Ajax**
+
+- **Backend**: 🐘 **PHP**
+
+- **Banco de Dados**: 🛢️ **MySQL**
+
+- **Servidor Local**: 🖥️ **XAMPP**
 
 ## Estrutura do Sistema
 
