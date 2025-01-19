@@ -19,13 +19,16 @@ O **Health Connect** é um sistema web desenvolvido para informatizar os prontu�
 
 ## Tecnologias Utilizadas
 
-- **Frontend**: 🌐 **HTML5**, 🎨 **CSS3**, 📚 **Bootstrap**, ⚡ **JavaScript**, 🌀 **jQuery**, 🔄 **Ajax**
+![HTML5](https://img.shields.io/badge/HTML5-orange?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-blue?style=for-the-badge&logo=css3&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-purple?style=for-the-badge&logo=bootstrap&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge&logo=javascript&logoColor=white)
+![JQuery](https://img.shields.io/badge/JQuery-blue?style=for-the-badge&logo=jquery&logoColor=white)
+![Ajax](https://img.shields.io/badge/Ajax-blue?style=for-the-badge&logo=javascript&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-purple?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-blue?style=for-the-badge&logo=mysql&logoColor=white)
+![XAMPP](https://img.shields.io/badge/XAMPP-orange?style=for-the-badge&logo=xampp&logoColor=white)
 
-- **Backend**: 🐘 **PHP**
-
-- **Banco de Dados**: 🛢️ **MySQL**
-
-- **Servidor Local**: 🖥️ **XAMPP**
 
 ## Estrutura do Sistema
 
