@@ -19,17 +19,19 @@ O **Health Connect** é um sistema web desenvolvido para informatizar os prontu�
 
 ## Tecnologias Utilizadas
 
-![HTML5](https://img.shields.io/badge/HTML5-orange?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-blue?style=for-the-badge&logo=css3&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-purple?style=for-the-badge&logo=bootstrap&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge&logo=javascript&logoColor=white)
-![JQuery](https://img.shields.io/badge/JQuery-blue?style=for-the-badge&logo=jquery&logoColor=white)
-![Ajax](https://img.shields.io/badge/Ajax-blue?style=for-the-badge&logo=javascript&logoColor=white)
-![PHP](https://img.shields.io/badge/PHP-purple?style=for-the-badge&logo=php&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-blue?style=for-the-badge&logo=mysql&logoColor=white)
-![XAMPP](https://img.shields.io/badge/XAMPP-orange?style=for-the-badge&logo=xampp&logoColor=white)
+- **Frontend**:<br>
+  [![](https://skillicons.dev/icons?i=html,css,bootstrap,javascript,jquery,ajax&perline=10)](https://skillicons.dev)
 
+- **Backend**: <br>
+  [![](https://skillicons.dev/icons?i=php&perline=3)](https://skillicons.dev)
 
+- **Banco de Dados**:<br>
+  [![](https://skillicons.dev/icons?i=mysql&perline=3)](https://skillicons.dev)
+
+- **Controle de verssão**:<br>
+  [![](https://skillicons.dev/icons?i=git,github&perline=3)](https://skillicons.dev)
+
+ 
 ## Estrutura do Sistema
 
 ### Usuários do Sistema
@@ -52,31 +54,69 @@ O **Health Connect** é um sistema web desenvolvido para informatizar os prontu�
 
 ## Instalação e Configuração
 
-1. **Pré-requisitos:**
-   - PHP 7.4 ou superior.
-   - MySQL 5.7 ou superior.
-   - Servidor web (Apache ou similar).
-   - Composer (para gerenciamento de dependências PHP).
+ # 1. Download do XAMPP
 
-2. **Passos de instalação:**
-   - Clone o repositório:
-     ```bash
-     git clone https://github.com/seuprojeto/health-connect.git
-     ```
-   - Configure as variáveis de ambiente no arquivo `.env` (credenciais do banco de dados, configurações do sistema).
-   - Execute as migrações do banco de dados:
-     ```bash
-     php artisan migrate
-     ```
-   - Inicie o servidor local:
-     ```bash
-     php -S localhost:8000
-     ```
+Para rodar o **Health Connect**, é necessário instalar o XAMPP, que inclui o Apache e o MySQL. O XAMPP é uma solução completa para criar ambientes de desenvolvimento local.
 
-## Testes
+### 🖥️ Como baixar o XAMPP
 
-O sistema utiliza **PHPUnit** para validação de funcionalidades e integridade de dados.
+1.1. Acesse o site oficial do XAMPP:
+   [Clique aqui para acessar o site do XAMPP](https://www.apachefriends.org/pt_br/index.html)
+   
+1.2. Escolha a versão adequada ao seu sistema operacional (Windows, macOS ou Linux).
 
-- Para executar os testes:
-  ```bash
-  phpunit
+1.3. Baixe e instale o XAMPP seguindo as instruções do site.
+
+1.4. Após a instalação, inicie o Apache e o MySQL no painel de controle do XAMPP.
+
+Agora você está pronto para configurar e rodar o sistema **Health Connect**!
+
+# 2.  Download do Google Chrome
+
+Para uma melhor experiência ao utilizar o **Health Connect**, recomendamos o uso do navegador **Google Chrome**, conhecido por seu desempenho e compatibilidade com aplicações web.
+
+### 🖥️ Como baixar o Google Chrome
+
+2.1. Acesse o site oficial do Google Chrome:
+   [Clique aqui para acessar o site do Google Chrome](https://www.google.com/intl/pt-BR/chrome/)
+
+2.2. Escolha a versão adequada ao seu sistema operacional (Windows, macOS ou Linux).
+
+2.3. Baixe e instale o Google Chrome seguindo as instruções do site.
+
+Com o Google Chrome instalado, você poderá acessar o **Health Connect** de maneira rápida e eficiente.
+
+# 3. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/Bscanto/Health-Connect-.git
+   ```
+3.1 Copie os arquivos do projeto para a pasta htdocs do XAMPP.
+
+
+# 4. **Abra o phpMyAdmin:**
+
+4.1 Acesse o phpMyAdmin no navegador através do endereço: http://localhost/phpmyadmin
+
+ 4.2 Crie um banco de dados chamado health.
+ 
+ 4.3 Importe o arquivo health.sql fornecido no repositório para configurar as tabelas e dados iniciais.
+Configure o arquivo de conexão:
+
+4.4  Abra o arquivo conexao.php, no editor de sua escolha.
+ 4.5 Atualize as credenciais do banco de dados, se necessário.
+
+# 5. **Inicialize o Apache e o MySQL:**
+
+5.1 No painel de controle do XAMPP, ative os serviços:
+
+- Apache
+- MySQL
+
+  
+5.2 Acesse o sistema:
+No navegador, digite o endereço: http://localhost/health-conect-
+
+
+##  Licença
+
+Este projeto está sob a Licença Apache-2.0 Veja o arquivo [LICENÇA](LICENSE) para mais detalhes.
